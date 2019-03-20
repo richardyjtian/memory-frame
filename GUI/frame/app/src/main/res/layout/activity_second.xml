@@ -14,8 +14,9 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/bg2"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent="0.65"
         android:layout_marginTop="296dp"
         android:background="#FFFFFF"
         android:gravity="center"
@@ -38,8 +39,9 @@
 
         <EditText
             android:id="@+id/username"
-            android:layout_width="300dp"
+            android:layout_width="0dp"
             android:layout_height="43dp"
+            app:layout_constraintWidth_percent="0.7"
             android:layout_gravity="center"
             android:layout_marginStart="5dp"
             android:layout_marginLeft="5dp"
@@ -71,8 +73,9 @@
 
         <EditText
             android:id="@+id/password"
-            android:layout_width="300dp"
+            android:layout_width="0dp"
             android:layout_height="38dp"
+            app:layout_constraintWidth_percent="0.7"
             android:layout_marginStart="5dp"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="15dp"
@@ -94,8 +97,9 @@
 
     <Button
         android:id="@+id/loginButton"
-        android:layout_width="360dp"
+        android:layout_width="0dp"
         android:layout_height="48dp"
+        app:layout_constraintWidth_percent="0.65"
         android:layout_marginTop="24dp"
         android:background="#FF6666"
         android:text="LOGIN"
