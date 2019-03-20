@@ -29,7 +29,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
-            android:src="@drawable/email"
+            android:src="@drawable/outline_email_black_48dp"
             app:layout_constraintLeft_toLeftOf="@+id/bg4"
             app:layout_constraintTop_toTopOf="parent" />
 
