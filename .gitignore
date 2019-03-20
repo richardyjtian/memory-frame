@@ -1,0 +1,7 @@
+*.sh
+db
+third-party
+sounds
+config.json
+build
+avs-device-sdk
