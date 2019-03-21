@@ -28,6 +28,7 @@ public class BTActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bt);
         btList = (ListView) findViewById(R.id.btlist);
+        myBluetooth = BluetoothAdapter.getDefaultAdapter();
 
     }
 

@@ -5,7 +5,8 @@
     android:id="@+id/layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@drawable/lbackground">
 
 
     <ImageView
@@ -26,7 +27,7 @@
         app:layout_constraintWidth_percent="0.5"
         android:layout_marginBottom="204dp"
         android:background="#FFFFFF"
-        android:fontFamily="sans-serif-black"
+        android:textStyle="bold"
         android:text="LOGIN"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -40,7 +41,7 @@
         app:layout_constraintWidth_percent="0.5"
         android:layout_marginBottom="132dp"
         android:background="#FFFFFF"
-        android:fontFamily="sans-serif-black"
+        android:textStyle="bold"
         android:text="SIGN UP"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
