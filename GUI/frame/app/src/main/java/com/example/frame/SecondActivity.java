@@ -29,7 +29,7 @@ public class SecondActivity extends AppCompatActivity {
     float downX, downY;
     float screenWidth, screenHeight;
 
-    EditText username, password;
+    EditText username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,12 +44,10 @@ public class SecondActivity extends AppCompatActivity {
 
         View v1 = findViewById(R.id.bg2);
         v1.getBackground().setAlpha(200);
-        View v2 = findViewById(R.id.bgpwd);
-        v2.getBackground().setAlpha(200);
+
 
         loginBtn = (Button) findViewById(R.id.loginButton);
         username = (EditText) findViewById(R.id.username);
-        password = (EditText) findViewById(R.id.password);
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,13 +65,6 @@ public class SecondActivity extends AppCompatActivity {
             }
         });
 
-        username.setOnEditorActionListener(new TextView.OnEditorActionListener(){
-
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                return (event.getKeyCode() == KeyEvent.KEYCODE_ENTER);
-            }
-        });
 
     }
 
