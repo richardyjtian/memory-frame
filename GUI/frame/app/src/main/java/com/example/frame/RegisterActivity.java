@@ -53,6 +53,7 @@ import android.widget.TextView;
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_register);
+            getWindow().setBackgroundDrawableResource(R.drawable.lbackground);
 
             View v = findViewById(R.id.bg4);
             v.getBackground().setAlpha(200);
