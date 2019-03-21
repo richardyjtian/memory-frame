@@ -23,8 +23,8 @@ import com.google.firebase.storage.StorageReference;
 import org.w3c.dom.Text;
 
 public class SecondActivity extends AppCompatActivity {
-    private EditText usr;
-    private EditText psw;
+    private EditText emailField;
+    private EditText pwdField;
     private FirebaseAuth auth;
     private Button login;
 
@@ -35,14 +35,13 @@ public class SecondActivity extends AppCompatActivity {
 
         View v = findViewById(R.id.bg2);
 
-
         v.getBackground().setAlpha(200);
 
         // login with firebase
         FirebaseApp.initializeApp(this);
         auth = FirebaseAuth.getInstance();
-        usr = findViewById(R.id.username);
-        psw = findViewById(R.id.password);
+        emailField = findViewById(R.id.username);
+        pwdField = findViewById(R.id.password);
         login = findViewById(R.id.loginButton);
         login.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -52,9 +51,18 @@ public class SecondActivity extends AppCompatActivity {
         });
     }
 
-    private void LogIn(){
-        String email = usr.getText().toString();
-        String password = psw.getText().toString();
+    private void LogIn() {
+        String email = emailField.getText().toString();
+        String password = pwdField.getText().toString();
+
+        // check to see if username and password are valid before attempting to login
+        if (!isValidEmail(email)) {
+            Toast.makeText(this, "Invalid username", Toast.LENGTH_SHORT).show();
+            return;
+        } else if (!isValidPassword(password)) {
+            Toast.makeText(this, "Invalid password", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -74,8 +82,21 @@ public class SecondActivity extends AppCompatActivity {
                 });
     }
 
+    /**
+     * @param em - email
+     * @return if true if em is valid email
+     */
+    private boolean isValidEmail(String em) {
+        // TODO: add more complex check
+        return em.trim().length() > 0;
+    }
 
-
-
-
+    /**
+     * @param pwd
+     * @return if true if the pwd is a valid password
+     */
+    private boolean isValidPassword(String pwd) {
+        // TODO: add more complex check
+        return pwd.trim().length() > 0;
+    }
 }
