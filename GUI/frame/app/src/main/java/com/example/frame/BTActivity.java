@@ -85,6 +85,4 @@ public class BTActivity extends AppCompatActivity {
     };
 
 
-
-
 }
