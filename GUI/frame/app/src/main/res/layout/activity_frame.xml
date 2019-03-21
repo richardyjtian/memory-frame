@@ -183,6 +183,41 @@
         tools:layout_editor_absoluteX="0dp">
 
 
+        <ImageView
+            android:id="@+id/fhome"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:background="@drawable/outline_home_black_48dp"
+            app:layout_constraintBottom_toBottomOf="@id/bottomwindow"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintLeft_toLeftOf="@id/bottomwindow"
+            app:layout_constraintRight_toRightOf="@id/bottomwindow"
+            app:layout_constraintTop_toTopOf="@id/bottomwindow"
+            app:layout_constraintVertical_bias="0.5" />
+
+        <ImageView
+            android:id="@+id/frame"
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:background="@drawable/baseline_filter_frames_black_48dp"
+            app:layout_constraintBottom_toBottomOf="@id/bottomwindow"
+            app:layout_constraintHorizontal_bias="0.85"
+            app:layout_constraintLeft_toLeftOf="@id/bottomwindow"
+            app:layout_constraintRight_toRightOf="@id/bottomwindow"
+            app:layout_constraintTop_toTopOf="@id/bottomwindow"
+            app:layout_constraintVertical_bias="0.5" />
+
+        <ImageView
+            android:id="@+id/setting"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/outline_settings_black_48dp"
+            app:layout_constraintBottom_toBottomOf="@id/bottomwindow"
+            app:layout_constraintHorizontal_bias="0.15"
+            app:layout_constraintLeft_toLeftOf="@id/bottomwindow"
+            app:layout_constraintRight_toRightOf="@id/bottomwindow"
+            app:layout_constraintTop_toTopOf="@id/bottomwindow"
+            app:layout_constraintVertical_bias="0.5" />
 
     </android.support.constraint.ConstraintLayout>
 
