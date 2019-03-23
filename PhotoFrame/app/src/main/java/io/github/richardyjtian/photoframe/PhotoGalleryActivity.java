@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -31,9 +32,6 @@ public class PhotoGalleryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo_gallery);
-
-        // Get storage permissions
-        permissionsCheck();
 
         // Read the photoArray from the save file
         photoArray = FileIO.readFromFile(this);
@@ -74,6 +72,7 @@ public class PhotoGalleryActivity extends AppCompatActivity {
 
         camera.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                camera();
             }
         });
         builder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
@@ -89,7 +88,9 @@ public class PhotoGalleryActivity extends AppCompatActivity {
     private static final int PICK_IMAGE_REQUEST = 1;
     // Browse storage for an image
     public void imageSelect() {
-        permissionsCheck();
+        // Get storage permissions first
+        Permissions.getStoragePermission(this);
+
         Intent intent;
         if (Build.VERSION.SDK_INT < 19) {
             intent = new Intent(Intent.ACTION_GET_CONTENT);
@@ -101,8 +102,18 @@ public class PhotoGalleryActivity extends AppCompatActivity {
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
     }
 
+    private static final int CAMERA_REQUEST = 2;
+    // Open camera to take a photo
+    public void camera() {
+        // Get camera permissions first
+        Permissions.getCameraPermission(this);
+
+        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(cameraIntent, CAMERA_REQUEST);
+    }
+
     private static final int UPLOAD_IMAGE_REQUEST = 1;
-    // Called after browsed for an image
+    // Called after browsed for an image or taken a photo from the camera
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -119,15 +130,18 @@ public class PhotoGalleryActivity extends AppCompatActivity {
             intent.putExtra("Photo", photo);
             startActivityForResult(intent, UPLOAD_IMAGE_REQUEST);
         }
-    }
 
-    public void permissionsCheck() {
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.READ_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
-            return;
+        // Taken a photo
+        if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK
+                && data != null && data.getData() != null) {
+            Uri imageUri = data.getData();
+
+            Photo photo = new Photo(imageUri);
+
+            // Start a new activity with the Photo
+            Intent intent = new Intent(PhotoGalleryActivity.this, PhotoPropertiesActivity.class);
+            intent.putExtra("Photo", photo);
+            startActivityForResult(intent, UPLOAD_IMAGE_REQUEST);
         }
     }
 }
