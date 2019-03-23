@@ -1,9 +1,13 @@
 package io.github.richardyjtian.photoframe;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,8 +20,6 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class PhotoGalleryActivity extends AppCompatActivity {
-
-    //TODO: a better way of doing this is saving it all in a file and referencing the file everytime, than having it be static
     // instance of our new custom array adaptor
     public static PhotoFrameArrayAdaptor ArrayAdapter;
 
@@ -29,18 +31,27 @@ public class PhotoGalleryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo_gallery);
 
+        // Get storage permissions
+        StoragePermission.isStoragePermissionGranted(this);
+
+        // Read the photoArray from the save file
+        photoArray = FileIO.readFromFile(this);
+
         // create the new adaptors passing important params, such
         // as context, android row style and the array of strings to display
         ArrayAdapter = new PhotoFrameArrayAdaptor(this, android.R.layout.simple_list_item_1, photoArray);
 
-        // get handles to the list view in the Custom Activity layout
-        ListView myListView = (ListView) findViewById( R.id.listView2 );
+        // get handles to the list view in the PhotoGalleryActivity layout
+        ListView myListView = (ListView) findViewById(R.id.listView);
 
         // TODO: add some action listeners for when user clicks on row in either list view
         // myListView.setOnItemClickListener(myListViewClickedHandler);
 
         // set the adaptor view
         myListView.setAdapter(ArrayAdapter);
+
+        // Update the list
+        ArrayAdapter.notifyDataSetChanged();
     }
 
     public void uploadNewPhoto(View view){
@@ -72,14 +83,7 @@ public class PhotoGalleryActivity extends AppCompatActivity {
             }
         });
 
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-
-        builder.setPositiveButton("Upload", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 

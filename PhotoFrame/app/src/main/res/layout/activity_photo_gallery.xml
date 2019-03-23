@@ -8,7 +8,7 @@
     tools:context=".PhotoGalleryActivity">
 
     <ListView
-        android:id="@+id/listView2"
+        android:id="@+id/listView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginLeft="8dp"
