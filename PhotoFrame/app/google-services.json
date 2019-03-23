@@ -80,6 +80,37 @@
           "status": 2
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:585569671425:android:f8ebdf29d5ac5525",
+        "android_client_info": {
+          "package_name": "io.github.richardyjtian.photoframe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "585569671425-pp6k0rgcd2biqtsv1rb9hfb9e6se0pgc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCalffMlHUwKb1MKab1D3Y3Vs4c1dh55f4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
     }
   ],
   "configuration_version": "1"

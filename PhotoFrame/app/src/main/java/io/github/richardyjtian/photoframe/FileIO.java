@@ -27,7 +27,7 @@ public class FileIO {
             fos.close();
 
         } catch (FileNotFoundException e) {
-            Toast.makeText(context, "Error Save 1: " + FileName, Toast.LENGTH_LONG).show();
+//            Toast.makeText(context, "Error Save 1: " + FileName, Toast.LENGTH_LONG).show();
         } catch (IOException e) {
             e.printStackTrace();
             Toast.makeText(context, "Error Save 2: " + FileName, Toast.LENGTH_LONG).show();
@@ -48,7 +48,7 @@ public class FileIO {
             fis.close();
 
         } catch (FileNotFoundException e) {
-            Toast.makeText(context, "Error Read 1: " + FileName, Toast.LENGTH_LONG).show();
+//            Toast.makeText(context, "Error Read 1: " + FileName, Toast.LENGTH_LONG).show();
         } catch (IOException e) {
             e.printStackTrace();
             Toast.makeText(context, "Error Read 2: " + FileName, Toast.LENGTH_LONG).show();

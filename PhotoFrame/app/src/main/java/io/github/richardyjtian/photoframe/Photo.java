@@ -5,7 +5,7 @@ import android.net.Uri;
 import java.io.Serializable;
 
 public class Photo implements Serializable {
-    private String name = "name";
+    private String name = "New Photo";
     private String imageUri; //Uri is not serializable, so we convert between a string
     private String caption = "caption";
     private String people = "people";
