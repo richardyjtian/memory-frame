@@ -50,11 +50,11 @@ public class PhotoGalleryActivity extends AppCompatActivity {
         // set the adaptor view
         myListView.setAdapter(ArrayAdapter);
 
-        // Update the list
+        // Update the list with previously saved data
         ArrayAdapter.notifyDataSetChanged();
     }
 
-    public void uploadNewPhoto(View view){
+    public void photoSourceDialog(View view){
         // create a new AlertDialog Builder object
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
@@ -73,7 +73,7 @@ public class PhotoGalleryActivity extends AppCompatActivity {
 
         upload.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                openFileChooser();
+                imageSelect();
             }
         });
 
@@ -97,7 +97,7 @@ public class PhotoGalleryActivity extends AppCompatActivity {
 
     private static final int PICK_IMAGE_REQUEST = 1;
     // Browse storage for an image
-    public void openFileChooser() {
+    public void imageSelect() {
         permissionsCheck();
         Intent intent;
         if (Build.VERSION.SDK_INT < 19) {

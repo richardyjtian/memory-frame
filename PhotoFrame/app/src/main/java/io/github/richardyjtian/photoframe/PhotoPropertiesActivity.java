@@ -29,11 +29,15 @@ public class PhotoPropertiesActivity extends AppCompatActivity {
         Picasso.get().load(imageUri).into(img);
     }
 
+    // Called when the done button is clicked
     public void finish(View view){
         setPhotoFields(view);
 
         PhotoGalleryActivity.photoArray.add(photo);
         PhotoGalleryActivity.ArrayAdapter.notifyDataSetChanged();
+
+        // Upload the photo to firebase
+        Upload.uploadPhoto(this, photo);
 
         // Save the photoArray to the save file
         FileIO.saveToFile(this, PhotoGalleryActivity.photoArray);
