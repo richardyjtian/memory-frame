@@ -20,6 +20,8 @@ public class PhotoPropertiesActivity extends AppCompatActivity {
     private EditText name_et;
     private EditText caption_et;
     private EditText people_et;
+    private CheckBox time_taken_cb;
+    private CheckBox location_taken_cb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,8 @@ public class PhotoPropertiesActivity extends AppCompatActivity {
         name_et = findViewById(R.id.name);
         caption_et = findViewById(R.id.caption);
         people_et = findViewById(R.id.people);
+        time_taken_cb = findViewById(R.id.time_taken);
+        location_taken_cb = findViewById(R.id.location_taken);
 
         position = getIntent().getIntExtra("Position", 0);
         photo = (Photo) getIntent().getSerializableExtra("Photo");
@@ -38,6 +42,8 @@ public class PhotoPropertiesActivity extends AppCompatActivity {
         name_et.setText(photo.getName());
         caption_et.setText(photo.getCaption());
         people_et.setText(photo.getPeople());
+        time_taken_cb.setChecked(photo.getInclude_time());
+        location_taken_cb.setChecked(photo.getInclude_location());
     }
 
     // Called when the done button is clicked
@@ -79,10 +85,8 @@ public class PhotoPropertiesActivity extends AppCompatActivity {
         if(!people.isEmpty())
             photo.setPeople(people);
 
-        CheckBox time_taken_cb = findViewById(R.id.time_taken);
         photo.setInclude_time(time_taken_cb.isChecked());
 
-        CheckBox location_taken_cb = findViewById(R.id.location_taken);
         photo.setInclude_location(location_taken_cb.isChecked());
     }
 }
