@@ -14,7 +14,12 @@ import java.io.File;
 
 public class PhotoPropertiesActivity extends AppCompatActivity {
 
-    Photo photo;
+    private int position;
+    private Photo photo;
+
+    private EditText name_et;
+    private EditText caption_et;
+    private EditText people_et;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,22 +27,38 @@ public class PhotoPropertiesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_photo_properties);
 
         ImageView img = findViewById(R.id.img);
-        Uri imageUri = Uri.parse(getIntent().getExtras().getString("imageUri"));
+        name_et = findViewById(R.id.name);
+        caption_et = findViewById(R.id.caption);
+        people_et = findViewById(R.id.people);
 
-        photo = new Photo();
-        photo.setImageUri(imageUri);
-        Picasso.get().load(imageUri).into(img);
+        position = getIntent().getIntExtra("Position", 0);
+        photo = (Photo) getIntent().getSerializableExtra("Photo");
+
+        Picasso.get().load(photo.getImageUri()).into(img);
+        name_et.setText(photo.getName());
+        caption_et.setText(photo.getCaption());
+        people_et.setText(photo.getPeople());
     }
 
     // Called when the done button is clicked
     public void finish(View view){
         setPhotoFields(view);
+        // Check if calling activity from PhotoGalleryActivity
+        if(getCallingActivity() != null) {
+            PhotoGalleryActivity.photoArray.add(0, photo);
 
-        PhotoGalleryActivity.photoArray.add(photo);
+            // Upload the photo to firebase
+            Upload.uploadPhoto(this, photo);
+        }
+        // If calling activity was from PhotoFrameAdaptor
+        else {
+            PhotoGalleryActivity.photoArray.set(position, photo);
+
+            //TODO: Change the photo in firebase
+
+        }
+        // Notify the ArrayAdapter
         PhotoGalleryActivity.ArrayAdapter.notifyDataSetChanged();
-
-        // Upload the photo to firebase
-        Upload.uploadPhoto(this, photo);
 
         // Save the photoArray to the save file
         FileIO.saveToFile(this, PhotoGalleryActivity.photoArray);
@@ -46,17 +67,14 @@ public class PhotoPropertiesActivity extends AppCompatActivity {
     }
 
     public void setPhotoFields(View view){
-        EditText name_et = findViewById(R.id.name);
         String name = name_et.getText().toString();
         if(!name.isEmpty())
             photo.setName(name);
 
-        EditText caption_et = findViewById(R.id.caption);
         String caption = caption_et.getText().toString();
         if(!caption.isEmpty())
             photo.setCaption(caption);
 
-        EditText people_et = findViewById(R.id.people);
         String people = people_et.getText().toString();
         if(!people.isEmpty())
             photo.setPeople(people);

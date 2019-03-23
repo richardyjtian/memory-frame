@@ -58,7 +58,7 @@ public class Upload {
             uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Toast.makeText(activity, "upload successful", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity, "Upload successful", Toast.LENGTH_SHORT).show();
                     Upload u = new Upload(name, fileRef.getDownloadUrl().toString());
                     String uID = dRef.push().getKey();
                     dRef.child(uID).setValue(u);

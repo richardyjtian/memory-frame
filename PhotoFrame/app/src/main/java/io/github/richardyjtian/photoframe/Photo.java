@@ -5,15 +5,15 @@ import android.net.Uri;
 import java.io.Serializable;
 
 public class Photo implements Serializable {
-    private String name = "NewPhoto";
+    private String name = "";
     private String imageUri; //Uri is not serializable, so we convert between a string
-    private String caption = "caption";
-    private String people = "people";
+    private String caption = "";
+    private String people = "";
     private Boolean include_time = false;
     private Boolean include_location = false;
 
-    public Photo(){
-
+    public Photo(Uri imageUri) {
+        this.imageUri = imageUri.toString();
     }
 
     public String getName() {

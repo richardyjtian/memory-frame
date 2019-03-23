@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -44,9 +45,6 @@ public class PhotoGalleryActivity extends AppCompatActivity {
         // get handles to the list view in the PhotoGalleryActivity layout
         ListView myListView = (ListView) findViewById(R.id.listView);
 
-        // TODO: add some action listeners for when user clicks on row in either list view
-        // myListView.setOnItemClickListener(myListViewClickedHandler);
-
         // set the adaptor view
         myListView.setAdapter(ArrayAdapter);
 
@@ -57,13 +55,10 @@ public class PhotoGalleryActivity extends AppCompatActivity {
     public void photoSourceDialog(View view){
         // create a new AlertDialog Builder object
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
         // set the message and the Title
         builder.setTitle("Upload New Photo");
-
         // setup the dialog so that it cannot be cancelled by the back key (optional)
         builder.setCancelable(true);
-
         // We need a layout inflater to read our XML file and construct the layout
         LayoutInflater inflater = getLayoutInflater();
 
@@ -79,17 +74,13 @@ public class PhotoGalleryActivity extends AppCompatActivity {
 
         camera.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
             }
         });
-
         builder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
             }
         });
-
         // Inflate the photo_gallery_dialogbox.xml layout file and set as dialog view
         builder.setView(promptView);
         builder.show();
@@ -110,6 +101,7 @@ public class PhotoGalleryActivity extends AppCompatActivity {
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
     }
 
+    private static final int UPLOAD_IMAGE_REQUEST = 1;
     // Called after browsed for an image
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -120,10 +112,12 @@ public class PhotoGalleryActivity extends AppCompatActivity {
                 && data != null && data.getData() != null) {
             Uri imageUri = data.getData();
 
-            // Start a new activity with the imageUri
+            Photo photo = new Photo(imageUri);
+
+            // Start a new activity with the Photo
             Intent intent = new Intent(PhotoGalleryActivity.this, PhotoPropertiesActivity.class);
-            intent.putExtra("imageUri", imageUri.toString());
-            startActivity(intent);
+            intent.putExtra("Photo", photo);
+            startActivityForResult(intent, UPLOAD_IMAGE_REQUEST);
         }
     }
 
