@@ -6,10 +6,10 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.CallSuper;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -18,11 +18,19 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.support.annotation.NonNull;
 
-import org.w3c.dom.Text;
+//import com.google.android.gms.tasks.OnCompleteListener;
+//import com.google.android.gms.tasks.Task;
+//import com.google.firebase.auth.AuthResult;
+//import com.google.firebase.auth.FirebaseAuth;
 
 public class SecondActivity extends AppCompatActivity {
 
+//    private EditText emailField;
+//    private EditText pwdField;
+//    private FirebaseAuth auth;
     private Button loginBtn;
     View decorView;
 
@@ -52,8 +60,7 @@ public class SecondActivity extends AppCompatActivity {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SecondActivity.this, SuccessActivity.class);
-                startActivity(intent);
+                LogIn();
             }
         });
 
@@ -67,6 +74,58 @@ public class SecondActivity extends AppCompatActivity {
 
 
     }
+
+    private void LogIn() {
+//        String email = emailField.getText().toString();
+//        String password = pwdField.getText().toString();
+//
+//        // check to see if username and password are valid before attempting to login
+//        if (!isValidEmail(email)) {
+//            Toast.makeText(this, "Invalid username", Toast.LENGTH_SHORT).show();
+//            return;
+//        } else if (!isValidPassword(password)) {
+//            Toast.makeText(this, "Invalid password", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
+//
+//        auth.signInWithEmailAndPassword(email, password)
+//                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<AuthResult> task) {
+//                        if (task.isSuccessful()) {
+//                            // Sign in success, update UI with the signed-in user's information
+//                            //FirebaseUser user = mAuth.getCurrentUser();
+//                            // TODO: redirect to logged in UI
+                            Intent intent = new Intent(SecondActivity.this, BTActivity.class);
+                            startActivity(intent);
+//                        } else {
+//                            // If sign in fails, display a message to the user.
+//                            Toast.makeText(SecondActivity.this, "Authentication failed.",
+//                                    Toast.LENGTH_SHORT).show();
+//                        }
+//
+//                    }
+//                });
+    }
+
+    /**
+     * @param em - email
+     * @return if true if em is valid email
+     */
+    private boolean isValidEmail(String em) {
+        // TODO: add more complex check
+        return em.trim().length() > 0;
+    }
+
+    /**
+     * @param pwd
+     * @return if true if the pwd is a valid password
+     */
+    private boolean isValidPassword(String pwd) {
+        // TODO: add more complex check
+        return pwd.trim().length() > 0;
+    }
+
 
     @Override
     public boolean onTouchEvent(MotionEvent event){
