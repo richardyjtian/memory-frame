@@ -44,6 +44,7 @@
         android:textSize="12sp"
         android:maxLines="1"
         android:inputType="text"
+        android:maxLength="20"
         app:layout_constraintBottom_toTopOf="@+id/caption_label"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

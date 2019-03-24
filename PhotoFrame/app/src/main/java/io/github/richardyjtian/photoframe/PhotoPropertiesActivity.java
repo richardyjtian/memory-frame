@@ -1,6 +1,5 @@
 package io.github.richardyjtian.photoframe;
 
-import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,8 +8,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
-
-import java.io.File;
 
 public class PhotoPropertiesActivity extends AppCompatActivity {
 
