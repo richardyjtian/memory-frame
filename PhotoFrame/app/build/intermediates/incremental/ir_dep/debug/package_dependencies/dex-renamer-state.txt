@@ -1,4 +1,0 @@
-#Sun Mar 24 17:49:09 PDT 2019
-base.0=/Users/liruolin/Desktop/cpen-391-module-2/PhotoFrame/app/build/intermediates/transforms/dexMerger/debug/10
-path.0=classes.dex
-renamed.0=classes.dex

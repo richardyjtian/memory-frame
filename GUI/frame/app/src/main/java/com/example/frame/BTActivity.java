@@ -20,9 +20,11 @@ import java.util.Set;
 public class BTActivity extends AppCompatActivity {
 
     ListView btList;
-    ImageView frame;
+    ImageView figure;
     private Set<BluetoothDevice> pairedDevices;
     private BluetoothAdapter myBluetooth = null;
+
+
     public static String EXTRA_ADDRESS = "device_address";
 
     @Override
@@ -30,11 +32,11 @@ public class BTActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bt);
         btList = (ListView) findViewById(R.id.btlist);
-        frame = (ImageView) findViewById(R.id.frame);
+        figure = (ImageView) findViewById(R.id.figure);
         myBluetooth = BluetoothAdapter.getDefaultAdapter();
 
-        frame.setClickable(true);
-        frame.setOnClickListener(new View.OnClickListener() {
+        figure.setClickable(true);
+        figure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(BTActivity.this, FrameActivity.class);
