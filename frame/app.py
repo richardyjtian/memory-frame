@@ -1,17 +1,23 @@
 import logging
 import os
 
-from flask import Flask
+from flask import Flask, render_template
 from flask_ask import Ask, request, session, question, statement
 import RPi.GPIO as GPIO
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/static')
 ask = Ask(app, "/")
 logging.getLogger('flask_ask').setLevel(logging.DEBUG)
 
 STATUSON = ['on','high']
 STATUSOFF = ['off','low']
 
+############### Photoframe Web Server ###############
+@app.route('/')
+def frame():
+        return render_template('index.html');
+
+############### Alexa Intent Handlers ############### 
 @ask.launch
 def launch():
 	speech_text = 'Welcome to Raspberry Pi Automation.'
