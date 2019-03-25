@@ -2,6 +2,7 @@ package io.github.richardyjtian.photoframe;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -59,8 +60,8 @@ public class PhotoFrameArrayAdaptor extends ArrayAdapter<Photo> {
         label.setText(photo.getName());
 
         // Set delete button on click
-        Button delete_button = (Button) row.findViewById(R.id.delete_button);
-        delete_button.setOnClickListener(new View.OnClickListener() {
+        ImageView delete = (ImageView) row.findViewById(R.id.bin);
+        delete.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 thePhotoArray.remove(pos);
                 //TODO: remove the photo from firebase

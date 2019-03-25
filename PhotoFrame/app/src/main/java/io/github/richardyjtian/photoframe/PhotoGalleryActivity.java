@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -57,6 +58,9 @@ public class PhotoGalleryActivity extends AppCompatActivity {
         final View promptView = inflater.inflate(R.layout.photo_gallery_dialogbox, null);
         Button upload = (Button) promptView.findViewById(R.id.upload);
         Button camera = (Button) promptView.findViewById(R.id.camera);
+        ImageView uploadiv = (ImageView) promptView.findViewById(R.id.collection);
+        ImageView cameraiv = (ImageView) promptView.findViewById(R.id.cam);
+
 
         upload.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -74,6 +78,24 @@ public class PhotoGalleryActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
             }
         });
+
+        uploadiv.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                imageSelect();
+            }
+        });
+
+        cameraiv.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                camera();
+            }
+        });
+        builder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+
         // Inflate the photo_gallery_dialogbox.xml layout file and set as dialog view
         builder.setView(promptView);
         builder.show();
