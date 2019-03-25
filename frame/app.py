@@ -3,11 +3,15 @@ import os
 
 from flask import Flask, render_template
 from flask_ask import Ask, request, session, question, statement
-import RPi.GPIO as GPIO
+from flask_socketio import SocketIO, emit
 
 app = Flask(__name__, static_url_path='/static')
+# set up Alexa intent handler
 ask = Ask(app, "/")
 logging.getLogger('flask_ask').setLevel(logging.DEBUG)
+# set up SocketIO
+app.config['SECRET_KEY'] = 'secret!'
+socketio = SocketIO(app)
 
 STATUSON = ['on','high']
 STATUSOFF = ['off','low']
@@ -15,7 +19,16 @@ STATUSOFF = ['off','low']
 ############### Photoframe Web Server ###############
 @app.route('/')
 def frame():
-        return render_template('index.html');
+	return render_template('index.html');
+
+############### SocketIO ###############
+@socketio.on('connect')
+def socket_connect():
+        print('frame connected to socket')
+
+@socketio.on('test_print')
+def socket_test_print(message):
+        print(message)
 
 ############### Alexa Intent Handlers ############### 
 @ask.launch
@@ -25,14 +38,11 @@ def launch():
 
 @ask.intent('GpioIntent', mapping = {'status':'status'})
 def Gpio_Intent(status,room):
-	GPIO.setwarnings(False)
-	GPIO.setmode(GPIO.BCM)
-	GPIO.setup(17,GPIO.OUT)
 	if status in STATUSON:
-		GPIO.output(17,GPIO.HIGH)
+		emit('test', 'turning LED on', namespace='/', broadcast=True);
 		return statement('turning {} lights'.format(status))
 	elif status in STATUSOFF:
-		GPIO.output(17,GPIO.LOW)
+		emit('test', 'turning LED off', namespace='/', broadcast=True);
 		return statement('turning {} lights'.format(status))
 	else:
 		return statement('Sorry not possible.')
@@ -50,7 +60,8 @@ def session_ended():
 
 if __name__ == '__main__':
 	if 'ASK_VERIFY_REQUESTS' in os.environ:
-		verify = str(os.environ.get('ASK_VERIFY_REQUESTS', '')).lower()
+                verify = str(os.environ.get('ASK_VERIFY_REQUESTS', '')).lower()
 		if verify == 'false':
 			app.config['ASK_VERIFY_REQUESTS'] = False
-	app.run(debug=True)
+	# app.run(debug=True)
+	socketio.run(app)
