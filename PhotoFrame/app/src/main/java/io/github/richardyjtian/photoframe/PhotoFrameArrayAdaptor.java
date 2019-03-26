@@ -84,11 +84,9 @@ public class PhotoFrameArrayAdaptor extends ArrayAdapter<Photo> {
                         FirebaseDatabase.getInstance().getReference("test2").child(key).removeValue();
                     }
                 });
-
-
+                
                 notifyDataSetChanged();
-                // Save the photoArray to the save file
-                FileIO.saveToFile(context, PhotoGalleryActivity.photoArray);
+
             }
         });
 
