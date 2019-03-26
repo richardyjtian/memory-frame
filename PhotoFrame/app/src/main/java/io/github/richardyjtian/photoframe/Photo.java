@@ -11,10 +11,12 @@ public class Photo implements Serializable {
     private String people = "";
     private Boolean include_time = false;
     private Boolean include_location = false;
+    private String key;
 
     public Photo(Uri imageUri) {
         this.imageUri = imageUri.toString();
     }
+    public Photo(){}
 
     public String getName() {
         return name;
@@ -28,6 +30,9 @@ public class Photo implements Serializable {
 
     public void setImageUri(Uri imageUri) {
         this.imageUri = imageUri.toString();
+    }
+    public void setImageUri(String imageUri) {
+        this.imageUri = imageUri;
     }
 
     public String getCaption() {
@@ -55,6 +60,14 @@ public class Photo implements Serializable {
     public Boolean getInclude_location() { return include_location; }
 
     public void setInclude_location(Boolean include_location) { this.include_location = include_location; }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
 
 }
 

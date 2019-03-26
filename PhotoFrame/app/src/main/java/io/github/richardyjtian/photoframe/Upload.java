@@ -7,8 +7,10 @@ import android.support.annotation.NonNull;
 import android.webkit.MimeTypeMap;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -98,11 +100,25 @@ public class Upload {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     Toast.makeText(activity, "Upload successful", Toast.LENGTH_SHORT).show();
-                    Upload u = new Upload(photo, fileRef.getDownloadUrl().toString());
-                    String uID = dRef.push().getKey();
-                    u.setKey(uID);
-                    dRef.child(uID).setValue(u);
-                    //dRef.setValue("hello world");
+                    fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            Upload u = new Upload(photo, uri.toString());
+                            String uID = dRef.push().getKey();
+                            u.setKey(uID);
+                            dRef.child(uID).setValue(u);
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(activity,"failed to get url and upload", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+//                    Upload u = new Upload(photo, sRef.getDownloadUrl().getResult().toString());
+//                    u.setName(sRef.getDownloadUrl().toString());
+//                    String uID = dRef.push().getKey();
+//                    u.setKey(uID);
+//                    dRef.child(uID).setValue(u);
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override

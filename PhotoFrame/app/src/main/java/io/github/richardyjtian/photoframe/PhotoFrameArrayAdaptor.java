@@ -3,6 +3,7 @@ package io.github.richardyjtian.photoframe;
 import android.content.Context;
 import android.content.Intent;
 import android.media.Image;
+import android.net.Uri;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -63,8 +70,21 @@ public class PhotoFrameArrayAdaptor extends ArrayAdapter<Photo> {
         ImageView delete = (ImageView) row.findViewById(R.id.bin);
         delete.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                Photo toDelete = thePhotoArray.get(pos);
                 thePhotoArray.remove(pos);
                 //TODO: remove the photo from firebase
+                final String key = toDelete.getKey();
+                DatabaseReference db = FirebaseDatabase.getInstance().getReference("test2");
+                StorageReference s = FirebaseStorage.getInstance().getReference("test2");
+                // delete picture in storage
+                StorageReference imgRef = FirebaseStorage.getInstance().getReferenceFromUrl(photo.getImageUri().toString());
+                imgRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        FirebaseDatabase.getInstance().getReference("test2").child(key).removeValue();
+                    }
+                });
+
 
                 notifyDataSetChanged();
                 // Save the photoArray to the save file
