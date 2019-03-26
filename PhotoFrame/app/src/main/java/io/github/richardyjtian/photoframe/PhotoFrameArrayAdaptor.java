@@ -92,6 +92,8 @@ public class PhotoFrameArrayAdaptor extends ArrayAdapter<Photo> {
             }
         });
 
+
+        // TODO: have a checkbox to indicate if photo has been successfully uploaded
         return row;
     }
 

@@ -175,6 +175,8 @@ public class PhotoGalleryActivity extends AppCompatActivity {
     private static final int CAMERA_REQUEST = 2;
     // Open camera to take a photo
     public void camera() {
+        // Get storage permissions too
+        Permissions.getStoragePermission(this);
         // Get camera permissions first
         Permissions.getCameraPermission(this);
 
