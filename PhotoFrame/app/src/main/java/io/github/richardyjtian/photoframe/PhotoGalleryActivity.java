@@ -4,15 +4,26 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+
+import com.google.android.gms.common.FirstPartyScopes;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
@@ -23,14 +34,36 @@ public class PhotoGalleryActivity extends AppCompatActivity {
     // dynamic array of Photos (populate at run time)
     public static ArrayList<Photo> photoArray = new ArrayList<Photo>();
 
+    private DatabaseReference mDatabase;
+    private StorageReference mStorage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo_gallery);
 
         // Read the photoArray from the save file
-        photoArray = FileIO.readFromFile(this);
+        //photoArray = FileIO.readFromFile(this);
 
+        mDatabase = FirebaseDatabase.getInstance().getReference("test2"); // set to user id
+        mStorage = FirebaseStorage.getInstance().getReference("test2");
+        //listView = findViewById(R.id.list);
+
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                photoArray.clear();
+                showData(dataSnapshot);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+/*
         // create the new adaptors passing important params, such
         // as context, android row style and the array of strings to display
         ArrayAdapter = new PhotoFrameArrayAdaptor(this, android.R.layout.simple_list_item_1, photoArray);
@@ -42,6 +75,27 @@ public class PhotoGalleryActivity extends AppCompatActivity {
         myListView.setAdapter(ArrayAdapter);
 
         // Update the list with previously saved data
+        ArrayAdapter.notifyDataSetChanged();
+        */
+    }
+
+    private void showData(DataSnapshot dataSnapshot) {
+        for (DataSnapshot ds: dataSnapshot.getChildren()){
+            Photo p = new Photo();
+
+
+            p.setName(ds.getValue(Upload.class).getName());
+            p.setImageUri(ds.getValue(Upload.class).getImageUrl());
+            p.setKey(ds.getValue(Upload.class).getKey());
+            p.setCaption(ds.getValue(Upload.class).getCaption());
+            p.setPeople(ds.getValue(Upload.class).getPeole());
+
+            photoArray.add(p);
+        }
+        ListView listView = findViewById(R.id.listView);
+        ArrayAdapter = new PhotoFrameArrayAdaptor(this, android.R.layout.simple_list_item_1, photoArray);
+
+        listView.setAdapter(ArrayAdapter);
         ArrayAdapter.notifyDataSetChanged();
     }
 
