@@ -19,7 +19,12 @@ import com.google.firebase.storage.UploadTask;
 public class Upload {
     private  String name;
     private  String url;
-    private String[] tags;
+    private  String caption;
+    private  String people;
+    private  String time;
+    private  String location;
+    private  String key;
+
     public Upload(){
     }
 
@@ -31,6 +36,18 @@ public class Upload {
         this.url = url;
 
     }
+    public Upload(Photo p, String url){
+        if (p.getName().equals("")){
+            name = "no_name";
+        }
+        name = p.getName();
+        this.url = url;
+        caption = p.getCaption();
+        people = p.getPeople();
+        // TODO: time and location
+
+
+    }
 
     public String getName(){
         return  name;
@@ -38,6 +55,7 @@ public class Upload {
     public void setName(String n){
         name = n;
     }
+
     public String getImageUrl(){
         return  url;
     }
@@ -45,11 +63,32 @@ public class Upload {
         url = u;
     }
 
-    private static StorageReference sRef = FirebaseStorage.getInstance().getReference("uploads");
-    private static DatabaseReference dRef = FirebaseDatabase.getInstance().getReference().child("uploads");
+    public String getPeole(){
+        return  people;
+    }
+    public void setPeople(String p){
+        people = p;
+    }
+
+    public String getCaption(){
+        return  caption;
+    }
+    public void setCaption(String c){
+        caption = c;
+    }
+
+    public String getKey(){
+        return  key;
+    }
+    public void setKey(String k){
+        key = k;
+    }
+
+    private static StorageReference sRef = FirebaseStorage.getInstance().getReference("test2");
+    private static DatabaseReference dRef = FirebaseDatabase.getInstance().getReference().child("test2");
     private static StorageTask uploadTask;
 
-    public static void uploadPhoto(final Activity activity, Photo photo){
+    public static void uploadPhoto(final Activity activity, final Photo photo){
         Uri imageUri = photo.getImageUri();
         final String name = photo.getName();
         if (imageUri != null){
@@ -59,8 +98,9 @@ public class Upload {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     Toast.makeText(activity, "Upload successful", Toast.LENGTH_SHORT).show();
-                    Upload u = new Upload(name, fileRef.getDownloadUrl().toString());
+                    Upload u = new Upload(photo, fileRef.getDownloadUrl().toString());
                     String uID = dRef.push().getKey();
+                    u.setKey(uID);
                     dRef.child(uID).setValue(u);
                     //dRef.setValue("hello world");
                 }
