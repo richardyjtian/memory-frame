@@ -1,12 +1,17 @@
 package com.example.frame;
 
+import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterViewFlipper;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -15,15 +20,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 public class BTActivity extends AppCompatActivity {
 
     ListView btList;
     ImageView figure;
+    Button scan;
+
     private Set<BluetoothDevice> pairedDevices;
     private BluetoothAdapter myBluetooth = null;
 
+    public static String EXTRA_DEVICE_ADDRESS = "device_address";
+
+    //newly discovered devices
+    public ArrayAdapter<String> mDeviceListAdapter;
 
     public static String EXTRA_ADDRESS = "device_address";
 
@@ -31,6 +43,8 @@ public class BTActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bt);
+
+        //find and set up the listview for newly discovered devices
         btList = (ListView) findViewById(R.id.btlist);
         figure = (ImageView) findViewById(R.id.figure);
         myBluetooth = BluetoothAdapter.getDefaultAdapter();
@@ -44,7 +58,72 @@ public class BTActivity extends AppCompatActivity {
             }
         });
 
+        scan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                discover();
+            }
+        });
+
+        //initialize array adapters, for newly discovered devices
+        mDeviceListAdapter = new ArrayAdapter<String>(this, R.layout.device);
+        btList.setAdapter(mDeviceListAdapter);
+        btList.setOnItemClickListener(mDeviceClickListener);
+
+        //register for broadcasts when a device is discovered
+        IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
+        this.registerReceiver(mReceiver, filter);
     }
+
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+
+        if(myBluetooth != null){
+            myBluetooth.cancelDiscovery();
+        }
+        this.unregisterReceiver(mReceiver);
+    }
+
+    private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+
+            if(BluetoothDevice.ACTION_FOUND.equals(action)){
+                BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                if(device.getBondState() != BluetoothDevice.BOND_BONDED){
+                    mDeviceListAdapter.add(device.getName() + "\n" + device.getAddress());
+                }
+            }
+        }
+    };
+
+    private AdapterView.OnItemClickListener mDeviceClickListener
+            = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            myBluetooth.cancelDiscovery();
+
+            String info = ((TextView) view).getText().toString();
+            String address = info.substring(info.length() - 17);
+
+            Intent intent = new Intent();
+            intent.putExtra(EXTRA_DEVICE_ADDRESS, address);
+
+            setResult(Activity.RESULT_OK, intent);
+            finish();
+        }
+    };
+
+    private void discover(){
+        if(myBluetooth.isDiscovering()){
+            myBluetooth.cancelDiscovery();
+        }
+        myBluetooth.startDiscovery();
+    }
+
+
 
     private void clickText(View view) {
         pairedDevices = myBluetooth.getBondedDevices();

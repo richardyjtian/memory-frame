@@ -47,27 +47,24 @@
 
 
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/btwindow"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:id="@+id/btwindow"
+        android:background="#FFFFFF"
         app:layout_constraintHeight_percent="0.95"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/upperwindow"
-        app:layout_constraintVertical_bias="1.0"
-        android:background="#FFFFFF">
+        app:layout_constraintTop_toBottomOf="@id/upperwindow">
 
         <TextView
             android:id="@+id/instruction"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintHeight_percent="0.1"
-            app:layout_constraintTop_toTopOf="@id/btwindow"
-            android:textSize="24sp"
-            android:onClick="clickText"
-            android:clickable="true"
+            android:layout_marginTop="15dp"
             android:text="Pair with your photo frame"
             android:textAlignment="center"
-            android:layout_marginTop="10dp"/>
+            android:textSize="24sp"
+            app:layout_constraintHeight_percent="0.2"
+            app:layout_constraintTop_toTopOf="@id/btwindow" />
 
         <ListView
             android:id="@+id/btlist"
@@ -75,12 +72,32 @@
             android:layout_height="0dp"
             android:layout_marginTop="5dp"
             app:layout_constraintBottom_toBottomOf="@id/btwindow"
-            app:layout_constraintHeight_percent="0.85"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHeight_percent="0.7"
+            app:layout_constraintWidth_percent="0.85"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintLeft_toLeftOf="@id/btwindow"
             app:layout_constraintRight_toRightOf="@id/btwindow"
             app:layout_constraintTop_toBottomOf="@id/instruction"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.1"
+            android:background="@drawable/shape"
+            android:divider="#CCCCCC"
+            android:dividerHeight="1px"
+            android:cacheColorHint="#00000000"/>
+
+        <Button
+            android:id="@+id/find"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="find frame"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.07"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.12"
+            app:layout_constraintWidth_percent="0.5"
+            android:background="@drawable/logout_selector"/>
 
     </android.support.constraint.ConstraintLayout>
 
