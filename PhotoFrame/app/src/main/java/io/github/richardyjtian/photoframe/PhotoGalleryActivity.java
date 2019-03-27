@@ -42,12 +42,8 @@ public class PhotoGalleryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo_gallery);
 
-        // Read the photoArray from the save file
-        //photoArray = FileIO.readFromFile(this);
-
         mDatabase = FirebaseDatabase.getInstance().getReference("test2"); // set to user id
         mStorage = FirebaseStorage.getInstance().getReference("test2");
-        //listView = findViewById(R.id.list);
 
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
@@ -61,22 +57,6 @@ public class PhotoGalleryActivity extends AppCompatActivity {
 
             }
         });
-
-
-/*
-        // create the new adaptors passing important params, such
-        // as context, android row style and the array of strings to display
-        ArrayAdapter = new PhotoFrameArrayAdaptor(this, android.R.layout.simple_list_item_1, photoArray);
-
-        // get handles to the list view in the PhotoGalleryActivity layout
-        ListView myListView = (ListView) findViewById(R.id.listView);
-
-        // set the adaptor view
-        myListView.setAdapter(ArrayAdapter);
-
-        // Update the list with previously saved data
-        ArrayAdapter.notifyDataSetChanged();
-        */
     }
 
     private void showData(DataSnapshot dataSnapshot) {
@@ -88,7 +68,7 @@ public class PhotoGalleryActivity extends AppCompatActivity {
             p.setImageUri(ds.getValue(Upload.class).getImageUrl());
             p.setKey(ds.getValue(Upload.class).getKey());
             p.setCaption(ds.getValue(Upload.class).getCaption());
-            p.setPeople(ds.getValue(Upload.class).getPeole());
+            p.setPeople(ds.getValue(Upload.class).getPeople());
 
             photoArray.add(p);
         }

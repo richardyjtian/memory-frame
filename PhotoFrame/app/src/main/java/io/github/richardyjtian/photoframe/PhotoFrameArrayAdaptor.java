@@ -67,15 +67,13 @@ public class PhotoFrameArrayAdaptor extends ArrayAdapter<Photo> {
         label.setText(photo.getName());
 
         // Set delete button on click
-        ImageView delete = (ImageView) row.findViewById(R.id.bin);
+        ImageView delete = row.findViewById(R.id.bin);
         delete.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Photo toDelete = thePhotoArray.get(pos);
                 thePhotoArray.remove(pos);
                 //TODO: remove the photo from firebase
                 final String key = toDelete.getKey();
-                DatabaseReference db = FirebaseDatabase.getInstance().getReference("test2");
-                StorageReference s = FirebaseStorage.getInstance().getReference("test2");
                 // delete picture in storage
                 StorageReference imgRef = FirebaseStorage.getInstance().getReferenceFromUrl(photo.getImageUri().toString());
                 imgRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -84,7 +82,7 @@ public class PhotoFrameArrayAdaptor extends ArrayAdapter<Photo> {
                         FirebaseDatabase.getInstance().getReference("test2").child(key).removeValue();
                     }
                 });
-                
+
                 notifyDataSetChanged();
 
             }

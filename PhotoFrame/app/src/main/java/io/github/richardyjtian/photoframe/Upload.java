@@ -46,41 +46,42 @@ public class Upload {
         this.url = url;
         caption = p.getCaption();
         people = p.getPeople();
+        key = p.getKey();
         // TODO: time and location
 
 
     }
 
     public String getName(){
-        return  name;
+        return name;
     }
     public void setName(String n){
         name = n;
     }
 
     public String getImageUrl(){
-        return  url;
+        return url;
     }
     public void setImageUrl(String u){
         url = u;
     }
 
-    public String getPeole(){
-        return  people;
+    public String getPeople(){
+        return people;
     }
     public void setPeople(String p){
         people = p;
     }
 
     public String getCaption(){
-        return  caption;
+        return caption;
     }
     public void setCaption(String c){
         caption = c;
     }
 
     public String getKey(){
-        return  key;
+        return key;
     }
     public void setKey(String k){
         key = k;
@@ -135,5 +136,12 @@ public class Upload {
         ContentResolver cr = activity.getContentResolver();
         MimeTypeMap mime = MimeTypeMap.getSingleton();
         return mime.getExtensionFromMimeType(cr.getType(uri));
+    }
+
+    public static void updatePhoto(final Activity activity, final Photo photo){
+        String key = photo.getKey();
+        Upload u = new Upload(photo, photo.getImageUri().toString());
+
+        dRef.child(key).setValue(u);
     }
 }
