@@ -26,6 +26,7 @@ public class Upload {
     private  String time;
     private  String location;
     private  String key;
+    private  String storageName;
 
     public Upload(){
     }
@@ -80,6 +81,13 @@ public class Upload {
         caption = c;
     }
 
+    public String getStorageName(){
+        return storageName;
+    }
+    public void setStorageName(String sName){
+        storageName = sName;
+    }
+
     public String getKey(){
         return key;
     }
@@ -95,7 +103,8 @@ public class Upload {
         Uri imageUri = photo.getImageUri();
         final String name = photo.getName();
         if (imageUri != null){
-            final StorageReference fileRef = sRef.child(System.currentTimeMillis()+"."+getFileExtension(activity, imageUri));
+            final String imgName =System.currentTimeMillis()+"."+getFileExtension(activity, imageUri);
+            final StorageReference fileRef = sRef.child(imgName);
             uploadTask = fileRef.putFile(imageUri);
             uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
@@ -107,6 +116,7 @@ public class Upload {
                             Upload u = new Upload(photo, uri.toString());
                             String uID = dRef.push().getKey();
                             u.setKey(uID);
+                            u.setStorageName(imgName);
                             dRef.child(uID).setValue(u);
                         }
                     }).addOnFailureListener(new OnFailureListener() {
@@ -115,11 +125,6 @@ public class Upload {
                             Toast.makeText(activity,"failed to get url and upload", Toast.LENGTH_SHORT).show();
                         }
                     });
-//                    Upload u = new Upload(photo, sRef.getDownloadUrl().getResult().toString());
-//                    u.setName(sRef.getDownloadUrl().toString());
-//                    String uID = dRef.push().getKey();
-//                    u.setKey(uID);
-//                    dRef.child(uID).setValue(u);
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
