@@ -10,6 +10,9 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.CallSuper;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.ViewUtils;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -22,7 +25,7 @@ import android.widget.TextView;
     public class RegisterActivity extends AppCompatActivity {
 
         private Button registerBtn;
-        private EditText email, user;
+        private EditText email, user, passwd;
 
         View decorView;
 
@@ -52,6 +55,10 @@ import android.widget.TextView;
             registerBtn = (Button) findViewById(R.id.submitButton);
             email = (EditText) findViewById(R.id.E_mail);
             user = (EditText) findViewById(R.id.username);
+            passwd = (EditText) findViewById(R.id.password);
+
+            email.addTextChangedListener(new JumpText());
+            //user.addTextChangedListener(new JumpText());
 
             registerBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -71,6 +78,14 @@ import android.widget.TextView;
             });
 
             user.setOnEditorActionListener(new TextView.OnEditorActionListener(){
+
+                @Override
+                public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                    return (event.getKeyCode() == KeyEvent.KEYCODE_ENTER);
+                }
+            });
+
+            passwd.setOnEditorActionListener(new TextView.OnEditorActionListener() {
 
                 @Override
                 public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -160,6 +175,32 @@ import android.widget.TextView;
                 manager.hideSoftInputFromWindow(token, InputMethodManager.HIDE_NOT_ALWAYS);
             }
         }
+
+
+        private class JumpText implements TextWatcher {
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s){
+                String str = s.toString();
+                if(str.indexOf("\r") >= 0 || str.indexOf("\n") >= 0){
+                    email.setText(str.replace("\r","").replace("\n",""));
+                    user.requestFocus();
+                    user.setSelection(user.getText().length());
+                }
+
+            }
+        }
+
 
 
 

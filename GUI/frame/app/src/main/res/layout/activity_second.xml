@@ -114,7 +114,7 @@
         android:textStyle="bold"
         android:textSize="@dimen/second_login_size"
         android:textColor="#FFFFFF"
-        app:layout_constraintWidth_percent="0.73"
+        app:layout_constraintWidth_percent="0.83"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
