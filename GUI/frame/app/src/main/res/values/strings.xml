@@ -11,5 +11,5 @@
     <string name="second_login">LOGIN</string>
 
     <string name="success_text">sign up successfully</string>
-    <string name="success_btn">START CREATING YOUR FIRST FRAME</string>
+    <string name="success_btn">CREATE FRAME</string>
 </resources>
