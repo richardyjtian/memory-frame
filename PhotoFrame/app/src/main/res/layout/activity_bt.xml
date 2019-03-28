@@ -59,12 +59,14 @@
             android:id="@+id/btlist"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginBottom="104dp"
-            app:layout_constraintBottom_toBottomOf="@id/btwindow"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/find"
             app:layout_constraintHeight_percent="0.8"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintLeft_toLeftOf="@id/btwindow"
             app:layout_constraintRight_toRightOf="@id/btwindow"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintWidth_percent="0.9" />
         <!--android:background="@drawable/shape"-->
         <!--android:divider="#CCCCCC"-->

@@ -50,6 +50,9 @@ public class BTActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bt);
 
+        // Ask for location permissions
+        Permissions.getLocationPermission(this);
+
         //set up view for discovered devices
         btnDiscovered = (Button) findViewById(R.id.find);
         devicelist1 = (ListView) findViewById(R.id.btlist); //discover
