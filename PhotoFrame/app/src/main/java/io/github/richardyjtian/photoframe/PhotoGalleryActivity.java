@@ -6,9 +6,11 @@ import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -45,6 +47,8 @@ public class PhotoGalleryActivity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference("test2"); // set to user id
         mStorage = FirebaseStorage.getInstance().getReference("test2");
 
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.plusButton);
+
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -57,6 +61,7 @@ public class PhotoGalleryActivity extends AppCompatActivity {
 
             }
         });
+
     }
 
     private void showData(DataSnapshot dataSnapshot) {
@@ -79,6 +84,7 @@ public class PhotoGalleryActivity extends AppCompatActivity {
         listView.setAdapter(ArrayAdapter);
         ArrayAdapter.notifyDataSetChanged();
     }
+
 
     public void photoSourceDialog(View view){
         // create a new AlertDialog Builder object
