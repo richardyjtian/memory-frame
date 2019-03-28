@@ -1,10 +1,15 @@
 <resources>
-    <string name="app_name">CoordinatorMenuDemo</string>
+    <string name="menu_photo_gallery">Photo Gallery</string>
+    <string name="menu_find_frame">Find Frame</string>
+    <string name="menu_log_out">Log Out</string>
 
-    <string name="menu_milk_text">每天喝上一杯奶</string>
-    <string name="menu_basketball_text">别忘了去打球</string>
-    <string name="menu_book_text">我爱学习不能自已</string>
-    <string name="menu_game_text">骚年来盘昆特牌</string>
-    <string name="menu_mouse_text">竜が私が敌を喰らう</string>
-    <string name="menu_rocket_text">要上天</string>
+    <string name="register_pwd">Password</string>
+    <string name="register_email">E-mail</string>
+    <string name="register_username">Username</string>
+    <string name="register_submit">SUBMIT</string>
+
+    <string name="second_login">LOGIN</string>
+
+    <string name="success_text">sign up successfully</string>
+    <string name="success_btn">START CREATING YOUR FIRST FRAME</string>
 </resources>

@@ -1,131 +1,303 @@
 package com.example.frame;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.support.v4.os.ParcelableCompat;
+import android.support.v4.os.ParcelableCompatCreatorCallbacks;
+import android.support.v4.view.AbsSavedState;
+import android.support.v4.view.ViewCompat;
+import android.support.v4.widget.ViewDragHelper;
 import android.util.AttributeSet;
-import android.util.DisplayMetrics;
-import android.util.TypedValue;
 import android.view.MotionEvent;
-import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.HorizontalScrollView;
-import android.widget.LinearLayout;
+import android.view.View;
+import android.widget.FrameLayout;
 
-import com.nineoldandroids.view.ViewHelper;
+public class SlideMenu extends FrameLayout {
 
-public class SlideMenu extends HorizontalScrollView {
+    private static final String TAG = "SlideMenu";
+    private final int mScreenWidth;
+    private final int mScreenHeight;
 
-    private LinearLayout mll;
-    private ViewGroup mMenu;
-    private ViewGroup mContent;
-    private int mScreenWidth, mMenuRightPadding;
-    private int mMenuWidth = 0;
+    private View mMenuView;
+    private MainView mMainView;
 
-    private boolean once = false;
-    private boolean isSlideOut;
+    private ViewDragHelper mViewDragHelper;
 
-    public static final int RIGHT_PADDING = 100;
+    private static final int MENU_CLOSED = 1;
+    private static final int MENU_OPENED = 2;
+    private int mMenuState = MENU_CLOSED;
 
+    private int mDragOrientation;
+    private static final int LEFT_TO_RIGHT = 3;
+    private static final int RIGHT_TO_LEFT = 4;
+
+    private static final float SPRING_BACK_VELOCITY = 1500;
+    private static final int SPRING_BACK_DISTANCE = 80;
+    private int mSpringBackDistance;
+
+    private static final int MENU_MARGIN_RIGHT = 64;
+    private int mMenuWidth;
+
+    private static final int MENU_OFFSET = 128;
+    private int mMenuOffset;
+
+    private static final float TOUCH_SLOP_SENSITIVITY = 1.f;
+
+    private static final String DEFAULT_SHADOW_OPACITY = "00";
+    private String mShadowOpacity = DEFAULT_SHADOW_OPACITY;
+    private int mMenuLeft;
+    private int mMainLeft;
+
+    public SlideMenu(Context context) {
+        this(context, null);
+    }
 
     public SlideMenu(Context context, AttributeSet attrs) {
-        super(context, attrs);
-
-        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-        DisplayMetrics metrics = new DisplayMetrics();
-        wm.getDefaultDisplay().getMetrics(metrics);
-        mScreenWidth = metrics.widthPixels;
-
-        mMenuRightPadding = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, SlideMenu.RIGHT_PADDING,
-                context.getResources().getDisplayMetrics());
+        this(context, attrs, 0);
     }
 
+    public SlideMenu(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
 
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec){
-        if(!once){
-            mll = (LinearLayout) getChildAt(0);
-            mMenu = (ViewGroup) mll.getChildAt(0);
-            mContent = (ViewGroup) mll.getChildAt(1);
+        final float density = getResources().getDisplayMetrics().density;
 
-            mMenuWidth = mMenu.getLayoutParams().width = mScreenWidth - mMenuRightPadding;
-            mContent.getLayoutParams().width = mScreenWidth;
-            once = true;
+        mScreenWidth = getResources().getDisplayMetrics().widthPixels;
+        mScreenHeight = getResources().getDisplayMetrics().heightPixels;
+
+        mSpringBackDistance = (int) (SPRING_BACK_DISTANCE * density + 0.5f);
+
+        mMenuOffset = (int) (MENU_OFFSET * density + 0.5f);
+
+        mMenuLeft = -mMenuOffset;
+
+        mMainLeft = 0;
+
+        mMenuWidth = mScreenWidth - (int) (MENU_MARGIN_RIGHT * density + 0.5f);
+
+        mViewDragHelper = ViewDragHelper.create(this, TOUCH_SLOP_SENSITIVITY, new CoordinatorCallback());
+        mViewDragHelper.setEdgeTrackingEnabled(ViewDragHelper.EDGE_LEFT);
+    }
+
+    private class CoordinatorCallback extends ViewDragHelper.Callback {
+
+        @Override
+        public void onEdgeDragStarted(int edgeFlags, int pointerId) {
+            mViewDragHelper.captureChildView(mMainView, pointerId);
         }
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-    }
 
-    @Override
-    protected void onLayout(boolean changed, int l, int t, int r, int b){
-        super.onLayout(changed, l, t, r, b);
-        if(changed){
-            this.scrollTo(mMenuWidth, 0);
+        @Override
+        public boolean tryCaptureView(View child, int pointerId) {
+            return mMainView == child || mMenuView == child;
         }
-    }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent ev){
-        int action = ev.getAction();
-        switch(action){
-            case MotionEvent.ACTION_UP:
-                int scrollX = getScrollX();
-                if(scrollX >= mMenuWidth/2){
-                    this.smoothScrollTo(mMenuWidth, 0);
-                    isSlideOut = false;
+        @Override
+        public void onViewCaptured(View capturedChild, int activePointerId) {
+            if (capturedChild == mMenuView) {
+                mViewDragHelper.captureChildView(mMainView, activePointerId);
+            }
+        }
+
+        @Override
+        public int getViewHorizontalDragRange(View child) {
+            return 1;
+        }
+
+        @Override
+        public int clampViewPositionHorizontal(View child, int left, int dx) {
+            if (left < 0) {
+                left = 0;
+            } else if (left > mMenuWidth) {
+                left = mMenuWidth;
+            }
+            return left;
+        }
+
+        @Override
+        public void onViewReleased(View releasedChild, float xvel, float yvel) {
+            super.onViewReleased(releasedChild, xvel, yvel);
+            if (mDragOrientation == LEFT_TO_RIGHT) {
+                if (xvel > SPRING_BACK_VELOCITY || mMainView.getLeft() > mSpringBackDistance) {
+                    openMenu();
+                } else {
+                    closeMenu();
                 }
-                else{
-                    this.smoothScrollTo(0,0);
-                    isSlideOut = true;
+            } else if (mDragOrientation == RIGHT_TO_LEFT) {
+                if (xvel < -SPRING_BACK_VELOCITY || mMainView.getLeft() < mMenuWidth - mSpringBackDistance) {
+                    closeMenu();
+                } else {
+                    openMenu();
                 }
+            }
 
-                return true;
         }
-        return super.onTouchEvent(ev);
+
+        @Override
+        public void onViewPositionChanged(View changedView, int left, int top, int dx, int dy) {
+            mMainLeft = left;
+            if (dx > 0) {
+                mDragOrientation = LEFT_TO_RIGHT;
+            } else if (dx < 0) {
+                mDragOrientation = RIGHT_TO_LEFT;
+            }
+            float scale = (float) (mMenuWidth - mMenuOffset) / (float) mMenuWidth;
+            mMenuLeft = left - ((int) (scale * left) + mMenuOffset);
+            mMenuView.layout(mMenuLeft, mMenuView.getTop(),
+                    mMenuLeft + mMenuWidth, mMenuView.getBottom());
+            float showing = (float) (mScreenWidth - left) / (float) mScreenWidth;
+            int hex = 255 - Math.round(showing * 255);
+            if (hex < 16) {
+                mShadowOpacity = "0" + Integer.toHexString(hex);
+            } else {
+                mShadowOpacity = Integer.toHexString(hex);
+            }
+        }
     }
 
-    public void slideOutMenu(){
-        if(!isSlideOut){
-            this.smoothScrollTo(0,0);
-            isSlideOut = true;
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        mMenuView = getChildAt(0);
+        mMainView = (MainView) getChildAt(1);
+        mMainView.setParent(this);
+    }
+
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent event) {
+        return mViewDragHelper.shouldInterceptTouchEvent(event);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        mViewDragHelper.processTouchEvent(event);
+        return true;
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+    }
+
+    @Override
+    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+        super.onLayout(changed, left, top, right, bottom);
+        MarginLayoutParams menuParams = (MarginLayoutParams) mMenuView.getLayoutParams();
+        menuParams.width = mMenuWidth;
+        mMenuView.setLayoutParams(menuParams);
+
+        mMenuView.layout(mMenuLeft, top, mMenuLeft + mMenuWidth, bottom);
+        mMainView.layout(mMainLeft, 0, mMainLeft + mScreenWidth, bottom);
+    }
+
+    @Override
+    protected boolean drawChild(Canvas canvas, View child, long drawingTime) {
+        final int restoreCount = canvas.save();
+
+        final int height = getHeight();
+        final int clipLeft = 0;
+        int clipRight = mMainView.getLeft();
+        if (child == mMenuView) {
+            canvas.clipRect(clipLeft, 0, clipRight, height);
         }
-        else {
+
+        boolean result = super.drawChild(canvas, child, drawingTime);
+
+        canvas.restoreToCount(restoreCount);
+
+
+        int shadowLeft = mMainView.getLeft();
+
+        final Paint shadowPaint = new Paint();
+
+        shadowPaint.setColor(Color.parseColor("#" + mShadowOpacity + "777777"));
+        shadowPaint.setStyle(Paint.Style.FILL);
+        canvas.drawRect(shadowLeft, 0, mScreenWidth, mScreenHeight, shadowPaint);
+
+        return result;
+    }
+
+    @Override
+    public void computeScroll() {
+        if (mViewDragHelper.continueSettling(true)) {
+            ViewCompat.postInvalidateOnAnimation(this);
+        }
+        if (mMainView.getLeft() == 0) {
+            mMenuState = MENU_CLOSED;
+        } else if (mMainView.getLeft() == mMenuWidth) {
+            mMenuState = MENU_OPENED;
+        }
+    }
+
+    public void openMenu() {
+        mViewDragHelper.smoothSlideViewTo(mMainView, mMenuWidth, 0);
+        ViewCompat.postInvalidateOnAnimation(SlideMenu.this);
+    }
+
+    public void closeMenu() {
+        mViewDragHelper.smoothSlideViewTo(mMainView, 0, 0);
+        ViewCompat.postInvalidateOnAnimation(SlideMenu.this);
+    }
+
+    public boolean isOpened() {
+        return mMenuState == MENU_OPENED;
+    }
+
+    @Override
+    protected Parcelable onSaveInstanceState() {
+        final Parcelable superState = super.onSaveInstanceState();
+        final SavedState ss = new SavedState(superState);
+        ss.menuState = mMenuState;
+        return ss;
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Parcelable state) {
+        if (!(state instanceof SavedState)) {
+            super.onRestoreInstanceState(state);
             return;
         }
-    }
 
-    public void slideInMenu(){
-        if(isSlideOut){
-            this.smoothScrollTo(mMenuWidth, 0);
-            isSlideOut = false;
-        }
-        else{
-            return;
+        final SavedState ss = (SavedState) state;
+        super.onRestoreInstanceState(ss.getSuperState());
+
+        if (ss.menuState == MENU_OPENED) {
+            openMenu();
         }
     }
 
-    public void switchMenu(){
-        if(isSlideOut){
-            slideInMenu();;
+    protected static class SavedState extends AbsSavedState {
+        int menuState;
+
+        SavedState(Parcel in, ClassLoader loader) {
+            super(in, loader);
+            menuState = in.readInt();
         }
-        else{
-            slideOutMenu();
+
+        SavedState(Parcelable superState) {
+            super(superState);
         }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            super.writeToParcel(dest, flags);
+            dest.writeInt(menuState);
+        }
+
+        public static final Creator<SavedState> CREATOR = ParcelableCompat.newCreator(
+                new ParcelableCompatCreatorCallbacks<SavedState>() {
+                    @Override
+                    public SavedState createFromParcel(Parcel in, ClassLoader loader) {
+                        return new SavedState(in, loader);
+                    }
+
+                    @Override
+                    public SavedState[] newArray(int size) {
+                        return new SavedState[size];
+                    }
+                });
     }
 
-    @Override
-    protected void onScrollChanged(int l, int t, int oldl, int oldt){
-        super.onScrollChanged(l, t, oldl, oldt);
-
-        float scale = l * 1.0f/mMenuWidth;
-        float menuScale = 1.0f - scale*0.3f;
-        float menuAlpha = 0.0f + 1.0f * (1 - scale);
-        float contentScale = 0.8f + 0.2f *scale;
-
-        ViewHelper.setScaleX(mMenu, menuScale);
-        ViewHelper.setScaleY(mMenu, menuScale);
-        ViewHelper.setAlpha(mMenu, menuAlpha);
-
-        ViewHelper.setPivotX(mContent, 0);
-        ViewHelper.setPivotY(mContent, mContent.getHeight() / 2);
-        ViewHelper.setScaleY(mContent, contentScale);
-        ViewHelper.setScaleX(mContent, contentScale);
-    }
 }

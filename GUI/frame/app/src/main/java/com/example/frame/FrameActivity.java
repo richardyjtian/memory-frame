@@ -1,40 +1,30 @@
 package com.example.frame;
 
-import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.transition.Slide;
-import android.util.Log;
-import android.view.LayoutInflater;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.View;
 import android.view.Window;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import com.example.frame.SlideMenu;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 public class FrameActivity extends AppCompatActivity {
 
-    private final String IMAGE_TAG = "image", TEXT_TAG = "text";
-    private String[] from = {"image", "text"};
-    private int[] to = {R.id.frameimg, R.id.framename};
+    private ImageView iv;
+    private SlideMenu mSlideMenu;
+    private TextView pg, sf, lg;
 
-    Button logout;
+//    private final String IMAGE_TAG = "image", TEXT_TAG = "text";
+//    private String[] from = {"image", "text"};
+//    private int[] to = {R.id.frameimg, R.id.framename};
 
-    private static final String TAG = "MainActivity";
-    private SideslipLayout mSideslipLayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,13 +33,34 @@ public class FrameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_frame);
 
 
-        logout = (Button) findViewById(R.id.logout);
+        iv = (ImageView) findViewById(R.id.figure);
+        mSlideMenu = (SlideMenu) findViewById(R.id.menu);
+        TextView pg = (TextView) findViewById(R.id.gallery);
+        TextView sf = (TextView) findViewById(R.id.scan);
+        TextView lg = (TextView) findViewById(R.id.logout);
 
-        GridView gridview = (GridView) findViewById(R.id.gridview);
-        SimpleAdapter pictureAdapter = new SimpleAdapter(this, getList(), R.layout.grid_pic, from, to);
-        gridview.setAdapter(pictureAdapter);
+//        requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        logout.setOnClickListener(new View.OnClickListener() {
+        pg.setClickable(true);
+        pg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+            }
+        });
+
+        sf.setClickable(true);
+        sf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FrameActivity.this, BTActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        lg.setClickable(true);
+        lg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(FrameActivity.this, MainActivity.class);
@@ -57,7 +68,30 @@ public class FrameActivity extends AppCompatActivity {
             }
         });
 
-        //initView();
+        iv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mSlideMenu.isOpened()) {
+                    mSlideMenu.closeMenu();
+                } else {
+                    mSlideMenu.openMenu();
+                }
+            }
+        });
+
+//        GridView gridview = (GridView) findViewById(R.id.gridview);
+//        SimpleAdapter pictureAdapter = new SimpleAdapter(this, getList(), R.layout.grid_pic, from, to);
+//        gridview.setAdapter(pictureAdapter);
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (mSlideMenu.isOpened()) {
+            mSlideMenu.closeMenu();
+        } else {
+            super.onBackPressed();
+        }
     }
 
     @Override
@@ -70,8 +104,8 @@ public class FrameActivity extends AppCompatActivity {
         List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
         Map<String, Object> map = null;
 
-        String[] titles = new String[]{"Discover Frame", "Add Frame", "Photo Gallery", "My Settings"};
-        Integer[] images = {R.drawable.discover, R.drawable.addframe, R.drawable.collections, R.drawable.settings};
+        String[] titles = new String[]{"Photo Gallery", "Find Frame", "Log Out"};
+        Integer[] images = {R.drawable.collections, R.drawable.addframe, R.drawable.power};
 
         for (int i = 0; i < images.length; i++) {
             map = new HashMap<String, Object>();
@@ -82,32 +116,5 @@ public class FrameActivity extends AppCompatActivity {
         return list;
     }
 
-//    private void initView() {
-//
-//        //mSideslipLayout = (SideslipLayout) findViewById(R.id.sideslip_layout);
-//
-//        //主界面
-//        View homeView = LayoutInflater.from(this).inflate(R.layout.home_layout, null, false);
-//        mSideslipLayout.setHomeView(homeView);
-//
-//        //左边的侧滑菜单
-//        View leftView = LayoutInflater.from(this).inflate(R.layout.left_layout, null, false);
-//        mSideslipLayout.setLeftViewItem(new SideslipViewItem(leftView, 0.7f));
-//
-//        //底部的界面
-//        //View bottomView = LayoutInflater.from(this).inflate(R.layout.bottom_layout, null, false);
-//        //mSideslipLayout.setBottomViewItem(new SideslipViewItem(bottomView, 1f));
-//
-//        mSideslipLayout.setOnSideslipListener(new SideslipLayout.OnSideslipListener() {
-//            @Override
-//            public void onShow(int gravity) {
-//                Log.i(TAG, "onShow: " + gravity);
-//            }
-//
-//            @Override
-//            public void onHide(int gravity) {
-//                Log.i(TAG, "onHide: " + gravity);
-//            }
-//        });
- }
+}
 
