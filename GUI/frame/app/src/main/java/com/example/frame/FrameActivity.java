@@ -1,7 +1,10 @@
 package com.example.frame;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.View;
@@ -9,6 +12,8 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,6 +24,7 @@ public class FrameActivity extends AppCompatActivity {
     private ImageView iv;
     private SlideMenu mSlideMenu;
     private TextView pg, sf, lg;
+    private Uri imageUri, uri;
 
 //    private final String IMAGE_TAG = "image", TEXT_TAG = "text";
 //    private String[] from = {"image", "text"};
@@ -45,9 +51,31 @@ public class FrameActivity extends AppCompatActivity {
         pg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                File output = new File(Environment.getExternalStorageDirectory(), "Kkk.jpg");
 
 
+                try {
+                    if (output.exists()) {
+                        output.delete();
+                    } else {
+                        output.createNewFile();
+                    }
+                }catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                imageUri = Uri.fromFile(output);
+                Intent intent = new Intent("android.intent.action.GET_CONTENT");
+                intent.setType("image/*");
+
+                intent.putExtra("crop", true);
+
+                intent.putExtra("scale", true);
+
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+                startActivityForResult(intent,3);
             }
+
         });
 
         sf.setClickable(true);
@@ -114,6 +142,20 @@ public class FrameActivity extends AppCompatActivity {
             list.add(map);
         }
         return list;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        if(requestCode == 3){
+            if(resultCode == RESULT_OK){
+                uri = data.getData();
+                Intent intent = new Intent("com.android.camera.action.CROP");
+                intent.setDataAndType(uri, "image/*");
+                intent.putExtra("scale", true);
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+                startActivity(intent);
+            }
+        }
     }
 
 }

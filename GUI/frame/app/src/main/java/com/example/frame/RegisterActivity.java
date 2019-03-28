@@ -6,30 +6,10 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.CallSuper;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.view.KeyEvent;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-
-
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.content.Intent;
-import android.os.IBinder;
-import android.support.annotation.CallSuper;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -55,8 +35,12 @@ import android.widget.TextView;
             setContentView(R.layout.activity_register);
             getWindow().setBackgroundDrawableResource(R.drawable.lbackground);
 
-            View v = findViewById(R.id.bg4);
-            v.getBackground().setAlpha(200);
+            View v1 = findViewById(R.id.firstrow);
+            v1.getBackground().setAlpha(200);
+            View v2 = findViewById(R.id.secondrow);
+            v2.getBackground().setAlpha(200);
+            View v3 = findViewById(R.id.thirdrow);
+            v3.getBackground().setAlpha(200);
 
             decorView = getWindow().getDecorView();
             DisplayMetrics metrics = new DisplayMetrics();
