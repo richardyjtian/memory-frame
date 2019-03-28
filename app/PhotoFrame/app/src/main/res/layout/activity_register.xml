@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bg3"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/lbackground"
+    tools:context=".RegisterActivity">
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="120dp"
+        android:background="@drawable/mflogo"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"/>
+
+    <!--<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+        <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+        <!--xmlns:tools="http://schemas.android.com/tools"-->
+        <!--android:id="@+id/bg4"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="330dp"-->
+        <!--android:background="#FFFFFF"-->
+        <!--android:gravity="center"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toTopOf="parent"-->
+        <!--app:layout_constraintHorizontal_bias="0.5">-->
+
+        <!--<ImageView-->
+            <!--android:id="@+id/email"-->
+            <!--android:layout_width="35dp"-->
+            <!--android:layout_height="35dp"-->
+            <!--android:layout_marginStart="10dp"-->
+            <!--android:layout_marginLeft="10dp"-->
+            <!--android:layout_marginTop="20dp"-->
+            <!--android:src="@drawable/outline_email_black_48dp"-->
+            <!--app:layout_constraintLeft_toLeftOf="@+id/bg4"-->
+            <!--app:layout_constraintTop_toTopOf="parent" />-->
+
+        <!--<EditText-->
+            <!--android:id="@+id/E-mail"-->
+            <!--android:layout_width="300dp"-->
+            <!--android:layout_height="40dp"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_marginTop="16dp"-->
+            <!--android:layout_marginStart="5dp"-->
+            <!--android:layout_marginLeft="5dp"-->
+            <!--android:layout_marginRight="10dp"-->
+            <!--android:layout_marginEnd="10dp"-->
+            <!--android:hint="@string/register_email"-->
+            <!--android:maxLines="1"-->
+            <!--android:textColor="@android:color/black"-->
+            <!--android:textSize="@dimen/register_hint_size"-->
+            <!--app:layout_constraintLeft_toRightOf="@+id/email"-->
+            <!--app:layout_constraintRight_toRightOf="@id/bg4"-->
+            <!--app:layout_constraintEnd_toEndOf="@id/bg4"-->
+            <!--app:layout_constraintStart_toEndOf="@+id/email"-->
+            <!--app:layout_constraintTop_toTopOf="parent" />-->
+
+        <!--<ImageView-->
+            <!--android:id="@+id/person"-->
+            <!--android:layout_width="35dp"-->
+            <!--android:layout_height="35dp"-->
+            <!--android:layout_marginStart="10dp"-->
+            <!--android:layout_marginLeft="10dp"-->
+            <!--android:layout_marginTop="16dp"-->
+            <!--android:src="@drawable/outline_perm_identity_black_48dp"-->
+            <!--app:layout_constraintTop_toBottomOf="@+id/email"-->
+            <!--app:layout_constraintStart_toStartOf="@+id/bg4" />-->
+
+        <!--<EditText-->
+            <!--android:id="@+id/username"-->
+            <!--android:layout_width="300dp"-->
+            <!--android:layout_height="43dp"-->
+            <!--android:layout_gravity="center"-->
+            <!--android:layout_marginStart="5dp"-->
+            <!--android:layout_marginLeft="5dp"-->
+            <!--android:layout_marginTop="20dp"-->
+            <!--android:layout_marginRight="10dp"-->
+            <!--android:layout_marginEnd="10dp"-->
+            <!--android:hint="@string/register_username"-->
+            <!--android:maxLines="1"-->
+            <!--android:textColor="@android:color/black"-->
+            <!--android:textSize="@dimen/register_hint_size"-->
+            <!--app:layout_constraintLeft_toRightOf="@+id/person"-->
+            <!--app:layout_constraintRight_toRightOf="@id/bg4"-->
+            <!--app:layout_constraintEnd_toEndOf="@id/bg4"-->
+            <!--app:layout_constraintStart_toEndOf="@id/person"-->
+            <!--app:layout_constraintTop_toBottomOf="@id/E-mail" />-->
+
+        <!--<ImageView-->
+            <!--android:id="@+id/lock"-->
+            <!--android:layout_width="35dp"-->
+            <!--android:layout_height="35dp"-->
+            <!--android:layout_marginStart="10dp"-->
+            <!--android:layout_marginLeft="10dp"-->
+            <!--android:layout_marginTop="32dp"-->
+            <!--android:layout_marginBottom="13dp"-->
+            <!--android:src="@drawable/outline_lock_black_48dp"-->
+            <!--app:layout_constraintLeft_toLeftOf="@+id/bg4"-->
+            <!--app:layout_constraintTop_toBottomOf="@+id/person" />-->
+
+        <!--<EditText-->
+            <!--android:id="@+id/password"-->
+            <!--android:layout_width="300dp"-->
+            <!--android:layout_height="38dp"-->
+            <!--android:layout_marginLeft="5dp"-->
+            <!--android:layout_marginStart="5dp"-->
+            <!--android:layout_marginTop="20dp"-->
+            <!--android:layout_marginEnd="10dp"-->
+            <!--android:layout_marginRight="10dp"-->
+            <!--android:layout_marginBottom="16dp"-->
+            <!--android:hint="@string/register_pwd"-->
+            <!--android:inputType="textPassword"-->
+            <!--android:singleLine="true"-->
+            <!--android:textSize="@dimen/register_hint_size"-->
+            <!--app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--app:layout_constraintLeft_toRightOf="@+id/lock"-->
+            <!--app:layout_constraintRight_toRightOf="@id/bg4"-->
+            <!--app:layout_constraintEnd_toEndOf="@id/bg4"-->
+            <!--app:layout_constraintTop_toBottomOf="@+id/username"-->
+            <!--app:layout_constraintVertical_bias="0.0" />-->
+
+    <!--</android.support.constraint.ConstraintLayout>-->
+
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/firstrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="350dp"
+        android:background="#FFFFFF"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/email"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/outline_email_black_48dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintLeft_toLeftOf="@+id/firstrow"
+            app:layout_constraintStart_toStartOf="@+id/firstrow"
+            app:layout_constraintTop_toTopOf="@+id/firstrow" />
+
+        <EditText
+            android:id="@+id/E-mail"
+            android:layout_width="0dp"
+            android:layout_height="43dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="3dp"
+            android:hint="@string/register_email"
+            android:maxLines="1"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/register_hint_size"
+            app:layout_constraintWidth_percent="0.8"
+            app:layout_constraintEnd_toEndOf="@id/firstrow"
+            app:layout_constraintLeft_toRightOf="@+id/email"
+            app:layout_constraintRight_toRightOf="@id/firstrow"
+            app:layout_constraintStart_toEndOf="@id/email"
+            app:layout_constraintTop_toTopOf="@id/firstrow" />
+    </android.support.constraint.ConstraintLayout>
+
+
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/secondrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/firstrow">
+
+        <ImageView
+            android:id="@+id/person"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/outline_perm_identity_black_48dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintLeft_toLeftOf="@+id/secondrow"
+            app:layout_constraintStart_toStartOf="@+id/secondrow"
+            app:layout_constraintTop_toTopOf="@+id/secondrow" />
+
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="0dp"
+            android:layout_height="43dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="3dp"
+            android:hint="@string/register_username"
+            android:maxLines="1"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/register_hint_size"
+            app:layout_constraintWidth_percent="0.8"
+            app:layout_constraintEnd_toEndOf="@id/secondrow"
+            app:layout_constraintLeft_toRightOf="@+id/person"
+            app:layout_constraintRight_toRightOf="@id/secondrow"
+            app:layout_constraintStart_toEndOf="@id/person"
+            app:layout_constraintTop_toTopOf="@id/secondrow" />
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/thirdrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/secondrow">
+
+        <ImageView
+            android:id="@+id/lock"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/outline_lock_black_48dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintLeft_toLeftOf="@+id/thirdrow"
+            app:layout_constraintStart_toStartOf="@+id/thirdrow"
+            app:layout_constraintTop_toTopOf="@+id/thirdrow" />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="0dp"
+            android:layout_height="43dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="3dp"
+            android:hint="@string/register_pwd"
+            android:maxLines="1"
+            android:textColor="@android:color/black"
+            android:layout_marginBottom="16dp"
+            android:textSize="@dimen/register_hint_size"
+            app:layout_constraintWidth_percent="0.8"
+            app:layout_constraintEnd_toEndOf="@id/thirdrow"
+            app:layout_constraintLeft_toRightOf="@+id/lock"
+            app:layout_constraintRight_toRightOf="@id/thirdrow"
+            app:layout_constraintStart_toEndOf="@id/lock"
+            app:layout_constraintTop_toTopOf="@id/thirdrow"
+            app:layout_constraintBottom_toBottomOf="@+id/thirdrow"/>
+    </android.support.constraint.ConstraintLayout>
+
+
+        <Button
+        android:id="@+id/submitButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:background="#4682B4"
+        android:text="@string/register_submit"
+        android:textStyle="bold"
+        android:textSize="@dimen/menu_text_size"
+        android:textColor="#FFFFFF"
+        app:layout_constraintWidth_percent="0.73"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/thirdrow"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+</android.support.constraint.ConstraintLayout>

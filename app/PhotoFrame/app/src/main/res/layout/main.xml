@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<io.github.richardyjtian.photoframe.MainView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff">
+
+ <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:id="@+id/activity_frame"
+    android:layout_height="match_parent"
+    android:background="@drawable/lbackground"
+    tools:context=".FrameActivity">
+
+    <android.support.constraint.ConstraintLayout android:id="@+id/upperwindow"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#00000000"
+        app:layout_constraintHeight_percent="0.1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <ImageView
+            android:id="@+id/figure"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/mflogo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.041"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5" />
+
+        <TextView
+            android:id="@+id/username"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="group11"
+            android:textColor="#FFFFFF"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.02"
+            app:layout_constraintLeft_toRightOf="@id/figure"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5"
+            app:layout_constraintWidth_percent="0.2" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/btwindow"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#FFFFFF"
+        app:layout_constraintHeight_percent="0.9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/upperwindow">
+
+
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></ListView>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/plusButton"
+            android:layout_width="61dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            android:clickable="true"
+            android:onClick="photoSourceDialog"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@android:drawable/ic_menu_add" />
+        <!--<GridView xmlns:android="http://schemas.android.com/apk/res/android"-->
+            <!--android:id="@+id/gridview"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:numColumns="auto_fit"-->
+            <!--android:verticalSpacing="40dip"-->
+            <!--android:horizontalSpacing="10dip"-->
+            <!--android:stretchMode="columnWidth"-->
+            <!--app:layout_constraintWidth_percent="0.85"-->
+            <!--app:layout_constraintLeft_toLeftOf="parent"-->
+            <!--app:layout_constraintRight_toRightOf="parent"-->
+            <!--app:layout_constraintTop_toTopOf="parent"-->
+            <!--app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--app:layout_constraintHeight_percent="0.75"-->
+            <!--app:layout_constraintHorizontal_bias="0.5"-->
+            <!--app:layout_constraintVertical_bias="0.2"-->
+            <!--android:padding="10dip"-->
+            <!--/>-->
+
+        <!--<Button-->
+        <!--android:id="@+id/frame1"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:text="frame1"-->
+        <!--android:textColor="#FFFFFF"-->
+        <!--app:layout_constraintTop_toTopOf="parent"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintRight_toRightOf="parent"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintHeight_percent="0.25"-->
+        <!--app:layout_constraintWidth_percent="0.35"-->
+        <!--app:layout_constraintHorizontal_bias="0.2"-->
+        <!--app:layout_constraintVertical_bias="0.1"-->
+        <!--android:background="#4682B4"/>-->
+
+        <!--<Button-->
+        <!--android:id="@+id/frame2"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:background="#4682B4"-->
+        <!--android:text="frame2"-->
+        <!--android:textColor="#FFFFFF"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintHeight_percent="0.25"-->
+        <!--app:layout_constraintHorizontal_bias="0.8"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintRight_toRightOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toTopOf="parent"-->
+        <!--app:layout_constraintVertical_bias="0.1"-->
+        <!--app:layout_constraintWidth_percent="0.35" />-->
+
+        <!--<Button-->
+        <!--android:id="@+id/frame3"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:text="frame3"-->
+        <!--android:textColor="#FFFFFF"-->
+        <!--app:layout_constraintTop_toTopOf="parent"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintRight_toRightOf="parent"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintHeight_percent="0.25"-->
+        <!--app:layout_constraintWidth_percent="0.35"-->
+        <!--app:layout_constraintHorizontal_bias="0.2"-->
+        <!--app:layout_constraintVertical_bias="0.456"-->
+        <!--android:background="#4682B4"/>-->
+
+        <!--<Button-->
+        <!--android:id="@+id/frame4"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:text="frame4"-->
+        <!--android:textColor="#FFFFFF"-->
+        <!--app:layout_constraintTop_toTopOf="parent"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintRight_toRightOf="parent"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintHeight_percent="0.25"-->
+        <!--app:layout_constraintWidth_percent="0.35"-->
+        <!--app:layout_constraintHorizontal_bias="0.8"-->
+        <!--app:layout_constraintVertical_bias="0.456"-->
+        <!--android:background="#4682B4"/>-->
+    </android.support.constraint.ConstraintLayout>
+
+  </android.support.constraint.ConstraintLayout>
+
+</io.github.richardyjtian.photoframe.MainView>
