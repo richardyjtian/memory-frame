@@ -54,6 +54,7 @@ public class Upload {
         time = p.getTime();
         include_location = p.getInclude_location();
         location = p.getLocation();
+        storageName = p.getStorageName();
     }
 
     public String getName(){

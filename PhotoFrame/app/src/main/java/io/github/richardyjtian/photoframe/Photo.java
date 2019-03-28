@@ -25,6 +25,7 @@ public class Photo implements Serializable {
     private Boolean include_location = false;
     private String location = "";
     private String key;
+    private String storageName;
 
     public Photo(Uri imageUri) {
         this.imageUri = imageUri.toString();
@@ -50,6 +51,9 @@ public class Photo implements Serializable {
 
     public Boolean getInclude_time() { return include_time; }
     public String getTime() { return time; }
+
+    public String getStorageName() { return storageName; }
+    public void setStorageName(String sn) { storageName = sn; }
 
     /* Set by the user */
     /************************************************************************/
