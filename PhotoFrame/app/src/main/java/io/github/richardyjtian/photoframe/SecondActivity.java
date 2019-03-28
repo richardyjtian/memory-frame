@@ -38,6 +38,7 @@ public class SecondActivity extends AppCompatActivity {
     float screenWidth, screenHeight;
 
     EditText username;
+    String usr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +57,8 @@ public class SecondActivity extends AppCompatActivity {
 
         loginBtn = (Button) findViewById(R.id.loginButton);
         username = (EditText) findViewById(R.id.username);
+
+        usr = username.toString();
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,6 +101,10 @@ public class SecondActivity extends AppCompatActivity {
 //                            // TODO: redirect to logged in UI
                             Intent intent = new Intent(SecondActivity.this, BTActivity.class);
                             startActivity(intent);
+
+//                            Intent intent1 = new Intent(SecondActivity.this, FrameActivity.class);
+//                            intent1.putExtra("user", usr);
+
 //                        } else {
 //                            // If sign in fails, display a message to the user.
 //                            Toast.makeText(SecondActivity.this, "Authentication failed.",

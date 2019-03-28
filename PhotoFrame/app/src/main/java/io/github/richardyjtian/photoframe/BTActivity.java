@@ -112,10 +112,15 @@ public class BTActivity extends AppCompatActivity {
             if(BluetoothDevice.ACTION_FOUND.equals(action)){
 
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                String frameNum = "frame";
-                mDeviceListAdapter.add("frame" + count);
+                String frameNum = device.getName();
+                String mf = "Memory Frame";
+
+                mDeviceListAdapter.add(frameNum);
                 mDeviceListAdapter.notifyDataSetChanged();
                 btpair.put(frameNum, device.getAddress());
+
+
+
             }
         }
     };
