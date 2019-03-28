@@ -66,12 +66,8 @@ public class Upload {
         url = u;
     }
 
-    public String getPeople(){
-        return people;
-    }
-    public void setPeople(String p){
-        people = p;
-    }
+    public String getPeople(){ return people; }
+    public void setPeople(String p){ people = p; }
 
     public String getCaption(){
         return caption;
@@ -80,6 +76,12 @@ public class Upload {
         caption = c;
     }
 
+    public String getTime() { return time; }
+    public void setTime(String time) { this.time = time; }
+
+    public String getLocation() { return location; }
+    public void setLocation(String location) { this.location = location; }
+
     public String getStorageName(){
         return storageName;
     }
@@ -87,9 +89,7 @@ public class Upload {
         storageName = sName;
     }
 
-    public String getKey(){
-        return key;
-    }
+    public String getKey(){ return key; }
     public void setKey(String k){
         key = k;
     }

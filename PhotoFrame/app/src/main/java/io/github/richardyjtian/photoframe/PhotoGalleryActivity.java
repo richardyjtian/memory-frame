@@ -68,6 +68,8 @@ public class PhotoGalleryActivity extends AppCompatActivity {
             p.setKey(ds.getValue(Upload.class).getKey());
             p.setCaption(ds.getValue(Upload.class).getCaption());
             p.setPeople(ds.getValue(Upload.class).getPeople());
+            p.setTime(ds.getValue(Upload.class).getTime());
+            p.setLocation(ds.getValue(Upload.class).getLocation());
 
             photoArray.add(p);
         }

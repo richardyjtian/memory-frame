@@ -31,13 +31,8 @@ public class Photo implements Serializable {
     }
     public Photo(){}
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
 
     public Uri getImageUri() {
         return Uri.parse(imageUri);
@@ -47,23 +42,13 @@ public class Photo implements Serializable {
         this.imageUri = imageUri;
     }
 
-    public String getCaption() {
-        return caption;
-    }
+    public String getCaption() { return caption; }
+    public void setCaption(String caption) { this.caption = caption; }
 
-    public void setCaption(String caption) {
-        this.caption = caption;
-    }
-
-    public String getPeople() {
-        return people;
-    }
-
+    public String getPeople() { return people; }
     public void setPeople(String people) { this.people = people; }
 
-    public Boolean getInclude_time() {
-        return include_time;
-    }
+    public Boolean getInclude_time() { return include_time; }
 
     public void setInclude_time(Activity activity, Boolean include_time) {
         this.include_time = include_time;
@@ -73,10 +58,11 @@ public class Photo implements Serializable {
         }
     }
 
-    public String getTime() {
-        return time;
-    }
+    public String getTime() { return time; }
+    // Field set again by database
+    public void setTime(String time) { this.time = time; }
 
+    // Initially set time through this method when the include_time box is ticked
     private void setTime(Activity activity) {
         try {
             InputStream inputStream = activity.getContentResolver().openInputStream(Uri.parse(imageUri));
@@ -88,9 +74,7 @@ public class Photo implements Serializable {
         }
     }
 
-    public Boolean getInclude_location() {
-        return include_location;
-    }
+    public Boolean getInclude_location() { return include_location; }
 
     public void setInclude_location(Activity activity, Boolean include_location) {
         this.include_location = include_location;
@@ -98,10 +82,11 @@ public class Photo implements Serializable {
             setLocation(activity);
     }
 
-    public String getLocation() {
-        return location;
-    }
+    public String getLocation() { return location; }
+    // Field set again by database
+    public void setLocation(String location) { this.location = location; }
 
+    // Initially set location through this method when the include_location box is ticked
     private void setLocation(Activity activity) {
         try {
             InputStream inputStream = activity.getContentResolver().openInputStream(Uri.parse(imageUri));
@@ -125,7 +110,6 @@ public class Photo implements Serializable {
     public String getKey() {
         return key;
     }
-
     public void setKey(String key) {
         this.key = key;
     }
