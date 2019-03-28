@@ -1,4 +1,0 @@
-#Thu Mar 21 13:49:16 PDT 2019
-base.0=/Users/liruolin/Desktop/cpen-391-module-2/GUI/frame/app/build/intermediates/transforms/dexMerger/debug/5
-path.0=classes.dex
-renamed.0=classes.dex
