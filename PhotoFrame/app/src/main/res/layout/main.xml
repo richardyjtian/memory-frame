@@ -36,10 +36,9 @@
             app:layout_constraintVertical_bias="0.5" />
 
         <TextView
-            android:id="@+id/username"
+            android:id="@+id/usrname"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="group11"
             android:textColor="#FFFFFF"
             android:textSize="13sp"
             app:layout_constraintBottom_toBottomOf="parent"

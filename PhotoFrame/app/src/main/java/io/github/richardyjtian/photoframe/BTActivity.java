@@ -19,6 +19,7 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Set;
 
 public class BTActivity extends AppCompatActivity {
@@ -32,6 +33,9 @@ public class BTActivity extends AppCompatActivity {
     //newly discovered devices
     public  ArrayAdapter<String> mDeviceListAdapter;
 
+    public String str;
+    public HashMap<String, String> btpair = new HashMap<String, String>();
+    int count = 0;
 
     //Initialize variables for Bluetooth
     private BluetoothAdapter myBluetooth = null;
@@ -90,7 +94,6 @@ public class BTActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //myDiscoveredArrayAdapter.clear();
-                myBluetooth.startDiscovery();
                 //Toast.makeText(getApplicationContext(), "start discovery...",Toast.LENGTH_LONG).show();
                 discoveredDevices();
             }
@@ -102,11 +105,14 @@ public class BTActivity extends AppCompatActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
+            count += 1;
             if(BluetoothDevice.ACTION_FOUND.equals(action)){
-                BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
 
-                mDeviceListAdapter.add(device.getName() + "\n" + device.getAddress());
+                BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                String frameNum = "frame";
+                mDeviceListAdapter.add("frame" + count);
                 mDeviceListAdapter.notifyDataSetChanged();
+                btpair.put(frameNum, device.getAddress());
             }
         }
     };
@@ -133,10 +139,17 @@ public class BTActivity extends AppCompatActivity {
         {
             // Get the device MAC address, the last 17 chars in the View
             String info = ((TextView) v).getText().toString();
-            String address = info.substring(info.length() - 17);
+            String address = btpair.get(info);
+
+//
+//            int index = info.indexOf("\n");
+//            String name= info.substring(0, index + 1);
+
 
             // Make an intent to start next activity.
             Intent intent = new Intent(BTActivity.this, FrameActivity.class);
+            intent.putExtra("name", info);
+
 
             //Change the activity.
             intent.putExtra(EXTRA_ADDRESS, address); //this will be received at ledControl (class) Activity

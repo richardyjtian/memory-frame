@@ -41,6 +41,7 @@ public class FrameActivity extends AppCompatActivity {
     private SlideMenu mSlideMenu;
     private TextView pg, sf, lg;
     private Uri imageUri, uri;
+    TextView frameName;
 
     public static PhotoFrameArrayAdaptor ArrayAdapter;
 
@@ -68,11 +69,15 @@ public class FrameActivity extends AppCompatActivity {
         TextView pg = (TextView) findViewById(R.id.gallery);
         TextView sf = (TextView) findViewById(R.id.scan);
         TextView lg = (TextView) findViewById(R.id.logout);
+        frameName = (TextView) findViewById(R.id.usrname);
 
         View v1 = findViewById(R.id.btwindow);
         v1.getBackground().setAlpha(0);
         View v2 = findViewById(R.id.menuBackground);
         v2.getBackground().setAlpha(230);
+        Intent intent = getIntent();
+        String name = intent.getStringExtra("name");
+        frameName.setText(name.toCharArray(),0, name.length());
 
 //        requestWindowFeature(Window.FEATURE_NO_TITLE);
 
