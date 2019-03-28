@@ -18,7 +18,15 @@ public class Permissions {
     public static void getCameraPermission(Activity activity) {
         if (ContextCompat.checkSelfPermission(activity, Manifest.permission.CAMERA)
                 != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.CAMERA}, 1);
+            ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.CAMERA}, 2);
+            return;
+        }
+    }
+
+    public static void getLocationPermission(Activity activity) {
+        if (ContextCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 3);
             return;
         }
     }
