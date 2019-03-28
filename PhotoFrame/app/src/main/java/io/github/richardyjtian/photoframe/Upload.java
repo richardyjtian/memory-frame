@@ -48,9 +48,8 @@ public class Upload {
         caption = p.getCaption();
         people = p.getPeople();
         key = p.getKey();
-        // TODO: time and location
-
-
+        time = p.getTime();
+        location = p.getLocation();
     }
 
     public String getName(){

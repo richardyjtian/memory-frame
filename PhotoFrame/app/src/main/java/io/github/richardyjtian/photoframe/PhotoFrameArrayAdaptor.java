@@ -72,7 +72,8 @@ public class PhotoFrameArrayAdaptor extends ArrayAdapter<Photo> {
             public void onClick(View v) {
                 Photo toDelete = thePhotoArray.get(pos);
                 thePhotoArray.remove(pos);
-                //TODO: remove the photo from firebase
+
+                // Remove the photo from firebase
                 final String key = toDelete.getKey();
                 // delete picture in storage
                 StorageReference imgRef = FirebaseStorage.getInstance().getReferenceFromUrl(photo.getImageUri().toString());
@@ -87,7 +88,6 @@ public class PhotoFrameArrayAdaptor extends ArrayAdapter<Photo> {
 
             }
         });
-
 
         // TODO: have a checkbox to indicate if photo has been successfully uploaded
         return row;

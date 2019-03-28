@@ -1,5 +1,6 @@
 package io.github.richardyjtian.photoframe;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.IBinder;
 import android.support.annotation.CallSuper;
@@ -70,15 +71,12 @@ public class PhotoPropertiesActivity extends AppCompatActivity {
         else {
             PhotoGalleryActivity.photoArray.set(position, photo);
 
-            //TODO: Change the photo in firebase
+            //Change the photo in firebase
             Upload.updatePhoto(this, photo);
 
         }
         // Notify the ArrayAdapter
         PhotoGalleryActivity.ArrayAdapter.notifyDataSetChanged();
-
-        // Save the photoArray to the save file
-        FileIO.saveToFile(this, PhotoGalleryActivity.photoArray);
 
         finish();
     }
@@ -96,9 +94,9 @@ public class PhotoPropertiesActivity extends AppCompatActivity {
         if(!people.isEmpty())
             photo.setPeople(people);
 
-        photo.setInclude_time(time_taken_cb.isChecked());
+        photo.setInclude_time(this, time_taken_cb.isChecked());
 
-        photo.setInclude_location(location_taken_cb.isChecked());
+        photo.setInclude_location(this, location_taken_cb.isChecked());
     }
 
     @CallSuper

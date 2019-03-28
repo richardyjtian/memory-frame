@@ -63,7 +63,6 @@ public class PhotoGalleryActivity extends AppCompatActivity {
         for (DataSnapshot ds: dataSnapshot.getChildren()){
             Photo p = new Photo();
 
-
             p.setName(ds.getValue(Upload.class).getName());
             p.setImageUri(ds.getValue(Upload.class).getImageUrl());
             p.setKey(ds.getValue(Upload.class).getKey());
