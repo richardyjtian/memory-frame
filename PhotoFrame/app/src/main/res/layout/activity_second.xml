@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bg"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/lbackground"
+    tools:context=".SecondActivity">
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="120dp"
+        android:background="@drawable/mflogo"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/bg2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="350dp"
+        android:background="#FFFFFF"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/person"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/outline_perm_identity_black_48dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintLeft_toLeftOf="@+id/bg2"
+            app:layout_constraintStart_toStartOf="@+id/bg2"
+            app:layout_constraintTop_toTopOf="@+id/bg2" />
+
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="0dp"
+            android:layout_height="43dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="3dp"
+            android:hint="@string/register_username"
+            android:maxLines="1"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/register_hint_size"
+            app:layout_constraintEnd_toEndOf="@id/bg2"
+            app:layout_constraintWidth_percent="0.8"
+            app:layout_constraintLeft_toRightOf="@+id/person"
+            app:layout_constraintRight_toRightOf="@id/bg2"
+            app:layout_constraintStart_toEndOf="@id/person"
+            app:layout_constraintTop_toTopOf="@id/bg2" />
+
+        <ImageView
+            android:id="@+id/lock"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="13dp"
+            android:src="@drawable/outline_lock_black_48dp"
+            app:layout_constraintLeft_toLeftOf="@+id/bg2"
+            app:layout_constraintStart_toStartOf="@+id/bg2"
+            app:layout_constraintTop_toBottomOf="@+id/person" />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginBottom="10dp"
+            android:hint="@string/register_pwd"
+            android:inputType="textPassword"
+            android:singleLine="true"
+            android:textSize="@dimen/register_hint_size"
+            app:layout_constraintWidth_percent="0.8"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/lock"
+            app:layout_constraintRight_toRightOf="@id/bg2"
+            app:layout_constraintEnd_toEndOf="@id/bg2"
+            app:layout_constraintTop_toBottomOf="@+id/username"
+            app:layout_constraintVertical_bias="0.0" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:background="#4682B4"
+        android:text="@string/second_login"
+        android:textStyle="bold"
+        android:textSize="@dimen/second_login_size"
+        android:textColor="#FFFFFF"
+        app:layout_constraintWidth_percent="0.73"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bg2"
+        app:layout_constraintVertical_bias="0.0" />
+
+
+</android.support.constraint.ConstraintLayout>
