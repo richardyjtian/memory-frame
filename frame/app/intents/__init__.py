@@ -1,10 +1,10 @@
 import logging
 
-from flask import Blueprint, render_template
+from flask import Blueprint
 from flask_ask import Ask, question, statement
 
-ask_blueprint = Blueprint('ask_api', __name__, url_prefix="/ask")
-ask = Ask(blueprint=ask_blueprint)
+intents = Blueprint('intents', __name__, url_prefix="/ask")
+ask = Ask(blueprint=intents)
 
 logging.getLogger('flask_ask').setLevel(logging.DEBUG)
 
@@ -18,6 +18,7 @@ def launch():
 
 @ask.intent('GpioIntent', mapping = {'status':'status'})
 def Gpio_Intent(status,room):
+	print('gpiotent!!')
 	if status in STATUSON:
 		emit('test', 'turning LED on', namespace='/', broadcast=True)
 		return statement('turning {} lights'.format(status))
