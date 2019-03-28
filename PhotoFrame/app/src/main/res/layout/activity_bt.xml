@@ -66,10 +66,10 @@
             app:layout_constraintLeft_toLeftOf="@id/btwindow"
             app:layout_constraintRight_toRightOf="@id/btwindow"
             app:layout_constraintWidth_percent="0.9" />
-            <!--android:background="@drawable/shape"-->
-            <!--android:divider="#CCCCCC"-->
-            <!--android:dividerHeight="1px"-->
-            <!--android:cacheColorHint="#00000000"/>-->
+        <!--android:background="@drawable/shape"-->
+        <!--android:divider="#CCCCCC"-->
+        <!--android:dividerHeight="1px"-->
+        <!--android:cacheColorHint="#00000000"/>-->
 
 
         <Button

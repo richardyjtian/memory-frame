@@ -6,10 +6,10 @@
     android:id="@+id/activity_frame"
     android:layout_height="match_parent"
     android:background="@drawable/lbackground"
-    tools:context="com.example.frame.FrameActivity">
+    tools:context=".FrameActivity">
 
 
-    <com.example.frame.SlideMenu
+    <io.github.richardyjtian.photoframe.SlideMenu
         android:id="@+id/menu"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -17,7 +17,7 @@
         <include layout="@layout/menu"/>
 
         <include layout="@layout/main"/>>
-    </com.example.frame.SlideMenu>
+    </io.github.richardyjtian.photoframe.SlideMenu>
 
 
 
