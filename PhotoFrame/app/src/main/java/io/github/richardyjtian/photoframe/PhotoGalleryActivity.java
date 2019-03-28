@@ -68,10 +68,12 @@ public class PhotoGalleryActivity extends AppCompatActivity {
             p.setKey(ds.getValue(Upload.class).getKey());
             p.setCaption(ds.getValue(Upload.class).getCaption());
             p.setPeople(ds.getValue(Upload.class).getPeople());
+            p.setInclude_time(ds.getValue(Upload.class).getInclude_time());
             p.setTime(ds.getValue(Upload.class).getTime());
+            p.setInclude_location(ds.getValue(Upload.class).getInclude_location());
             p.setLocation(ds.getValue(Upload.class).getLocation());
 
-            photoArray.add(p);
+            photoArray.add(0, p);
         }
         ListView listView = findViewById(R.id.listView);
         ArrayAdapter = new PhotoFrameArrayAdaptor(this, android.R.layout.simple_list_item_1, photoArray);

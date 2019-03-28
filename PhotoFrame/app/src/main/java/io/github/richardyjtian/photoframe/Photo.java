@@ -49,20 +49,16 @@ public class Photo implements Serializable {
     public void setPeople(String people) { this.people = people; }
 
     public Boolean getInclude_time() { return include_time; }
+    public String getTime() { return time; }
 
+    /* Set by the user */
+    /************************************************************************/
     public void setInclude_time(Activity activity, Boolean include_time) {
         this.include_time = include_time;
-        if(include_time) {
+        if(include_time && time.isEmpty()) {
             setTime(activity);
-
         }
     }
-
-    public String getTime() { return time; }
-    // Field set again by database
-    public void setTime(String time) { this.time = time; }
-
-    // Initially set time through this method when the include_time box is ticked
     private void setTime(Activity activity) {
         try {
             InputStream inputStream = activity.getContentResolver().openInputStream(Uri.parse(imageUri));
@@ -70,23 +66,27 @@ public class Photo implements Serializable {
             time = exif.getAttribute(TAG_DATETIME);
             Toast.makeText(activity, time, Toast.LENGTH_LONG).show();
         } catch (IOException e) {
-            Toast.makeText(activity, "No photo selected", Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity, "No time found", Toast.LENGTH_SHORT).show();
         }
     }
+    /************************************************************************/
+
+    /* Set by the database */
+    /************************************************************************/
+    public void setInclude_time(Boolean include_time) { this.include_time = include_time; }
+    public void setTime(String time) { this.time = time; }
+    /************************************************************************/
 
     public Boolean getInclude_location() { return include_location; }
+    public String getLocation() { return location; }
 
+    /* Set by the user */
+    /************************************************************************/
     public void setInclude_location(Activity activity, Boolean include_location) {
         this.include_location = include_location;
-        if(include_location)
+        if(include_location && location.isEmpty())
             setLocation(activity);
     }
-
-    public String getLocation() { return location; }
-    // Field set again by database
-    public void setLocation(String location) { this.location = location; }
-
-    // Initially set location through this method when the include_location box is ticked
     private void setLocation(Activity activity) {
         try {
             InputStream inputStream = activity.getContentResolver().openInputStream(Uri.parse(imageUri));
@@ -103,9 +103,16 @@ public class Photo implements Serializable {
                 }
             }
         } catch (IOException e) {
-            Toast.makeText(activity, "No photo selected", Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity, "No location found", Toast.LENGTH_SHORT).show();
         }
     }
+    /************************************************************************/
+
+    /* Set by the database */
+    /************************************************************************/
+    public void setInclude_location(Boolean include_location) { this.include_location = include_location; }
+    public void setLocation(String location) { this.location = location; }
+    /************************************************************************/
 
     public String getKey() {
         return key;

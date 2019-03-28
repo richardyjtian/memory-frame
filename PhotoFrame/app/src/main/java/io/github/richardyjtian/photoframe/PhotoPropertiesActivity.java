@@ -62,22 +62,14 @@ public class PhotoPropertiesActivity extends AppCompatActivity {
         setPhotoFields(view);
         // Check if calling activity from PhotoGalleryActivity
         if(getCallingActivity() != null) {
-            PhotoGalleryActivity.photoArray.add(0, photo);
-
             // Upload the photo to firebase
             Upload.uploadPhoto(this, photo);
         }
         // If calling activity was from PhotoFrameAdaptor
         else {
-            PhotoGalleryActivity.photoArray.set(position, photo);
-
-            //Change the photo in firebase
+            // Update the photo in firebase
             Upload.updatePhoto(this, photo);
-
         }
-        // Notify the ArrayAdapter
-        PhotoGalleryActivity.ArrayAdapter.notifyDataSetChanged();
-
         finish();
     }
 

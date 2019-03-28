@@ -23,7 +23,9 @@ public class Upload {
     private  String url;
     private  String caption;
     private  String people;
+    private  Boolean include_time;
     private  String time;
+    private  Boolean include_location;
     private  String location;
     private  String key;
     private  String storageName;
@@ -48,7 +50,9 @@ public class Upload {
         caption = p.getCaption();
         people = p.getPeople();
         key = p.getKey();
+        include_time = p.getInclude_time();
         time = p.getTime();
+        include_location = p.getInclude_location();
         location = p.getLocation();
     }
 
@@ -76,8 +80,14 @@ public class Upload {
         caption = c;
     }
 
+    public Boolean getInclude_time() { return include_time; }
+    public void setInclude_time(Boolean include_time) { this.include_time = include_time; }
+
     public String getTime() { return time; }
     public void setTime(String time) { this.time = time; }
+
+    public Boolean getInclude_location() { return include_location; }
+    public void setInclude_location(Boolean include_location) { this.include_location = include_location; }
 
     public String getLocation() { return location; }
     public void setLocation(String location) { this.location = location; }
@@ -121,7 +131,7 @@ public class Upload {
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(activity,"failed to get url and upload", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(activity,"Failed to get url and upload", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
