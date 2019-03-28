@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="58c13773-eca5-43e8-aa6a-8bfe915aba41" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/.idea/codeStyles/Project.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/.idea/runConfigurations.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/google-services.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/proguard-rules.pro" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/AndroidManifest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/java/io/github/richardyjtian/photoframe/BTActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/java/io/github/richardyjtian/photoframe/FrameActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/java/io/github/richardyjtian/photoframe/MainActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/java/io/github/richardyjtian/photoframe/MainView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/java/io/github/richardyjtian/photoframe/Permissions.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/java/io/github/richardyjtian/photoframe/Photo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/java/io/github/richardyjtian/photoframe/PhotoFrameArrayAdaptor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/java/io/github/richardyjtian/photoframe/PhotoGalleryActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/java/io/github/richardyjtian/photoframe/PhotoPropertiesActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/java/io/github/richardyjtian/photoframe/RegisterActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/java/io/github/richardyjtian/photoframe/SecondActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/java/io/github/richardyjtian/photoframe/SlideMenu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/java/io/github/richardyjtian/photoframe/SuccessActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/java/io/github/richardyjtian/photoframe/Upload.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/drawable-v24/button_frame_shape.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/drawable-v24/flower.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/drawable/addframe.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/drawable/baseline_delete_outline_white_48dp.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/drawable/baseline_filter_frames_black_48dp.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/drawable/baseline_home_black_48dp.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/drawable/collections.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/drawable/content.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/drawable/discover.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/drawable/gradient_bg.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/drawable/gradient_bg_hover.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/drawable/head.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/drawable/ic_launcher_background.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/drawable/ic_launcher_foreground.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/drawable/lbackground.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/drawable/logout_selector.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/drawable/menubackground.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/drawable/mf.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/drawable/mflogo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/drawable/outline_camera_alt_black_48dp.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/drawable/outline_collections_black_48dp.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/drawable/outline_control_point_white_48dp.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/drawable/outline_email_black_48dp.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/drawable/outline_filter_frames_black_48dp.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/drawable/outline_home_black_48dp.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/drawable/outline_home_white_48dp.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/drawable/outline_lock_black_48dp.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/drawable/outline_perm_identity_black_48dp.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/drawable/outline_settings_black_48dp.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/drawable/photo_list_selector.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/drawable/power.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/drawable/settings.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/drawable/shape.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/drawable/star.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/drawable/success.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/layout/activity_bt.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/layout/activity_frame.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/layout/activity_main.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/layout/activity_photo_gallery.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/layout/activity_photo_properties.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/layout/activity_register.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/layout/activity_second.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/layout/activity_success.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/layout/device.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/layout/grid_pic.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/layout/main.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/layout/menu.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/layout/photo_gallery_dialogbox.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/layout/photo_gallery_row.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/menu/menu.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/mipmap-anydpi-v26/ic_lock.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/mipmap-anydpi-v26/ic_lock_round.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/mipmap-anydpi-v26/ic_user.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/mipmap-anydpi-v26/ic_user_round.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/mipmap-hdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/mipmap-hdpi/ic_launcher_round.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/mipmap-hdpi/ic_lock.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/mipmap-hdpi/ic_lock_round.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/mipmap-hdpi/ic_user.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/mipmap-hdpi/ic_user_round.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/mipmap-mdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/mipmap-mdpi/ic_launcher_round.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/mipmap-mdpi/ic_lock.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/mipmap-mdpi/ic_lock_round.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/mipmap-mdpi/ic_user.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/mipmap-mdpi/ic_user_round.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/mipmap-xhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/mipmap-xhdpi/ic_lock.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/mipmap-xhdpi/ic_lock_round.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/mipmap-xhdpi/ic_user.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/mipmap-xhdpi/ic_user_round.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/mipmap-xxhdpi/ic_lock.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/mipmap-xxhdpi/ic_lock_round.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/mipmap-xxhdpi/ic_user.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/mipmap-xxhdpi/ic_user_round.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/mipmap-xxxhdpi/ic_lock.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/mipmap-xxxhdpi/ic_lock_round.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/mipmap-xxxhdpi/ic_user.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/mipmap-xxxhdpi/ic_user_round.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/values/colors.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/values/dimens.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/values/ic_launcher_background.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/values/strings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/app/src/main/res/values/styles.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/gradle.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../app/PhotoFrame/settings.gradle" beforeDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="27166816">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.1" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="java" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="JAVA" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-10" />
+    <option name="width" value="1302" />
+    <option name="height" value="1532" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="AndroidView">
+        <subPane>
+          <expand>
+            <path>
+              <item name="PhotoFrame" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="ProjectPane" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
+    <property name="device.picker.selection" value="FA6AC0300527" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
+      <module name="app" />
+      <option name="DEPLOY" value="true" />
+      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+      <option name="DEPLOY_AS_INSTANT" value="false" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Hybrid>
+      <Java />
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Native>
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Sample Java Methods" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="58c13773-eca5-43e8-aa6a-8bfe915aba41" name="Default Changelist" comment="" />
+      <created>1553813097342</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1553813097342</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-6" y="-6" width="1293" height="773" extended-state="6" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" visible="true" weight="0.32955465" />
+      <window_info id="Structure" side_tool="true" />
+      <window_info id="Build Variants" side_tool="true" />
+      <window_info id="Image Layers" />
+      <window_info id="Designer" />
+      <window_info id="Capture Tool" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Run" />
+      <window_info anchor="bottom" id="Logcat" />
+      <window_info anchor="bottom" id="Version Control" show_stripe_button="false" />
+      <window_info anchor="bottom" id="TODO" />
+      <window_info anchor="bottom" id="Android Profiler" />
+      <window_info anchor="bottom" id="Debug" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Build" visible="true" weight="0.32866043" />
+      <window_info anchor="right" id="Device File Explorer" side_tool="true" />
+      <window_info anchor="right" id="Capture Analysis" />
+      <window_info anchor="right" id="Gradle" />
+      <window_info anchor="right" id="Theme Preview" />
+      <window_info anchor="right" id="Palette&#9;" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/io/github/richardyjtian/photoframe/BTActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

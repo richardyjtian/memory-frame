@@ -1,0 +1,15 @@
+<resources>
+    <string name="menu_photo_gallery">Photo Gallery</string>
+    <string name="menu_find_frame">Find Frame</string>
+    <string name="menu_log_out">Log Out</string>
+
+    <string name="register_pwd">Password</string>
+    <string name="register_email">E-mail</string>
+    <string name="register_username">Username</string>
+    <string name="register_submit">SUBMIT</string>
+
+    <string name="second_login">LOGIN</string>
+
+    <string name="success_text">sign up successfully</string>
+    <string name="success_btn">CREATE FRAME</string>
+</resources>
