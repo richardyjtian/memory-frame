@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
@@ -79,7 +80,7 @@ public class PhotoFrameArrayAdaptor extends ArrayAdapter<Photo> {
                 imgRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        FirebaseDatabase.getInstance().getReference("test2").child(key).removeValue();
+                        FirebaseDatabase.getInstance().getReference(FirebaseAuth.getInstance().getUid()).child(key).removeValue();
                     }
                 });
             }

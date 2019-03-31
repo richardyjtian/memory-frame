@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -144,8 +145,8 @@ public class FrameActivity extends AppCompatActivity {
 //        Intent intent = new Intent(FrameActivity.this, PhotoGalleryActivity.class);
 //        startActivity(intent);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference("test2"); // set to user id
-        mStorage = FirebaseStorage.getInstance().getReference("test2");
+        mDatabase = FirebaseDatabase.getInstance().getReference(FirebaseAuth.getInstance().getUid()); // set to user id
+        mStorage = FirebaseStorage.getInstance().getReference(FirebaseAuth.getInstance().getUid());
 
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override

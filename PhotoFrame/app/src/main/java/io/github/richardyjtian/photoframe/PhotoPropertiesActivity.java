@@ -13,6 +13,8 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -31,6 +33,7 @@ public class PhotoPropertiesActivity extends AppCompatActivity {
     private CheckBox location_taken_cb;
 
     private DatabaseReference mDatabase;
+    private FirebaseUser curUser = FirebaseAuth.getInstance().getCurrentUser();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +57,7 @@ public class PhotoPropertiesActivity extends AppCompatActivity {
         time_taken_cb.setChecked(photo.getInclude_time());
         location_taken_cb.setChecked(photo.getInclude_location());
 
-        mDatabase = FirebaseDatabase.getInstance().getReference("test2"); // set to user id
+        mDatabase = FirebaseDatabase.getInstance().getReference("test4"); // set to user id
     }
 
     // Called when the done button is clicked

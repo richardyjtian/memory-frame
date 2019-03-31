@@ -11,6 +11,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -104,16 +105,15 @@ public class Upload {
         key = k;
     }
 
-    private static StorageReference sRef = FirebaseStorage.getInstance().getReference("test2");
-    private static DatabaseReference dRef = FirebaseDatabase.getInstance().getReference().child("test2");
+    private static StorageReference sRef = FirebaseStorage.getInstance().getReference(FirebaseAuth.getInstance().getUid());
+    private static DatabaseReference dRef = FirebaseDatabase.getInstance().getReference().child(FirebaseAuth.getInstance().getUid());
     private static StorageTask uploadTask;
 
     public static void uploadPhoto(final Activity activity, final Photo photo){
         Uri imageUri = photo.getImageUri();
-        final String name = photo.getName();
         if (imageUri != null){
             final String imgName =System.currentTimeMillis()+"."+getFileExtension(activity, imageUri);
-            final StorageReference fileRef = sRef.child(imgName);
+            final StorageReference fileRef = FirebaseStorage.getInstance().getReference().child(FirebaseAuth.getInstance().getUid()).child(imgName);
             uploadTask = fileRef.putFile(imageUri);
             uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
@@ -123,10 +123,10 @@ public class Upload {
                         @Override
                         public void onSuccess(Uri uri) {
                             Upload u = new Upload(photo, uri.toString());
-                            String uID = dRef.push().getKey();
+                            String uID = FirebaseDatabase.getInstance().getReference().child(FirebaseAuth.getInstance().getUid()).push().getKey();
                             u.setKey(uID);
                             u.setStorageName(imgName);
-                            dRef.child(uID).setValue(u);
+                            FirebaseDatabase.getInstance().getReference().child(FirebaseAuth.getInstance().getUid()).child(uID).setValue(u);
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
@@ -156,6 +156,6 @@ public class Upload {
         String key = photo.getKey();
         Upload u = new Upload(photo, photo.getImageUri().toString());
 
-        dRef.child(key).setValue(u);
+        FirebaseDatabase.getInstance().getReference().child(FirebaseAuth.getInstance().getUid()).child(key).setValue(u);
     }
 }
