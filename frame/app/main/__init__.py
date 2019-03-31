@@ -1,7 +1,7 @@
 from flask import Blueprint
 from flask_ask import Ask
 
-main = Blueprint('main', __name__, url_prefix="/ask")
-# ask = Ask(blueprint=main)
+main = Blueprint('main', __name__, url_prefix="/")
+ask = Ask(blueprint=main)
 
-from . import routes, events
+from . import routes, events, intents

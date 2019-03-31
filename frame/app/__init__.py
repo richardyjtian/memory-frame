@@ -15,9 +15,7 @@ def create_app(debug=False):
     app.config['SECRET_KEY'] = 'sdkasndask12w'
 
     from .main import main as main_blueprint
-    from .intents import intents as intents_blueprint
     app.register_blueprint(main_blueprint)
-    app.register_blueprint(intents_blueprint)
 
     if 'ASK_VERIFY_REQUESTS' in os.environ:
         verify = str(os.environ.get('ASK_VERIFY_REQUESTS', '')).lower()

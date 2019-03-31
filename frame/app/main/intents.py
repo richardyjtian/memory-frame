@@ -1,6 +1,7 @@
 import logging
 
 from flask_ask import question, statement
+from flask_socketio import emit
 from . import ask
 
 logging.getLogger('flask_ask').setLevel(logging.DEBUG)
