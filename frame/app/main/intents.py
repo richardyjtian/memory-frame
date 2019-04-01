@@ -37,11 +37,10 @@ def Power_Intent(state):
 	else:
 		return statement('sorry not possible')
 
-@ask.intent('SleepIntent')
+@ask.intent('SleepIntent', convert={'time': 'timedelta'})
 def Sleep_Intent(time):
-	#TODO: parse time into numbers
-	#TODO: turn off frame for time
-	return statement('Memory frame is sleeping for {} '.format(time))
+	#TODO: turn off frame for time, note time is now datatype timedelta
+	return statement('Memory frame is sleeping for {}' .format(time))
 
 @ask.intent('NextPhotoIntent')
 def NextPhoto_Intent():
@@ -84,10 +83,10 @@ def LabelSlide_Intent(label):
 	#else
 	#return statement('Sorry, no photos were found from {}' .format(city))
 
-@ask.intent('SlideIntent', default={'interval':'PT1M'})
+@ask.intent('SlideIntent', default={'interval':'PT1M'}, convert={'interval': 'timedelta'})
 def Slide_Intent(interval):
-	#TODO: add code to parse interval
 	#TODO: add code to start slideshow, switching photos at set interval
+	#note: interval is of datatype timedelta
 	return statement('Memory frame is starting slideshow')
 
 @ask.intent('StillIntent')
