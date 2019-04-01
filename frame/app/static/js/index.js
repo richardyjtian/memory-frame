@@ -27,4 +27,3 @@ socket.on('photo_switch', function(data) {
 socket.on('test', function(message) {
 	console.log(message);
 });
-
