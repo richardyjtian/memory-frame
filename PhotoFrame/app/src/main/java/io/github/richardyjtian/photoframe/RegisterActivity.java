@@ -84,23 +84,8 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             });
 
-
-            email.setOnEditorActionListener(new TextView.OnEditorActionListener(){
-
-                @Override
-                public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                    return (event.getKeyCode() == KeyEvent.KEYCODE_ENTER);
-                }
-            });
-
-            user.setOnEditorActionListener(new TextView.OnEditorActionListener(){
-
-                @Override
-                public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                    return (event.getKeyCode() == KeyEvent.KEYCODE_ENTER);
-                }
-            });
-
+            email.addTextChangedListener(new JumpText((email), user));
+            user.addTextChangedListener(new JumpText((user), pwd));
 
         }
 

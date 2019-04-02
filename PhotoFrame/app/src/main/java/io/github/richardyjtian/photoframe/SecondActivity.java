@@ -10,6 +10,9 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.CallSuper;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.ViewUtils;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -36,7 +39,7 @@ public class SecondActivity extends AppCompatActivity {
     float downX, downY;
     float screenWidth, screenHeight;
 
-    EditText username;
+    EditText username, editText2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +52,12 @@ public class SecondActivity extends AppCompatActivity {
         screenWidth = metrics.widthPixels;
         screenHeight = metrics.heightPixels;
 
-        View v1 = findViewById(R.id.bg2);
+        View v1 = findViewById(R.id.loginFirstRow);
         v1.getBackground().setAlpha(200);
+
+        View v2 = findViewById(R.id.loginSecondRow);
+        v2.getBackground().setAlpha(200);
+
 
 
         loginBtn = (Button) findViewById(R.id.loginButton);
@@ -65,16 +72,10 @@ public class SecondActivity extends AppCompatActivity {
             }
         });
 
-        username.setOnEditorActionListener(new TextView.OnEditorActionListener(){
-
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                return (event.getKeyCode() == KeyEvent.KEYCODE_ENTER);
-            }
-        });
-
-
+        username.addTextChangedListener(new JumpText((username), editText2));
     }
+
+
 
     private void LogIn() {
         String email = username.getText().toString();
@@ -206,5 +207,7 @@ public class SecondActivity extends AppCompatActivity {
             manager.hideSoftInputFromWindow(token, InputMethodManager.HIDE_NOT_ALWAYS);
         }
     }
+
+
 
 }

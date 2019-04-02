@@ -1,12 +1,18 @@
 package io.github.richardyjtian.photoframe;
 
+import android.app.ProgressDialog;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothSocket;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.speech.RecognizerIntent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -18,7 +24,9 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -35,6 +43,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 public class FrameActivity extends AppCompatActivity {
 
@@ -42,6 +51,17 @@ public class FrameActivity extends AppCompatActivity {
     private SlideMenu mSlideMenu;
     private TextView pg, sf, lg;
     private Uri imageUri, uri;
+    private TextView frameName, UsrName;
+    private ProgressDialog progress;
+
+    BluetoothAdapter myBluetooth = null;
+    BluetoothSocket btSocket = null;
+
+    private boolean isBtConnected = false;
+    String address = null;
+
+    static final UUID myUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
+
 
     public static PhotoFrameArrayAdaptor ArrayAdapter;
 
@@ -50,11 +70,6 @@ public class FrameActivity extends AppCompatActivity {
 
     private DatabaseReference mDatabase;
     private StorageReference mStorage;
-
-//    private final String IMAGE_TAG = "image", TEXT_TAG = "text";
-//    private String[] from = {"image", "text"};
-//    private int[] to = {R.id.frameimg, R.id.framename};
-
 
 
     @Override
@@ -69,14 +84,19 @@ public class FrameActivity extends AppCompatActivity {
         TextView pg = (TextView) findViewById(R.id.gallery);
         TextView sf = (TextView) findViewById(R.id.scan);
         TextView lg = (TextView) findViewById(R.id.logout);
+        frameName = (TextView) findViewById(R.id.frameusername);
 
-        View v1 = findViewById(R.id.btwindow);
-        v1.getBackground().setAlpha(0);
-        View v2 = findViewById(R.id.menuBackground);
-        v2.getBackground().setAlpha(230);
 
 //        requestWindowFeature(Window.FEATURE_NO_TITLE);
 
+
+        Intent intent = getIntent();
+        address = intent.getStringExtra(BTActivity.EXTRA_ADDRESS); //receive the address of the bluetooth device
+
+        //new ConnectBT().execute(); //Call the class to connect
+
+        String name = intent.getStringExtra("name");
+        frameName.setText(name.toCharArray(),0, name.length());
 
         pg.setClickable(true);
         pg.setOnClickListener(new View.OnClickListener() {
@@ -161,6 +181,35 @@ public class FrameActivity extends AppCompatActivity {
             }
         });
 
+
+
+
+        //sendText("username" + "\n" + "passwaord");
+
+    }
+
+    private void sendText(String s){
+        if (btSocket!=null)
+        {
+            try
+            {
+                msg("Sending");
+                btSocket.getOutputStream().write(s.toString().getBytes());
+            }
+            catch (IOException e)
+            {
+                msg("Connection Error");
+                isBtConnected = false;
+                msg("Trying to reestablished connection");
+                try
+                {
+                    btSocket.close(); //close connection
+                }
+                catch (IOException ei)
+                { msg("CANNOT DISMISS");}
+                new ConnectBT().execute();
+            }
+        }
     }
 
     @Override
@@ -345,8 +394,75 @@ public class FrameActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         }
+
+
     }
 
+    private class ConnectBT extends AsyncTask<Void, Void, Void>  // UI thread
+    {
+        private boolean ConnectSuccess = true;
+
+        @Override
+        protected void onPreExecute() {
+            progress = ProgressDialog.show(FrameActivity.this, "Connecting...", "Please wait");  //Show a progress dialog
+        }
+
+        @Override
+        protected Void doInBackground(Void... devices) //While the progress dialog is shown, the connection is done in background
+        {
+            try {
+                if (btSocket == null || !isBtConnected) {
+                    myBluetooth = BluetoothAdapter.getDefaultAdapter();//Get the mobile bluetooth device
+                    BluetoothDevice dispositivo = myBluetooth.getRemoteDevice(address);//Connects to the device's address and checks if it is available
+                    btSocket = dispositivo.createInsecureRfcommSocketToServiceRecord(myUUID);//Create a RFCOMM (SPP) connection
+                    BluetoothAdapter.getDefaultAdapter().cancelDiscovery();
+                    btSocket.connect();//Start the connection
+                }
+            } catch (IOException e) {
+                ConnectSuccess = false;//If the try failed, you can check the exception here
+            }
+            return null;
+        }
+
+
+        @Override
+        protected void onPostExecute(Void result) //after the doInBackground, it checks if everything went fine
+        {
+            super.onPostExecute(result);
+
+            //Sends an error message if the connection is failed
+            if (!ConnectSuccess) {
+                msg("Connection Failed. Please try again.");
+            } else {
+                msg("Connected.");
+                isBtConnected = true;
+            }
+            progress.dismiss();
+        }
+    }
+
+        //Method to disconnect the bluetooth connection
+        private void Disconnect()
+        {
+            if (btSocket!=null) //If the btSocket is busy
+            {
+                try
+                {
+                    btSocket.close(); //close connection
+                }
+                catch (IOException e)
+                { msg("Error");}
+            }
+
+            finish();
+        }
+
+
+        //Method to display a Toast
+        public void msg(String s)
+        {
+            Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
+        }
 
 }
 

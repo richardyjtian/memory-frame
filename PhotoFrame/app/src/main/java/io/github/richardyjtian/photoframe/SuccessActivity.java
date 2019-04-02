@@ -11,9 +11,10 @@ import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 
 
-    public class SuccessActivity extends AppCompatActivity {
+public class SuccessActivity extends AppCompatActivity {
 
         Button create;
         View decorView;

@@ -51,7 +51,7 @@ public class PhotoPropertiesActivity extends AppCompatActivity {
         photo = (Photo) getIntent().getSerializableExtra("Photo");
 
         Picasso.get().load(photo.getImageUri()).into(img);
-        name_et.setText(photo.getName());
+//        name_et.setText(photo.getName());
         caption_et.setText(photo.getCaption());
         people_et.setText(photo.getPeople());
         time_taken_cb.setChecked(photo.getInclude_time());

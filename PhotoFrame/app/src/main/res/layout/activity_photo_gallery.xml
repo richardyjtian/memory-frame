@@ -5,6 +5,7 @@
     android:background="@drawable/lbackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/gallery"
     tools:context=".PhotoGalleryActivity">
 
     <ListView
@@ -18,7 +19,9 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"></ListView>
 
-    <android.support.design.widget.FloatingActionButton
+    <!--<include layout="@layout/layout_fb"/>-->
+
+    <io.github.richardyjtian.photoframe.DragButton
         android:id="@+id/plusButton"
         android:layout_width="61dp"
         android:layout_height="0dp"
@@ -29,5 +32,9 @@
         android:onClick="photoSourceDialog"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_add" />
+        app:srcCompat="@android:drawable/ic_menu_add"
+        android:focusable="true" />
+
+
+    <!--android:onClick="photoSourceDialog"-->
 </android.support.constraint.ConstraintLayout>
