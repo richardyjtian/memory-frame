@@ -21,16 +21,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.support.annotation.NonNull;
 
-//import com.google.android.gms.tasks.OnCompleteListener;
-//import com.google.android.gms.tasks.Task;
-//import com.google.firebase.auth.AuthResult;
-//import com.google.firebase.auth.FirebaseAuth;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class SecondActivity extends AppCompatActivity {
 
-//    private EditText emailField;
-//    private EditText pwdField;
-//    private FirebaseAuth auth;
+    private EditText psw;
+    private FirebaseAuth auth;
     private Button loginBtn;
     View decorView;
 
@@ -56,6 +55,8 @@ public class SecondActivity extends AppCompatActivity {
 
         loginBtn = (Button) findViewById(R.id.loginButton);
         username = (EditText) findViewById(R.id.username);
+        psw = findViewById(R.id.password);
+        auth = FirebaseAuth.getInstance();
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,36 +77,36 @@ public class SecondActivity extends AppCompatActivity {
     }
 
     private void LogIn() {
-//        String email = emailField.getText().toString();
-//        String password = pwdField.getText().toString();
-//
-//        // check to see if username and password are valid before attempting to login
-//        if (!isValidEmail(email)) {
-//            Toast.makeText(this, "Invalid username", Toast.LENGTH_SHORT).show();
-//            return;
-//        } else if (!isValidPassword(password)) {
-//            Toast.makeText(this, "Invalid password", Toast.LENGTH_SHORT).show();
-//            return;
-//        }
-//
-//        auth.signInWithEmailAndPassword(email, password)
-//                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<AuthResult> task) {
-//                        if (task.isSuccessful()) {
-//                            // Sign in success, update UI with the signed-in user's information
-//                            //FirebaseUser user = mAuth.getCurrentUser();
-//                            // TODO: redirect to logged in UI
+        String email = username.getText().toString();
+        String password = psw.getText().toString();
+
+        // check to see if username and password are valid before attempting to login
+        if (!isValidEmail(email)) {
+            Toast.makeText(this, "Invalid username", Toast.LENGTH_SHORT).show();
+            return;
+        } else if (!isValidPassword(password)) {
+            Toast.makeText(this, "Invalid password", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        auth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            //FirebaseUser user = mAuth.getCurrentUser();
+                            // TODO: redirect to logged in UI
                             Intent intent = new Intent(SecondActivity.this, BTActivity.class);
                             startActivity(intent);
-//                        } else {
-//                            // If sign in fails, display a message to the user.
-//                            Toast.makeText(SecondActivity.this, "Authentication failed.",
-//                                    Toast.LENGTH_SHORT).show();
-//                        }
-//
-//                    }
-//                });
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Toast.makeText(SecondActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                });
     }
 
     /**

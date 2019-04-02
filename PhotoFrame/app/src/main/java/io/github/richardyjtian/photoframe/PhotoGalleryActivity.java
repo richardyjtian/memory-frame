@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.google.android.gms.common.FirstPartyScopes;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -42,8 +43,8 @@ public class PhotoGalleryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo_gallery);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference("test2"); // set to user id
-        mStorage = FirebaseStorage.getInstance().getReference("test2");
+        mDatabase = FirebaseDatabase.getInstance().getReference(FirebaseAuth.getInstance().getUid()); // set to user id
+        mStorage = FirebaseStorage.getInstance().getReference(FirebaseAuth.getInstance().getUid());
 
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
