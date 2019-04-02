@@ -1,4 +1,4 @@
-var photoNameList = [];
+var photoUrlList = [];
 
 var photo_frame = document.getElementById('photo-frame');
 
@@ -31,29 +31,27 @@ function getRandomInt(max) {
  * @param {String} imageUrl
  */
 function switch_photo(imageUrl) {
-	let image_uri = photo_frame.getAttribute('src');
-	image_uri = image_uri.substring(0, image_uri.lastIndexOf('/'));
-	photo_frame.setAttribute('src', `${image_uri}/${imageUrl}`);
+	photo_frame.setAttribute('src', imageUrl);
 }
 
 /**
  * switch the photo to another one in the pool
  */
 export function nextPhoto() {
-	switch_photo(photoNameList[getRandomInt(photoNameList.length)]);
+	switch_photo(photoUrlList[getRandomInt(photoUrlList.length)]);
 }
 
 /**
  * 1) update the current pool of photo URLs with the new one
  * 2) switches the current photo to a random one from the new pool
- * @param {String[]} imageNameList 
+ * @param {String[]} imageUrlList 
  */
-export function update_photo_pool(imageNameList) {
+export function update_photo_pool(imageUrlList) {
 	// no new photos to switch to
 	// ideally if no photo is found this event shouldn't have been triggered
 	// by the back in the first place, but do this check to be safe
-	if (imageNameList.length == 0) return;
+	if (imageUrlList.length == 0) return;
 
-	photoNameList = imageNameList;
-	switch_photo(photoNameList[getRandomInt(photoNameList.length)]);
+	photoUrlList = imageUrlList;
+	switch_photo(photoUrlList[getRandomInt(photoUrlList.length)]);
 }
