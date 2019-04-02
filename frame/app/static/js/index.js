@@ -3,6 +3,8 @@ import { update_photo_pool, nextPhoto } from './photo.js';
 // connect socket
 var socket = io.connect('http://' + document.domain + ':' + location.port);
 var switch_photo_button = document.getElementById('photo-switcher');
+var label_input = document.getElementById('label-input');
+var label_submit = document.getElementById('label-submit');
 
 switch_photo_button.addEventListener('click', nextPhoto);
 
@@ -21,9 +23,14 @@ socket.on('initialize', function(data) {
  * @param {String} data: JSON array of the image names
  */
 socket.on('photo_switch', function(data) {
+	console.log('updating photos:', data);
 	update_photo_pool(JSON.parse(data));
 });
 
 socket.on('test', function(message) {
 	console.log(message);
+});
+
+label_submit.addEventListener('click', function () {
+	socket.emit('filter_photos', label_input.value);
 });
