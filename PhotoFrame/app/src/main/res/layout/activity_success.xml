@@ -5,7 +5,7 @@
     android:id="@+id/bgSuccess"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/lbackground"
+    android:background="@drawable/pblue1"
     tools:context=".SuccessActivity">
 
     <TextView
@@ -29,9 +29,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="400dp"
-        android:background="@color/colorAccent"
+        android:background="@color/btnColor"
         android:text="@string/success_btn"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
+        android:textStyle="bold"
         app:layout_constraintWidth_percent="0.7"
         android:textSize="@dimen/second_login_size"
         app:layout_constraintEnd_toEndOf="parent"

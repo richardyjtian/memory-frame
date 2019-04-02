@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".BTActivity"
-    android:background="@drawable/lbackground">
+    android:background="@drawable/pblues">
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/upperwindow"

@@ -11,12 +11,12 @@
 
     <item android:state_pressed="false">
         <shape android:shape="rectangle" >
-            <solid android:color="	#FFF0F5"></solid>
+            <solid android:color="#FFE4E1"></solid>
             <corners android:radius="100dip" />
             <stroke
                 android:dashGap="0dp"
                 android:width="1dp"
-                android:color="#FFF0F5" />
+                android:color="#FFE4E1" />
             <padding android:bottom="2dp" android:left="2dp" android:right="2dp" android:top="2dp" />
         </shape>
     </item>

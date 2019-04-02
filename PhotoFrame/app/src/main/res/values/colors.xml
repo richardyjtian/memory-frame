@@ -2,7 +2,8 @@
 <resources>
     <color name="colorPrimary">	#73c0f4</color>
     <color name="colorPrimaryDark">#000000</color>
-    <color name="colorAccent">#F092a5</color>
+    <color name="colorAccent">#A9A9A9</color>
+    <color name="btnColor">#FFE4E1</color>
     <color name="menu_text_color">#333333</color>
     <color name="floating_button_color">#73c0f4</color>
 </resources>

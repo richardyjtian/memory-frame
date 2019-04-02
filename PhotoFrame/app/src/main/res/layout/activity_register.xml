@@ -5,7 +5,7 @@
     android:id="@+id/bg3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/lbackground"
+    android:background="@drawable/pblue1"
     tools:context=".RegisterActivity">
 
     <ImageView
@@ -283,9 +283,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:background="@color/colorAccent"
+        android:background="@color/btnColor"
         android:text="@string/register_submit"
-        android:textColor="#FFFFFF"
+        android:textColor="@android:color/black"
         android:textSize="@dimen/menu_text_size"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

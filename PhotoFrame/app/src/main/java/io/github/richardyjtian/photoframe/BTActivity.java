@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 public class BTActivity extends AppCompatActivity {
@@ -144,12 +145,19 @@ public class BTActivity extends AppCompatActivity {
             // Get the device MAC address, the last 17 chars in the View
             String info = ((TextView) v).getText().toString();
             String address = info.substring(info.length() - 17);
+            String name  = null;
 
             // Make an intent to start next activity.
             Intent intent = new Intent(BTActivity.this, FrameActivity.class);
 
             //Change the activity.
-            intent.putExtra("name", info);
+            for (Map.Entry<String, String> entry : btpair.entrySet()) {
+                if (entry.getValue().equals(address)) {
+                    name = entry.getKey();
+                }
+            }
+
+            intent.putExtra("name", name);
             intent.putExtra(EXTRA_ADDRESS, address); //this will be received at ledControl (class) Activity
             startActivity(intent);
         }

@@ -12,7 +12,7 @@
     android:layout_width="match_parent"
     android:id="@+id/activity_frame"
     android:layout_height="match_parent"
-    android:background="@drawable/lbackground"
+    android:background="@drawable/pblues"
     tools:context=".FrameActivity">
 
     <android.support.constraint.ConstraintLayout android:id="@+id/upperwindow"
