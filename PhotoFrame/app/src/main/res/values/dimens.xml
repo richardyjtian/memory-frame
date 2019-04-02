@@ -9,4 +9,6 @@
     <dimen name="register_hint_size">15sp</dimen>
 
     <dimen name="second_login_size">14sp</dimen>
+
+    <dimen name="radius">15dp</dimen>
 </resources>
