@@ -10,6 +10,9 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.CallSuper;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.ViewUtils;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -21,23 +24,23 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.support.annotation.NonNull;
 
-//import com.google.android.gms.tasks.OnCompleteListener;
-//import com.google.android.gms.tasks.Task;
-//import com.google.firebase.auth.AuthResult;
-//import com.google.firebase.auth.FirebaseAuth;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class SecondActivity extends AppCompatActivity {
 
-//    private EditText emailField;
-//    private EditText pwdField;
-//    private FirebaseAuth auth;
+    private EditText emailField;
+    private EditText pwdField;
+    private FirebaseAuth auth;
     private Button loginBtn;
     View decorView;
 
     float downX, downY;
     float screenWidth, screenHeight;
 
-    EditText username;
+    EditText username, editText2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,12 +53,17 @@ public class SecondActivity extends AppCompatActivity {
         screenWidth = metrics.widthPixels;
         screenHeight = metrics.heightPixels;
 
-        View v1 = findViewById(R.id.bg2);
+        View v1 = findViewById(R.id.loginFirstRow);
         v1.getBackground().setAlpha(200);
+
+        View v2 = findViewById(R.id.loginSecondRow);
+        v2.getBackground().setAlpha(200);
+
 
 
         loginBtn = (Button) findViewById(R.id.loginButton);
-        username = (EditText) findViewById(R.id.username);
+        username = (EditText) findViewById(R.id.loginUsername);
+        editText2 = (EditText) findViewById(R.id.loginPassword);
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,16 +72,10 @@ public class SecondActivity extends AppCompatActivity {
             }
         });
 
-        username.setOnEditorActionListener(new TextView.OnEditorActionListener(){
-
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                return (event.getKeyCode() == KeyEvent.KEYCODE_ENTER);
-            }
-        });
-
-
+        username.addTextChangedListener(new JumpText((username), editText2));
     }
+
+
 
     private void LogIn() {
 //        String email = emailField.getText().toString();
@@ -205,5 +207,7 @@ public class SecondActivity extends AppCompatActivity {
             manager.hideSoftInputFromWindow(token, InputMethodManager.HIDE_NOT_ALWAYS);
         }
     }
+
+
 
 }

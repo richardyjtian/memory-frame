@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bg"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/lbackground"
+    android:orientation="vertical"
     tools:context=".SecondActivity">
 
     <ImageView
+        android:id="@+id/imageView"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginTop="120dp"
@@ -23,31 +23,31 @@
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/bg2"
+        android:id="@+id/loginFirstRow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="350dp"
         android:background="#FFFFFF"
         android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
-            android:id="@+id/person"
+            android:id="@+id/loginPerson"
             android:layout_width="35dp"
             android:layout_height="35dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="3dp"
             android:layout_marginTop="16dp"
             android:src="@drawable/outline_perm_identity_black_48dp"
-            android:layout_marginLeft="3dp"
-            android:layout_marginStart="10dp"
-            app:layout_constraintLeft_toLeftOf="@+id/bg2"
-            app:layout_constraintStart_toStartOf="@+id/bg2"
-            app:layout_constraintTop_toTopOf="@+id/bg2" />
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/username"
+            android:id="@+id/loginUsername"
             android:layout_width="0dp"
             android:layout_height="43dp"
             android:layout_gravity="center"
@@ -57,51 +57,66 @@
             android:layout_marginEnd="10dp"
             android:layout_marginRight="3dp"
             android:hint="@string/register_username"
+            android:inputType="text"
             android:maxLines="1"
             android:textColor="@android:color/black"
             android:textSize="@dimen/register_hint_size"
-            app:layout_constraintEnd_toEndOf="@id/bg2"
-            app:layout_constraintWidth_percent="0.8"
-            app:layout_constraintLeft_toRightOf="@+id/person"
-            app:layout_constraintRight_toRightOf="@id/bg2"
-            app:layout_constraintStart_toEndOf="@id/person"
-            app:layout_constraintTop_toTopOf="@id/bg2" />
+            app:layout_constraintEnd_toEndOf="@id/loginFirstRow"
+            app:layout_constraintLeft_toRightOf="@+id/loginPerson"
+            app:layout_constraintRight_toRightOf="@id/loginFirstRow"
+            app:layout_constraintStart_toEndOf="@id/loginPerson"
+            app:layout_constraintTop_toTopOf="@id/loginFirstRow"
+            app:layout_constraintWidth_percent="0.8" />
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/loginSecondRow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginFirstRow">
 
         <ImageView
-            android:id="@+id/lock"
+            android:id="@+id/loginLock"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="3dp"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="13dp"
             android:src="@drawable/outline_lock_black_48dp"
-            app:layout_constraintLeft_toLeftOf="@+id/bg2"
-            app:layout_constraintStart_toStartOf="@+id/bg2"
-            app:layout_constraintTop_toBottomOf="@+id/person" />
+            app:layout_constraintLeft_toLeftOf="@+id/loginSecondRow"
+            app:layout_constraintStart_toStartOf="@+id/loginSecondRow"
+            app:layout_constraintTop_toTopOf="@+id/loginSecondRow" />
 
         <EditText
-            android:id="@+id/password"
+            android:id="@+id/loginPassword"
             android:layout_width="0dp"
-            android:layout_height="38dp"
+            android:layout_height="43dp"
+            android:layout_gravity="center"
             android:layout_marginStart="5dp"
             android:layout_marginLeft="5dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginRight="3dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="16dp"
             android:hint="@string/register_pwd"
             android:inputType="textPassword"
-            android:singleLine="true"
+            android:maxLines="1"
+            android:textColor="@android:color/black"
             android:textSize="@dimen/register_hint_size"
-            app:layout_constraintWidth_percent="0.8"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toRightOf="@+id/lock"
-            app:layout_constraintRight_toRightOf="@id/bg2"
-            app:layout_constraintEnd_toEndOf="@id/bg2"
-            app:layout_constraintTop_toBottomOf="@+id/username"
-            app:layout_constraintVertical_bias="0.0" />
-
+            app:layout_constraintBottom_toBottomOf="@+id/loginSecondRow"
+            app:layout_constraintEnd_toEndOf="@id/loginSecondRow"
+            app:layout_constraintLeft_toRightOf="@+id/loginLock"
+            app:layout_constraintRight_toRightOf="@id/loginSecondRow"
+            app:layout_constraintStart_toEndOf="@id/loginLock"
+            app:layout_constraintTop_toTopOf="@id/loginSecondRow"
+            app:layout_constraintWidth_percent="0.8" />
     </android.support.constraint.ConstraintLayout>
 
     <Button
@@ -109,17 +124,16 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:background="#4682B4"
+        android:background="@color/colorAccent"
         android:text="@string/second_login"
-        android:textStyle="bold"
-        android:textSize="@dimen/second_login_size"
         android:textColor="#FFFFFF"
-        app:layout_constraintWidth_percent="0.73"
+        android:textSize="@dimen/second_login_size"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/loginSecondRow"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bg2"
+        app:layout_constraintStart_toStartOf="@id/loginSecondRow"
+        app:layout_constraintTop_toBottomOf="@id/loginSecondRow"
         app:layout_constraintVertical_bias="0.0" />
 
 

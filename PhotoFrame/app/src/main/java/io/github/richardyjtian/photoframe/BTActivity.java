@@ -19,6 +19,7 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Set;
 
 public class BTActivity extends AppCompatActivity {
@@ -31,6 +32,9 @@ public class BTActivity extends AppCompatActivity {
 
     //newly discovered devices
     public  ArrayAdapter<String> mDeviceListAdapter;
+
+    public String str;
+    public HashMap<String, String> btpair = new HashMap<String, String>();
 
 
     //Initialize variables for Bluetooth
@@ -108,8 +112,11 @@ public class BTActivity extends AppCompatActivity {
             if(BluetoothDevice.ACTION_FOUND.equals(action)){
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
 
-                mDeviceListAdapter.add(device.getName() + "\n" + device.getAddress());
+                String frameNum = device.getName();
+
+                mDeviceListAdapter.add(frameNum + " ");
                 mDeviceListAdapter.notifyDataSetChanged();
+                btpair.put(frameNum, device.getAddress());
             }
         }
     };
@@ -136,12 +143,13 @@ public class BTActivity extends AppCompatActivity {
         {
             // Get the device MAC address, the last 17 chars in the View
             String info = ((TextView) v).getText().toString();
-            String address = info.substring(info.length() - 17);
+            String address = btpair.get(info);
 
             // Make an intent to start next activity.
             Intent intent = new Intent(BTActivity.this, FrameActivity.class);
 
             //Change the activity.
+            intent.putExtra("name", info);
             intent.putExtra(EXTRA_ADDRESS, address); //this will be received at ledControl (class) Activity
             startActivity(intent);
         }

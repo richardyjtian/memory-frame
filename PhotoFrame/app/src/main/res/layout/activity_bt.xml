@@ -11,7 +11,7 @@
         android:id="@+id/upperwindow"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.05"
+        app:layout_constraintHeight_percent="0.1"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         android:background="#00000000">
@@ -51,7 +51,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="#FFFFFF"
-        app:layout_constraintHeight_percent="0.95"
+        app:layout_constraintHeight_percent="0.9"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/upperwindow">
 

@@ -29,7 +29,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="400dp"
-        android:background="#4682B4"
+        android:background="@color/colorAccent"
         android:text="@string/success_btn"
         android:textColor="#FFFFFF"
         app:layout_constraintWidth_percent="0.7"

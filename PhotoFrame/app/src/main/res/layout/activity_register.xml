@@ -167,6 +167,7 @@
             android:layout_marginRight="3dp"
             android:hint="@string/register_email"
             android:maxLines="1"
+            android:inputType="text"
             android:textColor="@android:color/black"
             android:textSize="@dimen/register_hint_size"
             app:layout_constraintWidth_percent="0.8"
@@ -215,6 +216,7 @@
             android:layout_marginRight="3dp"
             android:hint="@string/register_username"
             android:maxLines="1"
+            android:inputType="text"
             android:textColor="@android:color/black"
             android:textSize="@dimen/register_hint_size"
             app:layout_constraintWidth_percent="0.8"
@@ -262,6 +264,7 @@
             android:layout_marginRight="3dp"
             android:hint="@string/register_pwd"
             android:maxLines="1"
+            android:inputType="textPassword"
             android:textColor="@android:color/black"
             android:layout_marginBottom="16dp"
             android:textSize="@dimen/register_hint_size"
@@ -275,23 +278,22 @@
     </android.support.constraint.ConstraintLayout>
 
 
-        <Button
+    <Button
         android:id="@+id/submitButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:background="#4682B4"
+        android:layout_marginTop="2dp"
+        android:background="@color/colorAccent"
         android:text="@string/register_submit"
-        android:textStyle="bold"
-        android:textSize="@dimen/menu_text_size"
         android:textColor="#FFFFFF"
-        app:layout_constraintWidth_percent="0.73"
+        android:textSize="@dimen/menu_text_size"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/thirdrow"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/thirdrow"
         app:layout_constraintTop_toBottomOf="@+id/thirdrow"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.185" />
 
 
 </android.support.constraint.ConstraintLayout>
