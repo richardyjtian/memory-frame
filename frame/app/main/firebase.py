@@ -1,12 +1,4 @@
-"""
-config = {
-  "apiKey": "AIzaSyCJ5G_RSbtjyid64zKBMDmpiK53V58l3Cg",
-  "authDomain": "cpen391-234502.firebaseapp.com",
-  "databaseURL": "https://cpen391-234502.firebaseio.com",
-  "storageBucket": "cpen391-234502.appspot.com"
-}
-"""
-class fb:
+class Firebase:
     def __init__(self, config):
         import pyrebase
         def noquote(s):
