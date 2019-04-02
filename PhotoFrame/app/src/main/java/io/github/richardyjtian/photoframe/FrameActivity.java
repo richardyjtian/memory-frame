@@ -92,10 +92,10 @@ public class FrameActivity extends AppCompatActivity {
         Intent intent = getIntent();
         address = intent.getStringExtra(BTActivity.EXTRA_ADDRESS); //receive the address of the bluetooth device
 
-        new ConnectBT().execute(); //Call the class to connect
+        //new ConnectBT().execute(); //Call the class to connect
 
-        //String name = intent.getStringExtra("name");
-        frameName.setText("kkk");
+        String name = intent.getStringExtra("name");
+        frameName.setText(name.toCharArray(),0, name.length());
 
         pg.setClickable(true);
         pg.setOnClickListener(new View.OnClickListener() {

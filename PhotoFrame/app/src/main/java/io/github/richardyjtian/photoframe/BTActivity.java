@@ -149,7 +149,7 @@ public class BTActivity extends AppCompatActivity {
             Intent intent = new Intent(BTActivity.this, FrameActivity.class);
 
             //Change the activity.
-            //intent.putExtra("name", info);
+            intent.putExtra("name", info);
             intent.putExtra(EXTRA_ADDRESS, address); //this will be received at ledControl (class) Activity
             startActivity(intent);
         }
