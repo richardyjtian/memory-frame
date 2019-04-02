@@ -18,16 +18,23 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
-    public class RegisterActivity extends AppCompatActivity {
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+
+public class RegisterActivity extends AppCompatActivity {
 
         private Button registerBtn;
-        private EditText email, user;
+        private EditText email, user, psw;
 
         View decorView;
 
         float downX, downY;
         float screenWidth, screenHeight;
+
+        private FirebaseAuth auth;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
@@ -52,12 +59,28 @@ import android.widget.TextView;
             registerBtn = (Button) findViewById(R.id.submitButton);
             email = (EditText) findViewById(R.id.E_mail);
             user = (EditText) findViewById(R.id.username);
+            psw = findViewById(R.id.password);
+            auth = FirebaseAuth.getInstance();
 
             registerBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(RegisterActivity.this, SuccessActivity.class);
                     startActivity(intent);
+                }
+            });
+            registerBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    auth.createUserWithEmailAndPassword(email.getText().toString(), psw.getText().toString()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                        @Override
+                        public void onSuccess(AuthResult authResult) {
+                            Toast.makeText(RegisterActivity.this, "account created", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(RegisterActivity.this, SuccessActivity.class);
+                            startActivity(intent);
+                        }
+                    });
+
                 }
             });
 
