@@ -40,7 +40,14 @@ def Power_Intent(state):
 @ask.intent('SleepIntent', convert={'time': 'timedelta'})
 def Sleep_Intent(time):
 	#TODO: turn off frame for time, note time is now datatype timedelta
-	return statement('Memory frame is sleeping for {}' .format(time))
+	if time.seconds < 60:
+		return statement('Memory frame is sleeping for {} seconds' .format(time.seconds))
+	elif time.seconds < 3600:
+		minutes = int(time.seconds/60)
+		return statement('Memory frame is sleeping for {} minutes' .format(minutes))
+	else:
+		hours = int(time.seconds/3600)
+		return statement('Memory frame is sleeping for {} hours' .format(hours))
 
 @ask.intent('NextPhotoIntent')
 def NextPhoto_Intent():
