@@ -1,6 +1,5 @@
 package io.github.richardyjtian.photoframe;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.IBinder;
 import android.support.annotation.CallSuper;
@@ -13,12 +12,6 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 public class PhotoPropertiesActivity extends AppCompatActivity {
@@ -31,9 +24,6 @@ public class PhotoPropertiesActivity extends AppCompatActivity {
     private EditText people_et;
     private CheckBox time_taken_cb;
     private CheckBox location_taken_cb;
-
-    private DatabaseReference mDatabase;
-    private FirebaseUser curUser = FirebaseAuth.getInstance().getCurrentUser();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,13 +41,12 @@ public class PhotoPropertiesActivity extends AppCompatActivity {
         photo = (Photo) getIntent().getSerializableExtra("Photo");
 
         Picasso.get().load(photo.getImageUri()).into(img);
-//        name_et.setText(photo.getName());
+        name_et.setText(photo.getName());
         caption_et.setText(photo.getCaption());
         people_et.setText(photo.getPeople());
         time_taken_cb.setChecked(photo.getInclude_time());
         location_taken_cb.setChecked(photo.getInclude_location());
 
-        mDatabase = FirebaseDatabase.getInstance().getReference("test4"); // set to user id
     }
 
     // Called when the done button is clicked
