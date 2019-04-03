@@ -42,39 +42,39 @@ def NextPhoto_Intent():
 
 @ask.intent('LocationStillIntent')
 def LocationStill_Intent(city):
-	#TODO: add code to search for photos matching location city
-	#if photo(s) found matching location city
-	#TODO: add # of photos found to statement
-	return statement('Here is a photo from {}. By the way x other photos from {} were also found' .format(city, city))
-	#else
-	#return statement('Sorry, no photos were found from {}' .format(city))
+	images = fb.filter('location', city)
+	if len(images) != 0:
+		emit('location_still', json.dumps(images), namespace='/', broadcast=True)
+		return statement('Here is a photo from {}. By the way {} other photos from {} were also found' .format(city, len(images), city))
+	else
+		return statement('Sorry, no photos were found from {}' .format(city))
 
 @ask.intent('LocationSlideIntent')
 def LocationSlide_Intent(city):
-	#TODO: add code to search for photos matching location city
-	#if photo(s) found matching location city
-	#TODO: add # of photos found to statement
-	return statement('I\'ve found x photos from {}' .format(city))
-	#else
-	#return statement('Sorry, no photos were found from {}' .format(city))
+	images = fb.filter('location', city)
+	if len(images) != 0:
+		emit('location_slide', json.dumps(images), namespace='/', broadcast=True)
+		return statement('I\'ve found {} photos from {}' .format(len(images), city))
+	else
+		return statement('Sorry, no photos were found from {}' .format(city))
 
-@ask.intent('LabelStillIntent')
-def LabelStill_Intent(label):
-	#TODO: add code to search for photos matching label
-	#if photo(s) found matching label
-	#TODO: add # of photos found to statement
-	return statement('Here is a photo with {}. By the way x other photos with {} were also found' .format(label, label))
-	#else
-	#return statement('Sorry, no photos were found from {}' .format(city))
+@ask.intent('PersonStillIntent')
+def PersonStill_Intent(person):
+	images = fb.filter('people', person)
+	if len(images) != 0:
+		emit('person_still', json.dumps(images), namespace='/', broadcast=True)
+		return statement('Here is a photo of {}. By the way {} other photos with {} were also found' .format(person, len(images), person))
+	else:
+		return statement('Sorry, no photos were found of {}' .format(person))
 
-@ask.intent('LabelSlideIntent')
-def LabelSlide_Intent(label):
-	#TODO: add code to search for photos matching label
-	#if photo(s) found matching label
-	#TODO: add # of photos found to statement
-	return statement('I\'ve found x photos with {}' .format(label))
-	#else
-	#return statement('Sorry, no photos were found from {}' .format(city))
+@ask.intent('PersonSlideIntent')
+def PersonSlide_Intent(person):
+	images = fb.filter('people', person)
+	if len(images) != 0:
+		emit('person_slide', json.dumps(images), namespace='/', broadcast=True)
+		return statement('I\'ve found {} photos of {}' .format(len(images), person))
+	else
+		return statement('Sorry, no photos were found of {}' .format(person))
 
 @ask.intent('SlideIntent', default={'interval':'PT1M'}, convert={'interval': 'timedelta'})
 def Slide_Intent(interval):
