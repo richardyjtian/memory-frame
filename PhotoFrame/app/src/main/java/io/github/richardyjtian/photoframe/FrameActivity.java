@@ -276,6 +276,7 @@ public class FrameActivity extends AppCompatActivity {
         ArrayAdapter.notifyDataSetChanged();
     }
 
+    AlertDialog alert;
     public void photoSourceDialog(View view){
         // create a new AlertDialog Builder object
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -296,40 +297,35 @@ public class FrameActivity extends AppCompatActivity {
         upload.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 imageSelect();
+                alert.dismiss();
             }
         });
 
         camera.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 camera();
-            }
-        });
-        builder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
+                alert.dismiss();
             }
         });
 
         uploadiv.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 imageSelect();
+                alert.dismiss();
             }
         });
 
         cameraiv.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 camera();
-            }
-        });
-        builder.setPositiveButton("Done", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
+                alert.dismiss();
             }
         });
 
         // Inflate the photo_gallery_dialogbox.xml layout file and set as dialog view
         builder.setView(promptView);
-        builder.show();
+        alert = builder.create();
+        alert.show();
     }
 
     private static final int PICK_IMAGE_REQUEST = 1;
