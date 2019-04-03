@@ -46,7 +46,7 @@ def LocationStill_Intent(city):
 	if len(images) != 0:
 		emit('location_still', json.dumps(images), namespace='/', broadcast=True)
 		return statement('Here is a photo from {}. By the way {} other photos from {} were also found' .format(city, len(images), city))
-	else
+	else:
 		return statement('Sorry, no photos were found from {}' .format(city))
 
 @ask.intent('LocationSlideIntent')
@@ -55,7 +55,7 @@ def LocationSlide_Intent(city):
 	if len(images) != 0:
 		emit('location_slide', json.dumps(images), namespace='/', broadcast=True)
 		return statement('I\'ve found {} photos from {}' .format(len(images), city))
-	else
+	else:
 		return statement('Sorry, no photos were found from {}' .format(city))
 
 @ask.intent('PersonStillIntent')
@@ -73,7 +73,7 @@ def PersonSlide_Intent(person):
 	if len(images) != 0:
 		emit('person_slide', json.dumps(images), namespace='/', broadcast=True)
 		return statement('I\'ve found {} photos of {}' .format(len(images), person))
-	else
+	else:
 		return statement('Sorry, no photos were found of {}' .format(person))
 
 @ask.intent('SlideIntent', default={'interval':'PT1M'}, convert={'interval': 'timedelta'})
