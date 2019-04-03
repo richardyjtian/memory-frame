@@ -39,7 +39,7 @@ def Power_Intent(state):
 
 @ask.intent('SleepIntent', convert={'time': 'timedelta'})
 def Sleep_Intent(time):
-	emit('sleep', time, namespace='/')
+	emit('sleep', time.seconds, namespace='/', broadcast=True)
 	if time.seconds < 60:
 		return statement('Memory frame is sleeping for {} seconds' .format(time.seconds))
 	elif time.seconds < 3600:

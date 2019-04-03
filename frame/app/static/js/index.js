@@ -47,3 +47,12 @@ socket.on('power', function(status) {
 })
 
 socket.on('next_photo', nextPhoto);
+
+socket.on('sleep', function(time) {
+	screen.setAttribute('class', 'off');
+	console.log('sleeping for: ', time, ' seconds');
+	setTimeout(function () {
+		console.log('back alive!');
+		screen.setAttribute('class', 'on');
+	}, time * 1000);
+});
