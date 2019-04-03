@@ -102,8 +102,8 @@ public class FrameActivity extends AppCompatActivity {
 
 //        new ConnectBT().execute(); //Call the class to connect
 
-        String name = intent.getStringExtra("name");
-        frameName.setText(name.toCharArray(),0, name.length());
+
+        frameName.setText("Memory Frame");
 
         pg.setClickable(true);
         pg.setOnClickListener(new View.OnClickListener() {
@@ -145,6 +145,8 @@ public class FrameActivity extends AppCompatActivity {
             }
         });
 
+
+        //LOGOUT FUNCTION
         lg.setClickable(true);
         lg.setOnClickListener(new View.OnClickListener() {
             @Override

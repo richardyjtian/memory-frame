@@ -14,7 +14,8 @@ import io.github.richardyjtian.photoframe.ScreenUtil;
 
 public class DragButton extends FloatingActionButton implements View.OnTouchListener{
 
-    private final static float CLICK_DRAG_TOLERANCE = 10;     // Often, there will be a slight, unintentional, drag when the user taps the FAB, so we need to account for this.
+    private final static float CLICK_DRAG_TOLERANCE = 10;
+    // Often, there will be a slight, unintentional, drag when the user taps the FAB, so we need to account for this.
 
     private float downRawX, downRawY;
     private float dX, dY;
@@ -86,11 +87,11 @@ public class DragButton extends FloatingActionButton implements View.OnTouchList
             float upDX = upRawX - downRawX;
             float upDY = upRawY - downRawY;
 
-            if (Math.abs(upDX) < CLICK_DRAG_TOLERANCE && Math.abs(upDY) < CLICK_DRAG_TOLERANCE) {      // A click
+            if (Math.abs(upDX) < CLICK_DRAG_TOLERANCE && Math.abs(upDY) < CLICK_DRAG_TOLERANCE) {
                 return performClick();
             }
-            else {                           // A drag
-                return true;                 // Consumed
+            else {
+                return true;
             }
 
         }

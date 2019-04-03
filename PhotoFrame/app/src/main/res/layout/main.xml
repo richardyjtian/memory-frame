@@ -40,7 +40,6 @@
             android:id="@+id/frameusername"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="group11"
             android:textColor="#FFFFFF"
             android:textSize="13sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -87,96 +86,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@android:drawable/ic_menu_add" />
-        <!--<GridView xmlns:android="http://schemas.android.com/apk/res/android"-->
-            <!--android:id="@+id/gridview"-->
-            <!--android:layout_height="0dp"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:numColumns="auto_fit"-->
-            <!--android:verticalSpacing="40dip"-->
-            <!--android:horizontalSpacing="10dip"-->
-            <!--android:stretchMode="columnWidth"-->
-            <!--app:layout_constraintWidth_percent="0.85"-->
-            <!--app:layout_constraintLeft_toLeftOf="parent"-->
-            <!--app:layout_constraintRight_toRightOf="parent"-->
-            <!--app:layout_constraintTop_toTopOf="parent"-->
-            <!--app:layout_constraintBottom_toBottomOf="parent"-->
-            <!--app:layout_constraintHeight_percent="0.75"-->
-            <!--app:layout_constraintHorizontal_bias="0.5"-->
-            <!--app:layout_constraintVertical_bias="0.2"-->
-            <!--android:padding="10dip"-->
-            <!--/>-->
 
-        <!--<Button-->
-        <!--android:id="@+id/frame1"-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="0dp"-->
-        <!--android:text="frame1"-->
-        <!--android:textColor="#FFFFFF"-->
-        <!--app:layout_constraintTop_toTopOf="parent"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintRight_toRightOf="parent"-->
-        <!--app:layout_constraintLeft_toLeftOf="parent"-->
-        <!--app:layout_constraintHeight_percent="0.25"-->
-        <!--app:layout_constraintWidth_percent="0.35"-->
-        <!--app:layout_constraintHorizontal_bias="0.2"-->
-        <!--app:layout_constraintVertical_bias="0.1"-->
-        <!--android:background="#4682B4"/>-->
-
-        <!--<Button-->
-        <!--android:id="@+id/frame2"-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="0dp"-->
-        <!--android:background="#4682B4"-->
-        <!--android:text="frame2"-->
-        <!--android:textColor="#FFFFFF"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintHeight_percent="0.25"-->
-        <!--app:layout_constraintHorizontal_bias="0.8"-->
-        <!--app:layout_constraintLeft_toLeftOf="parent"-->
-        <!--app:layout_constraintRight_toRightOf="parent"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toTopOf="parent"-->
-        <!--app:layout_constraintVertical_bias="0.1"-->
-        <!--app:layout_constraintWidth_percent="0.35" />-->
-
-        <!--<Button-->
-        <!--android:id="@+id/frame3"-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="0dp"-->
-        <!--android:text="frame3"-->
-        <!--android:textColor="#FFFFFF"-->
-        <!--app:layout_constraintTop_toTopOf="parent"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintRight_toRightOf="parent"-->
-        <!--app:layout_constraintLeft_toLeftOf="parent"-->
-        <!--app:layout_constraintHeight_percent="0.25"-->
-        <!--app:layout_constraintWidth_percent="0.35"-->
-        <!--app:layout_constraintHorizontal_bias="0.2"-->
-        <!--app:layout_constraintVertical_bias="0.456"-->
-        <!--android:background="#4682B4"/>-->
-
-        <!--<Button-->
-        <!--android:id="@+id/frame4"-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="0dp"-->
-        <!--android:text="frame4"-->
-        <!--android:textColor="#FFFFFF"-->
-        <!--app:layout_constraintTop_toTopOf="parent"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintRight_toRightOf="parent"-->
-        <!--app:layout_constraintLeft_toLeftOf="parent"-->
-        <!--app:layout_constraintHeight_percent="0.25"-->
-        <!--app:layout_constraintWidth_percent="0.35"-->
-        <!--app:layout_constraintHorizontal_bias="0.8"-->
-        <!--app:layout_constraintVertical_bias="0.456"-->
-        <!--android:background="#4682B4"/>-->
     </android.support.constraint.ConstraintLayout>
 
   </android.support.constraint.ConstraintLayout>
