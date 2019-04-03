@@ -29,10 +29,10 @@ def Gpio_Intent(status,room):
 @ask.intent('PowerIntent', mapping = {'state':'state'})
 def Power_Intent(state):
 	if state in STATUSON:
-		emit('power', 'on', namespace='/')
+		emit('power', 'on', namespace='/', broadcast=True)
 		return statement('turning memory frame on')
 	elif state in STATUSOFF:
-		emit('power', 'off', namespace='/')
+		emit('power', 'off', namespace='/', broadcast=True)
 		return statement('turning memory frame off')
 	else:
 		return statement('sorry not possible')
