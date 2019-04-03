@@ -23,10 +23,10 @@ class Firebase:
         eg. user = firebase.sign_in('user0@gmail.com', '123123')
             empty_name = firebase.filter('name', '',user)
         """
-        query = self.database.child(user.get('localId')).order_by_child(key).equal_to(val).get(token = user.get('idToken'))
+        query = self.database.child(self.user.get('localId')).order_by_child(key).equal_to(val).get(token = self.user.get('idToken'))
         if not query.pyres:
             return []
-        all_val = query.val()        
+        all_val = query.val()
         result = []
         for val in all_val:
           result.append(self.database.child(self.user.get('localId')).child(val).get(token = self.user.get('idToken')).val().get("imageUrl"))

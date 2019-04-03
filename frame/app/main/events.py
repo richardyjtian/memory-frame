@@ -16,7 +16,7 @@ def socket_connect():
 
 @socketio.on('filter_photos')
 def socket_show_dogs(label):
-	images = fb.filter('name', label)
+	images = fb.filter('people', label)
 	print('filter_photos results:')
 	print(images)
 	emit('photo_switch', json.dumps(images), namespace='/')
