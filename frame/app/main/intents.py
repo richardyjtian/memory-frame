@@ -6,25 +6,10 @@ from . import ask
 
 logging.getLogger('flask_ask').setLevel(logging.DEBUG)
 
-STATUSON = ['on','high']
-STATUSOFF = ['off','low']
-
 @ask.launch
 def launch():
 	speech_text = 'Welcome to Memory Frame Automation.'
 	return question(speech_text).reprompt(speech_text).simple_card(speech_text)
-
-@ask.intent('GpioIntent', mapping = {'status':'status'})
-def Gpio_Intent(status,room):
-	print('gpiotent!!')
-	if status in STATUSON:
-		emit('test', 'turning LED on', namespace='/', broadcast=True)
-		return statement('turning {} lights'.format(status))
-	elif status in STATUSOFF:
-		emit('test', 'turning LED off', namespace='/', broadcast=True)
-		return statement('turning {} lights'.format(status))
-	else:
-		return statement('Sorry not possible.')
 
 @ask.intent('PowerIntent', mapping = {'state':'state'})
 def Power_Intent(state):
