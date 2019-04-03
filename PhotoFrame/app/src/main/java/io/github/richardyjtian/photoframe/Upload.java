@@ -19,6 +19,12 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.Date;
+
 public class Upload {
     private  String name;
     private  String url;
@@ -53,6 +59,10 @@ public class Upload {
         key = p.getKey();
         include_time = p.getInclude_time();
         time = p.getTime();
+        if (time.equals("")) {
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            time = dateFormat.format(new Date());
+        }
         include_location = p.getInclude_location();
         location = p.getLocation();
     }
