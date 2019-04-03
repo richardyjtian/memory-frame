@@ -31,15 +31,16 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class SecondActivity extends AppCompatActivity {
 
-    private EditText psw;
     private FirebaseAuth auth;
     private Button loginBtn;
+    public static String email;
     View decorView;
+    public static String NAME = "name";
 
     float downX, downY;
     float screenWidth, screenHeight;
 
-    EditText username, editText2;
+    EditText username, psw;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,8 +62,8 @@ public class SecondActivity extends AppCompatActivity {
 
 
         loginBtn = (Button) findViewById(R.id.loginButton);
-        username = (EditText) findViewById(R.id.username);
-        psw = findViewById(R.id.password);
+        username = (EditText) findViewById(R.id.loginUsername);
+        psw = findViewById(R.id.loginPassword);
         auth = FirebaseAuth.getInstance();
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
@@ -72,13 +73,13 @@ public class SecondActivity extends AppCompatActivity {
             }
         });
 
-        username.addTextChangedListener(new JumpText((username), editText2));
+        username.addTextChangedListener(new JumpText((username), psw));
     }
 
 
 
     private void LogIn() {
-        String email = username.getText().toString();
+        email = username.getText().toString();
         String password = psw.getText().toString();
 
         // check to see if username and password are valid before attempting to login
@@ -98,7 +99,9 @@ public class SecondActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             //FirebaseUser user = mAuth.getCurrentUser();
                             // TODO: redirect to logged in UI
-                            Intent intent = new Intent(SecondActivity.this, BTActivity.class);
+                            Intent intent = new Intent(SecondActivity.this, FrameActivity.class);
+                            String name = "Memory Frame";
+                            intent.putExtra(NAME, name);
                             startActivity(intent);
                         } else {
                             // If sign in fails, display a message to the user.

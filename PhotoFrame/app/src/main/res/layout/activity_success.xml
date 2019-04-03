@@ -8,15 +8,14 @@
     android:background="@drawable/pblue1"
     tools:context=".SuccessActivity">
 
-    <TextView
+    <ImageView
         android:id="@+id/textView"
         android:layout_width="350dp"
-        android:layout_height="60dp"
+        android:layout_height="100dp"
         android:layout_marginTop="248dp"
-        android:text="@string/success_text"
+        android:src="@drawable/logoname"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="@dimen/second_login_size"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -31,6 +30,7 @@
         android:layout_marginTop="400dp"
         android:background="@color/btnColor"
         android:text="@string/success_btn"
+        android:fontFamily="@font/geosans"
         android:textColor="#000000"
         android:textStyle="bold"
         app:layout_constraintWidth_percent="0.7"

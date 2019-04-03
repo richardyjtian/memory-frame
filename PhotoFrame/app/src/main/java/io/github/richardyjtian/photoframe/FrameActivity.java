@@ -59,6 +59,7 @@ public class FrameActivity extends AppCompatActivity {
 
     private boolean isBtConnected = false;
     String address = null;
+    private int flag = 0;
 
     static final UUID myUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
@@ -85,15 +86,21 @@ public class FrameActivity extends AppCompatActivity {
         TextView sf = (TextView) findViewById(R.id.scan);
         TextView lg = (TextView) findViewById(R.id.logout);
         frameName = (TextView) findViewById(R.id.frameusername);
+        UsrName = (TextView) findViewById(R.id.textView2);
 
 
 //        requestWindowFeature(Window.FEATURE_NO_TITLE);
 
 
-        Intent intent = getIntent();
-        address = intent.getStringExtra(BTActivity.EXTRA_ADDRESS); //receive the address of the bluetooth device
+        UsrName.setText(SecondActivity.email.toCharArray(),0, SecondActivity.email.length());
 
-        //new ConnectBT().execute(); //Call the class to connect
+        Intent intent = getIntent();
+        address = intent.getStringExtra(SecondActivity.NAME); //receive the address of the bluetooth device
+
+        Intent newint1 = getIntent();
+        address = newint1.getStringExtra(BTActivity.EXTRA_ADDRESS);//receive the address of the bluetooth device
+
+        new ConnectBT().execute(); //Call the class to connect
 
         String name = intent.getStringExtra("name");
         frameName.setText(name.toCharArray(),0, name.length());

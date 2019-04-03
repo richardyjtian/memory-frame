@@ -28,20 +28,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.5" />
 
-        <TextView
-            android:id="@+id/username"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="group11"
-            android:textColor="#FFFFFF"
-            android:textSize="13sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.02"
-            app:layout_constraintLeft_toRightOf="@id/figure"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.5"
-            app:layout_constraintWidth_percent="0.2" />
 
     </android.support.constraint.ConstraintLayout>
 
@@ -80,6 +66,9 @@
             android:layout_height="0dp"
             android:background="@drawable/logout_selector"
             android:text="find frame"
+            android:fontFamily="@font/geosans"
+            android:textStyle="bold"
+            android:textSize="@dimen/menu_text_size"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHeight_percent="0.07"
             app:layout_constraintHorizontal_bias="0.5"

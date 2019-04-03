@@ -22,7 +22,7 @@
             android:background="@drawable/sharp_account_circle_white_48dp"
             app:layout_constraintBottom_toBottomOf="@id/header"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.4"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +37,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="@id/header"
-            app:layout_constraintHorizontal_bias="0.4"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintVertical_bias="0.25"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
@@ -130,24 +130,6 @@
             android:onClick="logOut"
             android:text="@string/menu_log_out"/>
     </LinearLayout>
-
-    <!--<GridView xmlns:android="http://schemas.android.com/apk/res/android"-->
-        <!--android:id="@+id/gridview"-->
-        <!--android:layout_height="40dp"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:numColumns="1"-->
-        <!--android:verticalSpacing="40dip"-->
-        <!--android:horizontalSpacing="30dip"-->
-        <!--android:stretchMode="columnWidth"/>-->
-        <!--&lt;!&ndash;app:layout_constraintWidth_percent="0.85"&ndash;&gt;-->
-        <!--&lt;!&ndash;app:layout_constraintLeft_toLeftOf="parent"&ndash;&gt;-->
-        <!--&lt;!&ndash;app:layout_constraintRight_toRightOf="parent"&ndash;&gt;-->
-        <!--&lt;!&ndash;app:layout_constraintTop_toTopOf="parent"&ndash;&gt;-->
-        <!--&lt;!&ndash;app:layout_constraintBottom_toBottomOf="parent"&ndash;&gt;-->
-        <!--&lt;!&ndash;app:layout_constraintHeight_percent="0.75"&ndash;&gt;-->
-        <!--&lt;!&ndash;app:layout_constraintHorizontal_bias="0.5"&ndash;&gt;-->
-        <!--&lt;!&ndash;app:layout_constraintVertical_bias="0.2"&ndash;&gt;-->
-        <!--&lt;!&ndash;android:padding="10dip"&ndash;&gt;-->
 
 
 
