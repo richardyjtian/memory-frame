@@ -25,12 +25,25 @@ socket.on('initialize', function(data) {
 socket.on('photo_switch', function(data) {
 	console.log('updating photos:', data);
 	update_photo_pool(JSON.parse(data));
+	nextPhoto();
 });
 
 socket.on('test', function(message) {
 	console.log(message);
 });
 
+
 label_submit.addEventListener('click', function () {
 	socket.emit('filter_photos', label_input.value);
 });
+
+socket.on('power', function(status) {
+	if (status == 'on') {
+		screen.setAttribute('class', status);
+		nextPhoto();
+	} else if (status == 'off') {
+		screen.setAttribute('class', status);
+	}
+})
+
+socket.on('next_photo', nextPhoto);

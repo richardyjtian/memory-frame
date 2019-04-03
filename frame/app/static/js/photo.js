@@ -1,5 +1,5 @@
-var photoUrlList = [];
-
+var photoNameList = [];
+var curr_photo_ind;
 var photo_frame = document.getElementById('photo-frame');
 
 /**
@@ -15,12 +15,12 @@ photo_frame.addEventListener('load', function resize() {
 	} else {
 		photo_frame.setAttribute('height', window.innerHeight);
 		let margin = (window.innerWidth - photo_frame.width) / 2;
-		photo_frame.style.margin = `0px ${margin}px 0px ${margin}px`;		
+		photo_frame.style.margin = `0px ${margin}px 0px ${margin}px`;
 	}
 });
 
 /**
- * @param {int} max 
+ * @param {int} max
  * @return: a random value between 0 ~ max (exclusive)
  */
 function getRandomInt(max) {
@@ -38,20 +38,20 @@ function switch_photo(imageUrl) {
  * switch the photo to another one in the pool
  */
 export function nextPhoto() {
-	switch_photo(photoUrlList[getRandomInt(photoUrlList.length)]);
+	switch_photo(photoNameList[curr_photo_ind]);
+	curr_photo_ind = (curr_photo_ind + 1) % photoNameList.length;
 }
 
 /**
  * 1) update the current pool of photo URLs with the new one
  * 2) switches the current photo to a random one from the new pool
- * @param {String[]} imageUrlList 
+ * @param {String[]} imageUrlList
  */
 export function update_photo_pool(imageUrlList) {
 	// no new photos to switch to
 	// ideally if no photo is found this event shouldn't have been triggered
 	// by the back in the first place, but do this check to be safe
-	if (imageUrlList.length == 0) return;
-
-	photoUrlList = imageUrlList;
-	switch_photo(photoUrlList[getRandomInt(photoUrlList.length)]);
+	if (imageNameList.length == 0) return;
+	curr_photo_ind = 0;
+	photoNameList = imageNameList;
 }
