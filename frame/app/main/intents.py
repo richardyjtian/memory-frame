@@ -29,17 +29,17 @@ def Gpio_Intent(status,room):
 @ask.intent('PowerIntent', mapping = {'state':'state'})
 def Power_Intent(state):
 	if state in STATUSON:
-		#TODO: turn frame on and display a picture
+		emit('power', 'on')
 		return statement('turning memory frame on')
 	elif state in STATUSOFF:
-		#TODO: turn frame off
+		emit('power', 'off')
 		return statement('turning memory frame off')
 	else:
 		return statement('sorry not possible')
 
 @ask.intent('SleepIntent', convert={'time': 'timedelta'})
 def Sleep_Intent(time):
-	#TODO: turn off frame for time, note time is now datatype timedelta
+	emit('sleep', time)
 	if time.seconds < 60:
 		return statement('Memory frame is sleeping for {} seconds' .format(time.seconds))
 	elif time.seconds < 3600:
@@ -51,8 +51,9 @@ def Sleep_Intent(time):
 
 @ask.intent('NextPhotoIntent')
 def NextPhoto_Intent():
-	#TODO: update response to read the description of the photo
-	return statement('This is the description of the photo')
+	emit('nextPhoto')
+	#do all photos have captions?
+	return statement('Here is the next photo')
 
 @ask.intent('LocationStillIntent')
 def LocationStill_Intent(city):
