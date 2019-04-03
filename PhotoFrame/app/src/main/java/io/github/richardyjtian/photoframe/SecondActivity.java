@@ -63,7 +63,7 @@ public class SecondActivity extends AppCompatActivity {
 
         loginBtn = (Button) findViewById(R.id.loginButton);
         username = (EditText) findViewById(R.id.loginUsername);
-        psw = findViewById(R.id.loginPassword);
+        psw = (EditText) findViewById(R.id.loginPassword);
         auth = FirebaseAuth.getInstance();
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
