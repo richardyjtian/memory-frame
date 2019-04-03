@@ -36,9 +36,10 @@ class Firebase:
         """ All pictures under the account of the given user
         Returns an array of URLs to the pictures
         """
-        query = self.database.child(user.get('localId')).get(token = user.get('idToken'))
+        query = self.database.child(self.user.get('localId')).get(token = self.user.get('idToken'))
         if not query.pyres:
             return []
+        all_val = query.val()
         result = []
         for val in all_val:
             result.append(self.database.child(self.user.get('localId')).child(val).get(token = self.user.get('idToken')).val().get("imageUrl"))
