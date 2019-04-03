@@ -51,7 +51,7 @@ export function update_photo_pool(imageUrlList) {
 	// no new photos to switch to
 	// ideally if no photo is found this event shouldn't have been triggered
 	// by the back in the first place, but do this check to be safe
-	if (imageNameList.length == 0) return;
+	if (imageUrlList.length == 0) return;
 	curr_photo_ind = 0;
-	photoNameList = imageNameList;
+	photoNameList = imageUrlList;
 }

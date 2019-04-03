@@ -1,8 +1,13 @@
 import logging
+import json
 
 from flask_ask import question, statement
 from flask_socketio import emit
 from . import ask
+from . import fb
+
+STATUSON = ['on', 'ON']
+STATUSOFF = ['off', 'OFF']
 
 logging.getLogger('flask_ask').setLevel(logging.DEBUG)
 
@@ -61,7 +66,12 @@ def LocationSlide_Intent(city):
 @ask.intent('PersonStillIntent')
 def PersonStill_Intent(person):
 	images = fb.filter('people', person)
-	if len(images) != 0:
+	print('PersonStillIntent')
+	print(images)
+	if len(images) == 1:
+		emit('person_still', json.dumps(images), namespace='/', broadcast=True)
+		return statement('Here is a photo of {}'.format(person))
+	elif len(images) > 1:
 		emit('person_still', json.dumps(images), namespace='/', broadcast=True)
 		return statement('Here is a photo of {}. By the way {} other photos with {} were also found' .format(person, len(images), person))
 	else:
