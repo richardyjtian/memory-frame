@@ -54,7 +54,7 @@ def LocationSlide_Intent(city):
 	#TODO: add code to search for photos matching location city
 	#if photo(s) found matching location city
 	#TODO: add # of photos found to statement
-	return statement('I have found x photos from {}' .format(city))
+	return statement('I\'ve found x photos from {}' .format(city))
 	#else
 	#return statement('Sorry, no photos were found from {}' .format(city))
 
@@ -72,7 +72,7 @@ def LabelSlide_Intent(label):
 	#TODO: add code to search for photos matching label
 	#if photo(s) found matching label
 	#TODO: add # of photos found to statement
-	return statement('I have found x photos with {}' .format(label))
+	return statement('I\'ve found x photos with {}' .format(label))
 	#else
 	#return statement('Sorry, no photos were found from {}' .format(city))
 
@@ -86,6 +86,21 @@ def Slide_Intent(interval):
 def Still_Intent():
 	#TODO: add code to pause slideshow on an image
 	return statement('Memory frame is pausing slideshow')
+
+@ask.intent('HelloIntent')
+def Hello_Intent():
+	return statement('Hi, I\'m your memory frame and I\'m happy to show you photos of all your favorite memories')
+
+@ask.intent('HelpIntent', default={'options':'general'})
+def Help_Intent(options):
+	if options == 'sleep':
+		return statement('Going to bed or to work and don\'t want the memory frame on while you\'re not there to enjoy it? Just tell the frame to sleep for a set amount of time and it will turn off until that time has passed')
+	elif options == 'commands':
+		return statement('You can tell the memory frame to turn on and off, say hello to it, switch photos, go to sleep, filter photos by location or by person')
+	elif options == 'filtering':
+		return statement('Feeling like reliving some favorite memories? You can revisit them by asking the memory frame to show you photos from a specific person or city')
+	else:
+		return statement('Memory frame is a digital photo frame with voice control. You can tell it to turn on and off, change photos or even search for photos by location or person')
 
 @ask.intent('AMAZON.HelpIntent')
 def help():
