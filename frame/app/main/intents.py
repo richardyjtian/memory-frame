@@ -51,7 +51,7 @@ def Sleep_Intent(time):
 
 @ask.intent('NextPhotoIntent')
 def NextPhoto_Intent():
-	emit('nextPhoto', namespace='/')
+	emit('next_photo', namespace='/', broadcast=True)
 	#do all photos have captions?
 	return statement('Here is the next photo')
 
