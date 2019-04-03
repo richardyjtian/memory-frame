@@ -23,7 +23,10 @@ class Firebase:
         eg. user = firebase.sign_in('user0@gmail.com', '123123')
             empty_name = firebase.filter('name', '',user)
         """
-        all_val = self.database.child(self.user.get('localId')).order_by_child(key).equal_to(val).get(token = self.user.get('idToken')).val()
+        query = self.database.child(user.get('localId')).order_by_child(key).equal_to(val).get(token = user.get('idToken'))
+        if not query.pyres:
+            return []
+        all_val = query.val()        
         result = []
         for val in all_val:
           result.append(self.database.child(self.user.get('localId')).child(val).get(token = self.user.get('idToken')).val().get("imageUrl"))
@@ -33,7 +36,9 @@ class Firebase:
         """ All pictures under the account of the given user
         Returns an array of URLs to the pictures
         """
-        all_val = self.database.child(self.user.get('localId')).get(token = self.user.get('idToken')).val()
+        query = self.database.child(user.get('localId')).get(token = user.get('idToken'))
+        if not query.pyres:
+            return []
         result = []
         for val in all_val:
             result.append(self.database.child(self.user.get('localId')).child(val).get(token = self.user.get('idToken')).val().get("imageUrl"))
