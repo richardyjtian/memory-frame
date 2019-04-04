@@ -2,7 +2,7 @@ from flask import Blueprint
 from flask_ask import Ask
 from . import firebase
 from . import config
-from bluetooth import bluetooth
+from . import bluetooth
 
 main = Blueprint('main', __name__, url_prefix="/")
 ask = Ask(blueprint=main)
