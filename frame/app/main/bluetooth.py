@@ -6,6 +6,8 @@ def bluetooth():
     while 1:
         req = ser.port.readline().decode("utf-8")
         if not req:
-            json_string = json.load(req)
-            return json_string['email'], json_string['password']
+            userpass = req.split('*')
+            user = userpass[0]
+            pwd = userpass[1]
+            return user, pwd
             #ser.port.write(str("password").encode())
