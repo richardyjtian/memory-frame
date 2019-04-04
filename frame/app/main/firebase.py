@@ -29,7 +29,7 @@ class Firebase:
         all_val = query.val()
         result = []
         for val in all_val:
-          result.append(self.database.child(self.user.get('localId')).child(val).get(token = self.user.get('idToken')).val().get("imageUrl"))
+          result.append(self.database.child(self.user.get('localId')).child(val).get(token = self.user.get('idToken')).val())
         return result
 
     def show_all(self):
@@ -42,7 +42,7 @@ class Firebase:
         all_val = query.val()
         result = []
         for val in all_val:
-            result.append(self.database.child(self.user.get('localId')).child(val).get(token = self.user.get('idToken')).val().get("imageUrl"))
+            result.append(self.database.child(self.user.get('localId')).child(val).get(token = self.user.get('idToken')).val())
         return result
 
     def tag_search(self, tag, user):
@@ -52,6 +52,13 @@ class Firebase:
         all_val = query.val()
         result = []
         for val in all_val:
-            result.append(self.database.child(user.get('localId')).child(val).get(token = user.get('idToken')).val().get("imageUrl"))
+            result.append(self.database.child(user.get('localId')).child(val).get(token = user.get('idToken')).val())
         return result
+
+    def get_info_by_url(self, url, user):
+        entry = self.database.child(user.get('localId')).order_by_child('imageUrl').equal_to(url).get(token = user.get('idToken'))
+        if not entry.pyres:
+            return {}
+        _, info = list(entry.val().items())[0]
+        return info
     
