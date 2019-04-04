@@ -1,87 +1,90 @@
 import logging
+import json
 
 from flask_ask import question, statement
 from flask_socketio import emit
 from . import ask
+from . import fb
+
+STATUSON = ['on', 'ON']
+STATUSOFF = ['off', 'OFF']
 
 logging.getLogger('flask_ask').setLevel(logging.DEBUG)
-
-STATUSON = ['on','high']
-STATUSOFF = ['off','low']
 
 @ask.launch
 def launch():
 	speech_text = 'Welcome to Memory Frame Automation.'
 	return question(speech_text).reprompt(speech_text).simple_card(speech_text)
 
-@ask.intent('GpioIntent', mapping = {'status':'status'})
-def Gpio_Intent(status,room):
-	print('gpiotent!!')
-	if status in STATUSON:
-		emit('test', 'turning LED on', namespace='/', broadcast=True)
-		return statement('turning {} lights'.format(status))
-	elif status in STATUSOFF:
-		emit('test', 'turning LED off', namespace='/', broadcast=True)
-		return statement('turning {} lights'.format(status))
-	else:
-		return statement('Sorry not possible.')
-
 @ask.intent('PowerIntent', mapping = {'state':'state'})
 def Power_Intent(state):
 	if state in STATUSON:
-		#TODO: turn frame on and display a picture
+		emit('power', 'on', namespace='/', broadcast=True)
 		return statement('turning memory frame on')
 	elif state in STATUSOFF:
-		#TODO: turn frame off
+		emit('power', 'off', namespace='/', broadcast=True)
 		return statement('turning memory frame off')
 	else:
 		return statement('sorry not possible')
 
 @ask.intent('SleepIntent', convert={'time': 'timedelta'})
 def Sleep_Intent(time):
-	#TODO: turn off frame for time, note time is now datatype timedelta
-	return statement('Memory frame is sleeping for {}' .format(time))
+	emit('sleep', time.seconds, namespace='/', broadcast=True)
+	if time.seconds < 60:
+		return statement('Memory frame is sleeping for {} seconds' .format(time.seconds))
+	elif time.seconds < 3600:
+		minutes = int(time.seconds/60)
+		return statement('Memory frame is sleeping for {} minutes' .format(minutes))
+	else:
+		hours = int(time.seconds/3600)
+		return statement('Memory frame is sleeping for {} hours' .format(hours))
 
 @ask.intent('NextPhotoIntent')
 def NextPhoto_Intent():
-	#TODO: update response to read the description of the photo
-	return statement('This is the description of the photo')
+	emit('next_photo', namespace='/', broadcast=True)
+	#do all photos have captions?
+	return statement('Here is the next photo')
 
 @ask.intent('LocationStillIntent')
 def LocationStill_Intent(city):
-	#TODO: add code to search for photos matching location city
-	#if photo(s) found matching location city
-	#TODO: add # of photos found to statement
-	return statement('Here is a photo from {}. By the way x other photos from {} were also found' .format(city, city))
-	#else
-	#return statement('Sorry, no photos were found from {}' .format(city))
+	images = fb.filter('location', city)
+	if len(images) != 0:
+		emit('location_still', json.dumps(images), namespace='/', broadcast=True)
+		return statement('Here is a photo from {}. By the way {} other photos from {} were also found' .format(city, len(images), city))
+	else:
+		return statement('Sorry, no photos were found from {}' .format(city))
 
 @ask.intent('LocationSlideIntent')
 def LocationSlide_Intent(city):
-	#TODO: add code to search for photos matching location city
-	#if photo(s) found matching location city
-	#TODO: add # of photos found to statement
-	return statement('I have found x photos from {}' .format(city))
-	#else
-	#return statement('Sorry, no photos were found from {}' .format(city))
+	images = fb.filter('location', city)
+	if len(images) != 0:
+		emit('location_slide', json.dumps(images), namespace='/', broadcast=True)
+		return statement('I\'ve found {} photos from {}' .format(len(images), city))
+	else:
+		return statement('Sorry, no photos were found from {}' .format(city))
 
-@ask.intent('LabelStillIntent')
-def LabelStill_Intent(label):
-	#TODO: add code to search for photos matching label
-	#if photo(s) found matching label
-	#TODO: add # of photos found to statement
-	return statement('Here is a photo with {}. By the way x other photos with {} were also found' .format(label, label))
-	#else
-	#return statement('Sorry, no photos were found from {}' .format(city))
+@ask.intent('PersonStillIntent')
+def PersonStill_Intent(person):
+	images = fb.filter('people', person)
+	print('PersonStillIntent')
+	print(images)
+	if len(images) == 1:
+		emit('photo_switch', json.dumps(images), namespace='/', broadcast=True)
+		return statement('Here is a photo of {}'.format(person))
+	elif len(images) > 1:
+		emit('photo_switch', json.dumps(images), namespace='/', broadcast=True)
+		return statement('Here is a photo of {}. By the way {} other photos with {} were also found' .format(person, len(images), person))
+	else:
+		return statement('Sorry, no photos were found of {}' .format(person))
 
-@ask.intent('LabelSlideIntent')
-def LabelSlide_Intent(label):
-	#TODO: add code to search for photos matching label
-	#if photo(s) found matching label
-	#TODO: add # of photos found to statement
-	return statement('I have found x photos with {}' .format(label))
-	#else
-	#return statement('Sorry, no photos were found from {}' .format(city))
+@ask.intent('PersonSlideIntent')
+def PersonSlide_Intent(person):
+	images = fb.filter('people', person)
+	if len(images) != 0:
+		emit('person_slide', json.dumps(images), namespace='/', broadcast=True)
+		return statement('I\'ve found {} photos of {}' .format(len(images), person))
+	else:
+		return statement('Sorry, no photos were found of {}' .format(person))
 
 @ask.intent('SlideIntent', default={'interval':'PT1M'}, convert={'interval': 'timedelta'})
 def Slide_Intent(interval):
@@ -93,6 +96,21 @@ def Slide_Intent(interval):
 def Still_Intent():
 	#TODO: add code to pause slideshow on an image
 	return statement('Memory frame is pausing slideshow')
+
+@ask.intent('HelloIntent')
+def Hello_Intent():
+	return statement('Hi, I\'m your memory frame and I\'m happy to show you photos of all your favorite memories')
+
+@ask.intent('HelpIntent', default={'options':'general'})
+def Help_Intent(options):
+	if options == 'sleep':
+		return statement('Going to bed or to work and don\'t want the memory frame on while you\'re not there to enjoy it? Just tell the frame to sleep for a set amount of time and it will turn off until that time has passed')
+	elif options == 'commands':
+		return statement('You can tell the memory frame to turn on and off, say hello to it, switch photos, go to sleep, filter photos by location or by person')
+	elif options == 'filtering':
+		return statement('Feeling like reliving some favorite memories? You can revisit them by asking the memory frame to show you photos from a specific person or city')
+	else:
+		return statement('Memory frame is a digital photo frame with voice control. You can tell it to turn on and off, change photos or even search for photos by location or person')
 
 @ask.intent('AMAZON.HelpIntent')
 def help():

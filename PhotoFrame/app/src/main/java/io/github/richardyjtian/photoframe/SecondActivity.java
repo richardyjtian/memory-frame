@@ -6,10 +6,15 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.CallSuper;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.ViewUtils;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.text.method.PasswordTransformationMethod;
 import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -28,15 +33,16 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class SecondActivity extends AppCompatActivity {
 
-    private EditText psw;
     private FirebaseAuth auth;
     private Button loginBtn;
+    public static String email;
     View decorView;
+    public static String NAME = "name";
 
     float downX, downY;
     float screenWidth, screenHeight;
 
-    EditText username;
+    EditText username, psw;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,13 +55,18 @@ public class SecondActivity extends AppCompatActivity {
         screenWidth = metrics.widthPixels;
         screenHeight = metrics.heightPixels;
 
-        View v1 = findViewById(R.id.bg2);
+        View v1 = findViewById(R.id.loginFirstRow);
         v1.getBackground().setAlpha(200);
+
+        View v2 = findViewById(R.id.loginSecondRow);
+        v2.getBackground().setAlpha(200);
+
 
 
         loginBtn = (Button) findViewById(R.id.loginButton);
-        username = (EditText) findViewById(R.id.username);
-        psw = findViewById(R.id.password);
+        username = (EditText) findViewById(R.id.loginUsername);
+        psw = (EditText) findViewById(R.id.loginPassword);
+
         auth = FirebaseAuth.getInstance();
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
@@ -65,19 +76,13 @@ public class SecondActivity extends AppCompatActivity {
             }
         });
 
-        username.setOnEditorActionListener(new TextView.OnEditorActionListener(){
-
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                return (event.getKeyCode() == KeyEvent.KEYCODE_ENTER);
-            }
-        });
-
-
+        username.addTextChangedListener(new JumpText((username), psw));
     }
 
+
+
     private void LogIn() {
-        String email = username.getText().toString();
+        email = username.getText().toString();
         String password = psw.getText().toString();
 
         // check to see if username and password are valid before attempting to login
@@ -97,7 +102,9 @@ public class SecondActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             //FirebaseUser user = mAuth.getCurrentUser();
                             // TODO: redirect to logged in UI
-                            Intent intent = new Intent(SecondActivity.this, BTActivity.class);
+                            Intent intent = new Intent(SecondActivity.this, FrameActivity.class);
+                            String name = "Memory Frame";
+                            intent.putExtra(NAME, name);
                             startActivity(intent);
                         } else {
                             // If sign in fails, display a message to the user.
@@ -206,5 +213,7 @@ public class SecondActivity extends AppCompatActivity {
             manager.hideSoftInputFromWindow(token, InputMethodManager.HIDE_NOT_ALWAYS);
         }
     }
+
+
 
 }
