@@ -7,7 +7,7 @@ from bluetooth import bluetooth
 main = Blueprint('main', __name__, url_prefix="/")
 ask = Ask(blueprint=main)
 fb = firebase.Firebase(config.firebase_config)
-user, psw = bluetooth()
+email, psw = bluetooth()
 fb.sign_in(email, psw)
 config.user_config['email'] = email
 config.user_config['password'] = psw
