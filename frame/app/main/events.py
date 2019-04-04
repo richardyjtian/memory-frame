@@ -21,6 +21,14 @@ def socket_show_dogs(label):
 	print(images)
 	emit('photo_switch', json.dumps(images), namespace='/')
 
+@socketio.on('fetch_all_photos')
+def socket_fetch_all_photos():
+	images = fb.show_all()
+	print('update_photos');
+	print(images);
+	emit('update_photos', json.dumps(images), namespace='/')
+
+
 @socketio.on('test_print')
 def socket_test_print(message):
 	print(message)

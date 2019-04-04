@@ -4,5 +4,22 @@ html {
 }
 
 body {
+    background-color: black;
     margin: 0px !important;
+}
+
+#screen {
+    position: absolute;
+    z-index: 10000;
+    background-color: black;
+    width: 100vw;
+    height: 100vw;
+}
+
+#screen.off {
+    display: block !important;
+}
+
+#screen.on {
+    display: none !important;
 }
