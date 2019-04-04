@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-import { update_photo_pool, nextPhoto } from './photo.js';
-=======
+
 import { push_photo_queue_front, push_photo_queue_back, nextPhoto, photosInPool } from './photo.js';
->>>>>>> a084c9e34494d09c0479b03269bcd2b1ef181f1c
 import { turnScreenOn, turnScreenOff } from './screen.js';
 
 // connect socket
