@@ -69,10 +69,10 @@ def PersonStill_Intent(person):
 	print('PersonStillIntent')
 	print(images)
 	if len(images) == 1:
-		emit('person_still', json.dumps(images), namespace='/', broadcast=True)
+		emit('photo_switch', json.dumps(images), namespace='/', broadcast=True)
 		return statement('Here is a photo of {}'.format(person))
 	elif len(images) > 1:
-		emit('person_still', json.dumps(images), namespace='/', broadcast=True)
+		emit('photo_switch', json.dumps(images), namespace='/', broadcast=True)
 		return statement('Here is a photo of {}. By the way {} other photos with {} were also found' .format(person, len(images), person))
 	else:
 		return statement('Sorry, no photos were found of {}' .format(person))
