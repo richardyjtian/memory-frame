@@ -1,3 +1,4 @@
+
 import { push_photo_queue_front, push_photo_queue_back, nextPhoto, photosInPool } from './photo.js';
 import { turnScreenOn, turnScreenOff } from './screen.js';
 
@@ -41,6 +42,7 @@ socket.on('update_photos', function(data) {
 socket.on('test', function(message) {
 	console.log(message);
 });
+
 
 label_submit.addEventListener('click', function () {
 	socket.emit('filter_photos', label_input.value);

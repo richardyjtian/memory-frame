@@ -42,14 +42,16 @@ def Sleep_Intent(time):
 @ask.intent('NextPhotoIntent')
 def NextPhoto_Intent():
 	emit('next_photo', namespace='/', broadcast=True)
-	#do all photos have captions?
 	return statement('Here is the next photo')
 
 @ask.intent('LocationStillIntent')
 def LocationStill_Intent(city):
 	images = fb.filter('location', city)
-	if len(images) != 0:
-		emit('location_still', json.dumps(images), namespace='/', broadcast=True)
+	if len(images) == 1:
+		emit('photo_switch', json.dumps(images), namespace='/', broadcast=True)
+		return statement('Here is a photo from {}'.format(city))
+	if len(images) > 1:
+		emit('photo_switch', json.dumps(images), namespace='/', broadcast=True)
 		return statement('Here is a photo from {}. By the way {} other photos from {} were also found' .format(city, len(images), city))
 	else:
 		return statement('Sorry, no photos were found from {}' .format(city))
@@ -110,7 +112,7 @@ def Help_Intent(options):
 	elif options == 'filtering':
 		return statement('Feeling like reliving some favorite memories? You can revisit them by asking the memory frame to show you photos from a specific person or city')
 	else:
-		return statement('Memory frame is a digital photo frame with voice control. You can tell it to turn on and off, change photos or even search for photos by location or person')
+		return statement('Memory frame is a digital photo frame with voice control. You can use it to share memories with friends and family who like apart from you. It\'s really easy to use, just tell it to turn on and off, change photos or even search for photos by location or person')
 
 @ask.intent('AMAZON.HelpIntent')
 def help():

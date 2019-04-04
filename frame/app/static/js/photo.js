@@ -27,7 +27,7 @@ function switch_photo(imageUrl) {
 
 export function photosInPool() {
 	return photoNameList.length;
-} 
+}
 
 /**
  * switch the photo to another one in the pool
