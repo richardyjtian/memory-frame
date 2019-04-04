@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.android.gms.common.FirstPartyScopes;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,6 +30,9 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
+//import butterknife.Bind;
+//import butterknife.ButterKnife;
+
 public class PhotoGalleryActivity extends AppCompatActivity {
     // instance of our new custom array adaptor
     public static PhotoFrameArrayAdaptor ArrayAdapter;
@@ -35,13 +40,23 @@ public class PhotoGalleryActivity extends AppCompatActivity {
     // dynamic array of Photos (populate at run time)
     public static ArrayList<Photo> photoArray = new ArrayList<Photo>();
 
+
+    FloatingActionButton fab;
+
     private DatabaseReference mDatabase;
     private StorageReference mStorage;
+
+//    @Bind(R.id.floatingActionButton)
+//    DragButton fdb;
+//
+//    @Bind(R.id.plusButton)
+//    DragButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo_gallery);
+        fab = findViewById(R.id.plusButton);
 
         mDatabase = FirebaseDatabase.getInstance().getReference(FirebaseAuth.getInstance().getUid()); // set to user id
         mStorage = FirebaseStorage.getInstance().getReference(FirebaseAuth.getInstance().getUid());
@@ -58,6 +73,10 @@ public class PhotoGalleryActivity extends AppCompatActivity {
 
             }
         });
+
+
+
+
     }
 
     private void showData(DataSnapshot dataSnapshot) {

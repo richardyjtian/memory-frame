@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@drawable/lbackground">
+    android:background="@drawable/pblue1">
 
 
     <ImageView
@@ -29,6 +29,7 @@
         android:background="#FFFFFF"
         android:textStyle="bold"
         android:text="LOGIN"
+        android:fontFamily="@font/geosans"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -43,6 +44,7 @@
         android:background="#FFFFFF"
         android:textStyle="bold"
         android:text="SIGN UP"
+        android:fontFamily="@font/gothanthin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toLeftOf="parent"

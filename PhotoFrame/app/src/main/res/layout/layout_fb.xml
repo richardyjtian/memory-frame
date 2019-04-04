@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <io.github.richardyjtian.photoframe.DragButton
+        android:id="@+id/floatingActionButton"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        app:rippleColor="#FFFFFF"
+        app:backgroundTint="@color/colorAccent"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        app:elevation="6dp"
+        app:borderWidth="0dp"
+        app:pressedTranslationZ="12dp"
+        app:fabSize="mini"
+        />
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/plusButton"
+        android:layout_width="61dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:onClick="photoSourceDialog"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_add"
+        android:focusable="true" />
+</RelativeLayout>
+
+
