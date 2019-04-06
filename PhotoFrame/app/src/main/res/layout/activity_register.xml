@@ -46,7 +46,7 @@
             app:layout_constraintTop_toTopOf="@+id/firstrow" />
 
         <EditText
-            android:id="@+id/E-mail"
+            android:id="@+id/Email0"
             android:layout_width="0dp"
             android:layout_height="43dp"
             android:layout_gravity="center"

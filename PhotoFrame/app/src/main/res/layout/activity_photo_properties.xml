@@ -40,7 +40,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.7"
-        app:layout_constraintWidth_percent="0.8">
+        app:layout_constraintWidth_percent="0.8"
+        app:layout_constraintHorizontal_bias="0.5">
 
         <TextView
             android:id="@+id/name_label"
@@ -59,7 +60,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.18" />
+            app:layout_constraintVertical_bias="0.21" />
 
         <EditText
             android:id="@+id/name"
@@ -69,7 +70,7 @@
             android:maxLength="20"
             android:maxLines="1"
             android:textColor="@android:color/black"
-            android:textSize="12sp"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.75"
@@ -97,7 +98,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.4" />
+            app:layout_constraintVertical_bias="0.42" />
 
         <EditText
             android:id="@+id/caption"
@@ -106,7 +107,7 @@
             android:inputType="text"
             android:maxLines="1"
             android:textColor="@android:color/black"
-            android:textSize="12sp"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.75"
@@ -144,7 +145,7 @@
             android:inputType="text"
             android:maxLines="1"
             android:textColor="@android:color/black"
-            android:textSize="12sp"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.75"
@@ -200,14 +201,14 @@
         android:onClick="finish"
         android:text="Done"
         android:textStyle="bold"
-        android:fontFamily="@font/geosans"
+        android:fontFamily="@font/moreg"
         android:elevation="60dp"
         android:textColor="@android:color/black"
         android:textSize="@dimen/menu_text_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.07"
-        app:layout_constraintHorizontal_bias="0.545"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"

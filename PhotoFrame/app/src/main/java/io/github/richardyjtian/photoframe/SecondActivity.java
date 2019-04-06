@@ -37,10 +37,13 @@ public class SecondActivity extends AppCompatActivity {
     private Button loginBtn;
     public static String email;
     View decorView;
-    public static String NAME = "name";
-
+    public static String LOGIN_NAME = "loginName";
+    public static String MEM = "mf";
+    public static int LOGIN_ACT = 10;
     float downX, downY;
     float screenWidth, screenHeight;
+    public static String Name1 = null;
+    public static String Password = null;
 
     EditText username, psw;
 
@@ -65,7 +68,9 @@ public class SecondActivity extends AppCompatActivity {
 
         loginBtn = (Button) findViewById(R.id.loginButton);
         username = (EditText) findViewById(R.id.loginUsername);
+        Name1 = username.toString();
         psw = (EditText) findViewById(R.id.loginPassword);
+        Password = psw.toString();
 
         auth = FirebaseAuth.getInstance();
 
@@ -103,8 +108,9 @@ public class SecondActivity extends AppCompatActivity {
                             //FirebaseUser user = mAuth.getCurrentUser();
                             // TODO: redirect to logged in UI
                             Intent intent = new Intent(SecondActivity.this, FrameActivity.class);
-                            String name = "Memory Frame";
-                            intent.putExtra(NAME, name);
+                            intent.putExtra(LOGIN_NAME, username.getText().toString());
+                            intent.putExtra(MEM, "Memory Frame");
+                            intent.putExtra("from","SecondActivity");
                             startActivity(intent);
                         } else {
                             // If sign in fails, display a message to the user.
