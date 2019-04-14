@@ -205,29 +205,7 @@ public class FrameActivity extends AppCompatActivity {
 
     }
 
-    private void sendText(String s){
-        if (btSocket!=null)
-        {
-            try
-            {
-                msg("Sending");
-                btSocket.getOutputStream().write(s.toString().getBytes());
-            }
-            catch (IOException e)
-            {
-                msg("Connection Error");
-                isBtConnected = false;
-                msg("Trying to reestablished connection");
-                try
-                {
-                    btSocket.close(); //close connection
-                }
-                catch (IOException ei)
-                { msg("CANNOT DISMISS");}
-                new ConnectBT().execute();
-            }
-        }
-    }
+
 
     @Override
     public void onBackPressed() {
@@ -471,43 +449,45 @@ public class FrameActivity extends AppCompatActivity {
 
     }
 
-    private class ConnectBT extends AsyncTask<Void, Void, Void>  // UI thread
-    {
-        private boolean ConnectSuccess = true;
+    private class ConnectBT extends AsyncTask<Void, Void, Void> {
+        private boolean Success = true;
 
         @Override
         protected void onPreExecute() {
-            progress = ProgressDialog.show(FrameActivity.this, "Connecting...", "Please wait");  //Show a progress dialog
+            progress = ProgressDialog.show(FrameActivity.this, "Connecting...", "Please wait for connection");
         }
 
         @Override
-        protected Void doInBackground(Void... devices) //While the progress dialog is shown, the connection is done in background
+        protected Void doInBackground(Void... devices)
         {
             try {
                 if (btSocket == null || !isBtConnected) {
-                    myBluetooth = BluetoothAdapter.getDefaultAdapter();//Get the mobile bluetooth device
-                    BluetoothDevice dispositivo = myBluetooth.getRemoteDevice(address);//Connects to the device's address and checks if it is available
-                    btSocket = dispositivo.createInsecureRfcommSocketToServiceRecord(myUUID);//Create a RFCOMM (SPP) connection
+                    myBluetooth = BluetoothAdapter.getDefaultAdapter();
+
+                    BluetoothDevice btDevice = myBluetooth.getRemoteDevice(address);
+
+                    btSocket = btDevice.createInsecureRfcommSocketToServiceRecord(myUUID);
+
                     BluetoothAdapter.getDefaultAdapter().cancelDiscovery();
-                    btSocket.connect();//Start the connection
+
+                    btSocket.connect();
                 }
             } catch (IOException e) {
-                ConnectSuccess = false;//If the try failed, you can check the exception here
+                Success = false;
             }
             return null;
         }
 
 
         @Override
-        protected void onPostExecute(Void result) //after the doInBackground, it checks if everything went fine
+        protected void onPostExecute(Void result)
         {
             super.onPostExecute(result);
 
-            //Sends an error message if the connection is failed
-            if (!ConnectSuccess) {
-                msg("Connection Failed. Please try again.");
+            if (!Success) {
+                Toast.makeText(getApplicationContext(), "Connection failed", Toast.LENGTH_LONG).show();
             } else {
-                msg("Connected.");
+                Toast.makeText(getApplicationContext(), "Connected", Toast.LENGTH_LONG).show();
                 isBtConnected = true;
             }
             progress.dismiss();
@@ -515,27 +495,23 @@ public class FrameActivity extends AppCompatActivity {
     }
 
         //Method to disconnect the bluetooth connection
-        private void Disconnect()
-        {
-            if (btSocket!=null) //If the btSocket is busy
-            {
+        private void Disconnect() {
+            if (btSocket!=null) {
                 try
                 {
-                    btSocket.close(); //close connection
+                    btSocket.close();
                 }
                 catch (IOException e)
-                { msg("Error");}
+                {
+                    Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+                }
             }
 
             finish();
         }
 
 
-        //Method to display a Toast
-        public void msg(String s)
-        {
-            Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
-        }
+
 
 
     private void galleryAddPic() {
