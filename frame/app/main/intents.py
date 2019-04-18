@@ -90,13 +90,10 @@ def PersonSlide_Intent(person):
 
 @ask.intent('SlideIntent', default={'interval':'PT1M'}, convert={'interval': 'timedelta'})
 def Slide_Intent(interval):
-	#TODO: add code to start slideshow, switching photos at set interval
-	#note: interval is of datatype timedelta
 	return statement('Memory frame is starting slideshow')
 
 @ask.intent('StillIntent')
 def Still_Intent():
-	#TODO: add code to pause slideshow on an image
 	return statement('Memory frame is pausing slideshow')
 
 @ask.intent('HelloIntent')
