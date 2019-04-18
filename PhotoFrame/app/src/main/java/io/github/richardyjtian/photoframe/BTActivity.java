@@ -23,6 +23,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+
+import static io.github.richardyjtian.photoframe.SuccessActivity.SUCCESS_ACT;
+
 public class BTActivity extends AppCompatActivity {
 
     //pair, discover buttons
@@ -31,6 +34,7 @@ public class BTActivity extends AppCompatActivity {
     //pair, discover lists
     ListView devicelist, devicelist1;
 
+    public static String address = null;
     //newly discovered devices
     public  ArrayAdapter<String> mDeviceListAdapter;
 
@@ -45,6 +49,7 @@ public class BTActivity extends AppCompatActivity {
     private Set<BluetoothDevice> pairedDevices;
 
     public static String EXTRA_ADDRESS = "device_address";
+    public static String EXTRA_FRAME_NAME = "frameName";
 
     public static OutputStream mmOutStream = null;
 
@@ -119,6 +124,9 @@ public class BTActivity extends AppCompatActivity {
                     mDeviceListAdapter.notifyDataSetChanged();
                     btpair.put(frameNum, device.getAddress());
                 }
+//                mDeviceListAdapter.add(device.getName() + "\n" + device.getAddress());
+//                mDeviceListAdapter.notifyDataSetChanged();
+//                btpair.put(frameNum, device.getAddress());
             }
         }
     };
@@ -145,7 +153,7 @@ public class BTActivity extends AppCompatActivity {
         {
             // Get the device MAC address, the last 17 chars in the View
             String info = ((TextView) v).getText().toString();
-            String address = info.substring(info.length() - 17);
+            address = info.substring(info.length() - 17);
             String name  = null;
 
             // Make an intent to start next activity.
@@ -158,7 +166,9 @@ public class BTActivity extends AppCompatActivity {
                 }
             }
 
-            intent.putExtra("name", name);
+
+            intent.putExtra(EXTRA_FRAME_NAME, name);
+            intent.putExtra("from","BTActivity");
             intent.putExtra(EXTRA_ADDRESS, address); //this will be received at ledControl (class) Activity
             startActivity(intent);
         }

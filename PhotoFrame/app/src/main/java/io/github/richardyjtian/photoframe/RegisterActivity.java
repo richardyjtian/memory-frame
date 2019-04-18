@@ -29,6 +29,9 @@ public class RegisterActivity extends AppCompatActivity {
         private Button registerBtn;
         private EditText email, user, psw;
 
+
+
+        public static String Name2 = null;
         View decorView;
 
         float downX, downY;
@@ -57,10 +60,12 @@ public class RegisterActivity extends AppCompatActivity {
 
 
             registerBtn = (Button) findViewById(R.id.submitButton);
-            email = (EditText) findViewById(R.id.E_mail);
+            email = (EditText) findViewById(R.id.Email0);
             user = (EditText) findViewById(R.id.username);
+            Name2 = email.getText().toString();
             psw = findViewById(R.id.password);
             auth = FirebaseAuth.getInstance();
+
 
             registerBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -77,6 +82,7 @@ public class RegisterActivity extends AppCompatActivity {
                         public void onSuccess(AuthResult authResult) {
                             Toast.makeText(RegisterActivity.this, "account created", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(RegisterActivity.this, SuccessActivity.class);
+                            Name2 = email.getText().toString();
                             startActivity(intent);
                         }
                     });

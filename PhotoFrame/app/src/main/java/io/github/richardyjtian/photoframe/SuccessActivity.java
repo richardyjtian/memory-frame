@@ -21,6 +21,7 @@ public class SuccessActivity extends AppCompatActivity {
 
         float downX, downY;
         float screenWidth, screenHeight;
+        public static int SUCCESS_ACT = 20;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {

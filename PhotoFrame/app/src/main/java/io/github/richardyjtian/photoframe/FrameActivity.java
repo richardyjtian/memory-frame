@@ -15,6 +15,7 @@ import android.provider.MediaStore;
 import android.speech.RecognizerIntent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -39,11 +40,20 @@ import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+
+import static io.github.richardyjtian.photoframe.BTActivity.address;
+import static io.github.richardyjtian.photoframe.RegisterActivity.Name2;
+import static io.github.richardyjtian.photoframe.SecondActivity.LOGIN_ACT;
+import static io.github.richardyjtian.photoframe.SecondActivity.Name1;
+import static io.github.richardyjtian.photoframe.SecondActivity.Password;
+import static io.github.richardyjtian.photoframe.SuccessActivity.SUCCESS_ACT;
 
 public class FrameActivity extends AppCompatActivity {
 
@@ -53,12 +63,12 @@ public class FrameActivity extends AppCompatActivity {
     private Uri imageUri, uri;
     private TextView frameName, UsrName;
     private ProgressDialog progress;
+    private String str = "Memory Frame";
 
     BluetoothAdapter myBluetooth = null;
     BluetoothSocket btSocket = null;
 
     private boolean isBtConnected = false;
-    String address = null;
     private int flag = 0;
 
     static final UUID myUUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
@@ -92,18 +102,21 @@ public class FrameActivity extends AppCompatActivity {
 //        requestWindowFeature(Window.FEATURE_NO_TITLE);
 
 
-        UsrName.setText(SecondActivity.email.toCharArray(),0, SecondActivity.email.length());
-
         Intent intent = getIntent();
-        address = intent.getStringExtra(SecondActivity.NAME); //receive the address of the bluetooth device
+        if(getIntent().getStringExtra("from").equals("SecondActivity")){
+            frameName.setText(intent.getStringExtra(SecondActivity.MEM).toCharArray(),0,intent.getStringExtra(SecondActivity.MEM).toString().length());
+            UsrName.setText(intent.getStringExtra(SecondActivity.LOGIN_NAME).toCharArray(),0, intent.getStringExtra(SecondActivity.LOGIN_NAME).toString().length());
+        }
+        else if (getIntent().getStringExtra("from").equals("BTActivity")){
+            frameName.setText(intent.getStringExtra(BTActivity.EXTRA_FRAME_NAME).toCharArray(), 0, intent.getStringExtra(BTActivity.EXTRA_FRAME_NAME).toString().length());
+            UsrName.setText(Name2.toCharArray(),0, Name2.toString().length());
+            new ConnectBT().execute(); //Call the class to connect
+            //sendText(UsrName.toString() + "*" + Password);
+        }
 
-//        Intent newint1 = getIntent();
-//        address = newint1.getStringExtra(BTActivity.EXTRA_ADDRESS);//receive the address of the bluetooth device
-
-//        new ConnectBT().execute(); //Call the class to connect
 
 
-        frameName.setText("Memory Frame");
+//        frameName.setText("Memory Frame");
 
         pg.setClickable(true);
         pg.setOnClickListener(new View.OnClickListener() {
@@ -153,6 +166,7 @@ public class FrameActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(FrameActivity.this, MainActivity.class);
                 startActivity(intent);
+                Disconnect();
             }
         });
 
@@ -167,12 +181,6 @@ public class FrameActivity extends AppCompatActivity {
             }
         });
 
-//        GridView gridview = (GridView) findViewById(R.id.gridview);
-//        SimpleAdapter pictureAdapter = new SimpleAdapter(this, getList(), R.layout.grid_pic, from, to);
-//        gridview.setAdapter(pictureAdapter);
-
-//        Intent intent = new Intent(FrameActivity.this, PhotoGalleryActivity.class);
-//        startActivity(intent);
 
         mDatabase = FirebaseDatabase.getInstance().getReference(FirebaseAuth.getInstance().getUid()); // set to user id
         mStorage = FirebaseStorage.getInstance().getReference(FirebaseAuth.getInstance().getUid());
@@ -197,29 +205,7 @@ public class FrameActivity extends AppCompatActivity {
 
     }
 
-    private void sendText(String s){
-        if (btSocket!=null)
-        {
-            try
-            {
-                msg("Sending");
-                btSocket.getOutputStream().write(s.toString().getBytes());
-            }
-            catch (IOException e)
-            {
-                msg("Connection Error");
-                isBtConnected = false;
-                msg("Trying to reestablished connection");
-                try
-                {
-                    btSocket.close(); //close connection
-                }
-                catch (IOException ei)
-                { msg("CANNOT DISMISS");}
-                new ConnectBT().execute();
-            }
-        }
-    }
+
 
     @Override
     public void onBackPressed() {
@@ -322,6 +308,13 @@ public class FrameActivity extends AppCompatActivity {
             }
         });
 
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+
         // Inflate the photo_gallery_dialogbox.xml layout file and set as dialog view
         builder.setView(promptView);
         alert = builder.create();
@@ -346,6 +339,7 @@ public class FrameActivity extends AppCompatActivity {
     }
 
     private static final int CAMERA_REQUEST = 2;
+    Uri photoURI;
     // Open camera to take a photo
     public void camera() {
         // Get storage permissions too
@@ -353,8 +347,43 @@ public class FrameActivity extends AppCompatActivity {
         // Get camera permissions first
         Permissions.getCameraPermission(this);
 
-        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(cameraIntent, CAMERA_REQUEST);
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        // Ensure that there's a camera activity to handle the intent
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            // Create the File where the photo should go
+            File photoFile = null;
+            try {
+                photoFile = createImageFile();
+            } catch (IOException ex) {
+                // Error occurred while creating the File
+            }
+            // Continue only if the File was successfully created
+            if (photoFile != null) {
+                photoURI = FileProvider.getUriForFile(this,
+                        "com.example.android.fileprovider",
+                        photoFile);
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                startActivityForResult(takePictureIntent, CAMERA_REQUEST);
+            }
+        }
+
+    }
+
+    String currentPhotoPath;
+    private File createImageFile() throws IOException {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+
+        // Save a file: path for use with ACTION_VIEW intents
+        currentPhotoPath = image.getAbsolutePath();
+        return image;
     }
 
     private static final int UPLOAD_IMAGE_REQUEST = 1;
@@ -378,8 +407,8 @@ public class FrameActivity extends AppCompatActivity {
 
         // Taken a photo
         if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK
-                && data != null && data.getData() != null) {
-            Uri imageUri = data.getData();
+                ) {
+            Uri imageUri = photoURI;
 
             Photo photo = new Photo(imageUri);
 
@@ -400,46 +429,65 @@ public class FrameActivity extends AppCompatActivity {
             }
         }
 
+//        //from register page
+//        if(requestCode == SUCCESS_ACT){
+//            if(resultCode == RESULT_OK){
+//                Intent intent = getIntent();
+//                frameName.setText(intent.getStringExtra(BTActivity.EXTRA_FRAME_NAME).toCharArray(), 0, intent.getStringExtra(BTActivity.EXTRA_FRAME_NAME).toString().length());
+//                UsrName.setText(registerName.toCharArray(),0, registerName.toString().length());
+//            }
+//        }
+//
+//        if(requestCode == LOGIN_ACT){
+//            if(resultCode == RESULT_OK){
+//                Intent intent = getIntent();
+//                frameName.setText(intent.getStringExtra(SecondActivity.MEM).toCharArray(),0,intent.getStringExtra(SecondActivity.MEM).toString().length());
+//                UsrName.setText(intent.getStringExtra(SecondActivity.LOGIN_NAME).toCharArray(),0, intent.getStringExtra(SecondActivity.LOGIN_NAME).toString().length());
+//            }
+
+
 
     }
 
-    private class ConnectBT extends AsyncTask<Void, Void, Void>  // UI thread
-    {
-        private boolean ConnectSuccess = true;
+    private class ConnectBT extends AsyncTask<Void, Void, Void> {
+        private boolean Success = true;
 
         @Override
         protected void onPreExecute() {
-            progress = ProgressDialog.show(FrameActivity.this, "Connecting...", "Please wait");  //Show a progress dialog
+            progress = ProgressDialog.show(FrameActivity.this, "Connecting...", "Please wait for connection");
         }
 
         @Override
-        protected Void doInBackground(Void... devices) //While the progress dialog is shown, the connection is done in background
+        protected Void doInBackground(Void... devices)
         {
             try {
                 if (btSocket == null || !isBtConnected) {
-                    myBluetooth = BluetoothAdapter.getDefaultAdapter();//Get the mobile bluetooth device
-                    BluetoothDevice dispositivo = myBluetooth.getRemoteDevice(address);//Connects to the device's address and checks if it is available
-                    btSocket = dispositivo.createInsecureRfcommSocketToServiceRecord(myUUID);//Create a RFCOMM (SPP) connection
+                    myBluetooth = BluetoothAdapter.getDefaultAdapter();
+
+                    BluetoothDevice btDevice = myBluetooth.getRemoteDevice(address);
+
+                    btSocket = btDevice.createInsecureRfcommSocketToServiceRecord(myUUID);
+
                     BluetoothAdapter.getDefaultAdapter().cancelDiscovery();
-                    btSocket.connect();//Start the connection
+
+                    btSocket.connect();
                 }
             } catch (IOException e) {
-                ConnectSuccess = false;//If the try failed, you can check the exception here
+                Success = false;
             }
             return null;
         }
 
 
         @Override
-        protected void onPostExecute(Void result) //after the doInBackground, it checks if everything went fine
+        protected void onPostExecute(Void result)
         {
             super.onPostExecute(result);
 
-            //Sends an error message if the connection is failed
-            if (!ConnectSuccess) {
-                msg("Connection Failed. Please try again.");
+            if (!Success) {
+                Toast.makeText(getApplicationContext(), "Connection failed", Toast.LENGTH_LONG).show();
             } else {
-                msg("Connected.");
+                Toast.makeText(getApplicationContext(), "Connected", Toast.LENGTH_LONG).show();
                 isBtConnected = true;
             }
             progress.dismiss();
@@ -447,27 +495,31 @@ public class FrameActivity extends AppCompatActivity {
     }
 
         //Method to disconnect the bluetooth connection
-        private void Disconnect()
-        {
-            if (btSocket!=null) //If the btSocket is busy
-            {
+        private void Disconnect() {
+            if (btSocket!=null) {
                 try
                 {
-                    btSocket.close(); //close connection
+                    btSocket.close();
                 }
                 catch (IOException e)
-                { msg("Error");}
+                {
+                    Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_LONG).show();
+                }
             }
 
             finish();
         }
 
 
-        //Method to display a Toast
-        public void msg(String s)
-        {
-            Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
-        }
 
+
+
+    private void galleryAddPic() {
+        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+        File f = new File(currentPhotoPath);
+        Uri contentUri = Uri.fromFile(f);
+        mediaScanIntent.setData(contentUri);
+        this.sendBroadcast(mediaScanIntent);
+    }
 }
 
