@@ -33,6 +33,7 @@ A more detailed report of the product can be found [here](/public/assets/memory-
 Open the `/PhotoFrame` directory in Android Studio and it should compile and run! 
 
 ### Digital Photoframe
+Installation guide can be found in [/frame/README.md](/frame)
 
 ## Conclusion and Suggested Future Work
 The overall project was a great success and we accomplished everything we set out to do. For a continuation of the project, feedback could be sent from the photo frame user to be displayed on the Android app. Facial recognition could also be used to automatically determine the people in a picture.

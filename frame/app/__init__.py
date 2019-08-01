@@ -14,6 +14,8 @@ def create_app(debug=False):
     app.debug = debug
     app.config['SECRET_KEY'] = 'sdkasndask12w'
 
+
+    # import and register blue prints for routes to the Flask app
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
 

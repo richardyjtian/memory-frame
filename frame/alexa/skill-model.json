@@ -1,0 +1,309 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "memory frame",
+      "intents": [{
+          "name": "AMAZON.FallbackIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "PowerIntent",
+          "slots": [{
+            "name": "state",
+            "type": "STATUS"
+          }],
+          "samples": [
+            "turn {state} frame",
+            "turn frame {state}",
+            "turn {state}",
+            "power {state}"
+          ]
+        },
+        {
+          "name": "SleepIntent",
+          "slots": [{
+            "name": "time",
+            "type": "AMAZON.DURATION",
+            "samples": [
+              "sleep for {time}",
+              "{time}",
+              "for {time}"
+            ]
+          }],
+          "samples": [
+            "sleep",
+            "go to sleep",
+            "stay asleep for {time}",
+            "go to sleep for {time}",
+            "sleep for {time}"
+          ]
+        },
+        {
+          "name": "NextPhotoIntent",
+          "slots": [],
+          "samples": [
+            "display a different picture",
+            "show another picture",
+            "show the next picture",
+            "switch photos",
+            "Change to a different photo",
+            "Change the photo",
+            "Display a different photo",
+            "Display another photo",
+            "Show me another photo",
+            "Show me the next photo"
+          ]
+        },
+        {
+          "name": "LocationStillIntent",
+          "slots": [{
+            "name": "city",
+            "type": "AMAZON.AdministrativeArea"
+          }],
+          "samples": [
+            "show a photo taken in {city}",
+            "show me a picture from {city}",
+            "show a photo from my {city} vacation",
+            "show me a photo from my vacation to {city}",
+            "show me a photo from my trip to {city}",
+            "show me a photo from {city}",
+            "show me a photo of {city}"
+          ]
+        },
+        {
+          "name": "LocationSlideIntent",
+          "slots": [{
+            "name": "city",
+            "type": "AMAZON.AdministrativeArea"
+          }],
+          "samples": [
+            "show photos taken in {city}",
+            "show me pictures from {city}",
+            "show a slideshow of photos from {city}",
+            "show photos from my {city} vacation",
+            "Show me photos from my trip to {city}",
+            "Show me photos from my vacation to {city}",
+            "Show me photos of {city}",
+            "Show me photos from {city}"
+          ]
+        },
+        {
+          "name": "SlideIntent",
+          "slots": [{
+            "name": "interval",
+            "type": "AMAZON.DURATION"
+          }],
+          "samples": [
+            "show a picture every {interval}",
+            "show a new photo every {interval}",
+            "switch photos every {interval}",
+            "switch slideshow photos every {interval}",
+            "begin slideshow",
+            "start slideshow",
+            "show a slideshow",
+            "switch between photos",
+            "switch to slideshow mode"
+          ]
+        },
+        {
+          "name": "StillIntent",
+          "slots": [],
+          "samples": [
+            "remain here",
+            "keep displaying this photo",
+            "stop on this picture",
+            "display only this picture",
+            "pause slideshow",
+            "stop slideshow",
+            "stop the slideshow",
+            "display only this photo",
+            "pause on this photo",
+            "stay on this photo"
+          ]
+        },
+        {
+          "name": "HelloIntent",
+          "slots": [],
+          "samples": [
+            "greetings",
+            "good day",
+            "hi",
+            "hello"
+          ]
+        },
+        {
+          "name": "HelpIntent",
+          "slots": [{
+            "name": "options",
+            "type": "OPTIONS",
+            "samples": [
+              "{options}",
+              "explanation of {options}",
+              "a list of possible {options}",
+              "{options} introduction"
+            ]
+          }],
+          "samples": [
+            "I want to learn more about it",
+            "I'm lost",
+            "explain how it works",
+            "how does it work",
+            "help"
+          ]
+        },
+        {
+          "name": "PersonStillIntent",
+          "slots": [{
+            "name": "person",
+            "type": "AMAZON.SearchQuery"
+          }],
+          "samples": [
+            "show photo of {person}",
+            "show a picture of {person}",
+            "show a photo with {person} in it",
+            "show a photo of {person}",
+            "show me a photo of {person}"
+          ]
+        },
+        {
+          "name": "PersonSlideIntent",
+          "slots": [{
+            "name": "person",
+            "type": "AMAZON.SearchQuery"
+          }],
+          "samples": [
+            "show photos with {person}",
+            "start slideshow of photos of {person}",
+            "show photos of {person}",
+            "show me photos of {person}"
+          ]
+        }
+      ],
+      "types": [{
+          "name": "STATUS",
+          "values": [{
+              "name": {
+                "value": "off",
+                "synonyms": [
+                  "Off",
+                  "low"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "on",
+                "synonyms": [
+                  "High",
+                  "On"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "OPTIONS",
+          "values": [{
+              "name": {
+                "value": "general"
+              }
+            },
+            {
+              "name": {
+                "value": "filtering ",
+                "synonyms": [
+                  "filter"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "commands"
+              }
+            },
+            {
+              "name": {
+                "value": "sleep"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "dialog": {
+      "intents": [{
+          "name": "PowerIntent",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [{
+            "name": "state",
+            "type": "STATUS",
+            "confirmationRequired": false,
+            "elicitationRequired": false,
+            "prompts": {}
+          }]
+        },
+        {
+          "name": "SleepIntent",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [{
+            "name": "time",
+            "type": "AMAZON.DURATION",
+            "confirmationRequired": false,
+            "elicitationRequired": true,
+            "prompts": {
+              "elicitation": "Elicit.Slot.392202204897.1480826259886"
+            }
+          }]
+        },
+        {
+          "name": "HelpIntent",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [{
+            "name": "options",
+            "type": "OPTIONS",
+            "confirmationRequired": false,
+            "elicitationRequired": true,
+            "prompts": {
+              "elicitation": "Elicit.Slot.1449551151998.162581697842"
+            }
+          }]
+        }
+      ],
+      "delegationStrategy": "ALWAYS"
+    },
+    "prompts": [{
+        "id": "Elicit.Slot.392202204897.1480826259886",
+        "variations": [{
+          "type": "PlainText",
+          "value": "How long should the memory frame sleep for?"
+        }]
+      },
+      {
+        "id": "Elicit.Slot.1449551151998.162581697842",
+        "variations": [{
+          "type": "PlainText",
+          "value": "I'm happy to help you learn more about your memory frame.  Would you like to get a general introduction, a list of possible commands, an explanation of filtering or of sleep?"
+        }]
+      }
+    ]
+  }
+}
