@@ -26,11 +26,11 @@ The purpose of the digital photoframe is to listen and process user voices comma
 - The photo display is done via a web app (served via python with Flask framework)
 - and the voice processing is done with the [Alexa Voice Service](https://developer.amazon.com/docs/alexa-voice-service/get-started-with-alexa-voice-service.html) from Amazon
 
-A more detailed report of the product can be found [here](https://docs.google.com/presentation/d/11fEiC7bxKfqQWN)
+A more detailed report of the product can be found [here](/public/assets/memory-frame-report.pdf)
 
 ## Installation
 ### Android App
-Open the `/PhotoFrame` directory in Android Studiom and it should compile and run! 
+Open the `/PhotoFrame` directory in Android Studio and it should compile and run! 
 
 ### Digital Photoframe
 
